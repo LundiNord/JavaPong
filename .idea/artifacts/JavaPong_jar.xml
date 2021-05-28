@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaPong:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaPong_jar</output-path>
+    <root id="archive" name="JavaPong.jar">
+      <element id="module-output" name="JavaPong" />
+    </root>
+  </artifact>
+</component>
