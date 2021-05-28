@@ -1,8 +1,5 @@
 package com.company;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -38,12 +35,16 @@ public class SchiffBord extends JPanel implements ActionListener {
         super.paintComponent(g);
 
         doDrawing(g);
+        Toolkit.getDefaultToolkit().sync();
     }
 
     public void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(testschiff1.getImage(), testschiff1.getX(), testschiff1.getY(), null);
         g2d.drawImage(testschiff2.getImage(), testschiff2.getX(), testschiff2.getY(), null);
+        if(checkCollision()==true) {
+            g2d.drawString("Kaboom!",100,100);
+        }
     }
 
 
@@ -69,4 +70,19 @@ public class SchiffBord extends JPanel implements ActionListener {
         }
 
     }
+    public boolean checkCollision() {
+        boolean x = false;
+
+        Rectangle r1 = testschiff1.getBounds();
+        Rectangle r2 = testschiff2.getBounds();
+
+        if(r1.intersects(r2)) {
+            x = true;
+        }
+
+
+        return x;
+    }
+
+
 }

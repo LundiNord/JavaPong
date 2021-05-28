@@ -2,7 +2,7 @@
 
 package com.company;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -86,5 +86,8 @@ public class Testschiff2 {
         if (key == KeyEvent.VK_S) {
             dy = 0;
         }
+    }
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, w, h);
     }
 }

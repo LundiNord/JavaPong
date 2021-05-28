@@ -3,6 +3,7 @@ package com.company;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
+import java.awt.Rectangle;
 
 public class TestSchiff {
     private int dx;
@@ -84,5 +85,8 @@ public class TestSchiff {
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
         }
+    }
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, w, h);
     }
 }
