@@ -10,10 +10,13 @@ import java.text.AttributedCharacterIterator;
 
 public class Board extends JPanel {
 
+
+
     public Board() {
-        paintComponent();
+
 
     }
+
 
     @Override   //Ankündigung der Ändern einer Methode der Überklasse
     public void paintComponent(Graphics g) {
@@ -34,9 +37,13 @@ public class Board extends JPanel {
         double w = size.getWidth();
         double h = size.getHeight();
 
-        Ellipse2D e = new Ellipse2D.Double(0, 0, 80, 130);      //Zeichnen
+              //Zeichnen
         g2d.setStroke(new BasicStroke(20));
         g2d.setColor(Color.gray);
+        g2d.draw3DRect(0,0,20,20,true);
+        g2d.drawString(str,50,50);
+
+
 
     }
 }
