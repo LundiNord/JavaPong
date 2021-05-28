@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
 	//System.out.println("Hallo");
         EventQueue.invokeLater(() -> {      //keine Ahnung wofür das ist
-            App app1 = new App();
+            SchiffMain app1 = new SchiffMain();
             app1.setVisible(true);
         });
     }

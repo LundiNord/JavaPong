@@ -67,7 +67,7 @@ public class AniBoard extends JPanel implements Runnable {
         cycle();
         repaint();
         timeDiff = System.currentTimeMillis() - beforeTime;
-        sleep = 25 - timeDiff;
+        sleep = 16 - timeDiff;
         if (sleep < 0) {
             sleep = 2;
         }
@@ -85,8 +85,6 @@ public class AniBoard extends JPanel implements Runnable {
 
 
     }
-
-
 
     }
 
