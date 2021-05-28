@@ -10,7 +10,10 @@ public class App extends JFrame {
     }
 
     public void startUI() {
-        add(new Board());
+        add(new AniBoard());
+
+        setResizable(false);
+        pack();
 
         setSize(1000, 600);
         setTitle("Test Appp");

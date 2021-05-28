@@ -58,11 +58,11 @@ public class Board extends JPanel {
     }
 
 
-    @Override   //Ankündigung der Ändern einer Methode der Überklasse
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        drawDonut(g);
+        //drawDonut(g);
         g.drawImage(testBild, 0, 0, null);
     }
 }
