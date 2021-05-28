@@ -41,6 +41,7 @@ public class Board extends JPanel {
         g2d.setStroke(new BasicStroke(20));
         g2d.setColor(Color.gray);
         g2d.draw3DRect(0,0,20,20,true);
+        String str = "Test";
         g2d.drawString(str,50,50);
 
 
