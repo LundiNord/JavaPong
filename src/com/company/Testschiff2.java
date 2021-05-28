@@ -1,10 +1,12 @@
+
+
 package com.company;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
-public class TestSchiff {
+public class Testschiff2 {
     private int dx;
     private int dy;
     private int x = 40;
@@ -13,7 +15,7 @@ public class TestSchiff {
     private int h;
     private Image image;
 
-    public TestSchiff() {
+    public Testschiff2() {
         ImageIcon ii = new ImageIcon("src/resources/spaceship.png");
         image = ii.getImage();
 
@@ -48,19 +50,19 @@ public class TestSchiff {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_A) {
             dx = -2;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_D) {
             dx = 2;
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_W) {
             dy = -2;
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_S) {
             dy = 2;
         }
     }
@@ -69,19 +71,19 @@ public class TestSchiff {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_A) {
             dx = 0;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_D) {
             dx = 0;
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_W) {
             dy = 0;
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_S) {
             dy = 0;
         }
     }

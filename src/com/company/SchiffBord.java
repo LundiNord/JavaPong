@@ -14,7 +14,7 @@ public class SchiffBord extends JPanel implements ActionListener {
 
     private Timer timer;
     private TestSchiff testschiff1;
-    private TestSchiff testschiff2;
+    private Testschiff2 testschiff2;
     private int DELAY = 10;
 
     public SchiffBord() {
@@ -27,6 +27,7 @@ public class SchiffBord extends JPanel implements ActionListener {
         setFocusable(true);
 
         testschiff1 = new TestSchiff();
+        testschiff2= new Testschiff2();
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -42,32 +43,29 @@ public class SchiffBord extends JPanel implements ActionListener {
     public void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(testschiff1.getImage(), testschiff1.getX(), testschiff1.getY(), null);
-
+        g2d.drawImage(testschiff2.getImage(), testschiff2.getX(), testschiff2.getY(), null);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         testschiff1.move();
+        testschiff2.move();
         repaint();
 
 
     }
 
-
-
-
-
-
-
     private class TAdapter extends KeyAdapter {
         @Override
         public void keyReleased(KeyEvent e) {
             testschiff1.keyReleased(e);
+            testschiff2.keyReleased(e);
         }
         @Override
         public void keyPressed(KeyEvent e) {
             testschiff1.keyPressed(e);
+            testschiff2.keyPressed(e);
         }
 
     }
