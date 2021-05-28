@@ -14,6 +14,7 @@ public class SchiffBord extends JPanel implements ActionListener {
 
     private Timer timer;
     private TestSchiff testschiff1;
+    private TestSchiff testschiff2;
     private int DELAY = 10;
 
     public SchiffBord() {
