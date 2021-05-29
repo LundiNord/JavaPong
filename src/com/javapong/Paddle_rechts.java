@@ -1,5 +1,6 @@
 package com.javapong;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 //Rechtes Paddle
@@ -48,6 +49,9 @@ public class Paddle_rechts extends Paddles {
     public int getY(){
         return y;
     }
-
+    // Neues Rectangel erzeugen für CollisionDetection
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,getWidth(),getHeight());
+    }
 
 }

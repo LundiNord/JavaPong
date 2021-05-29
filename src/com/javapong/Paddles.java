@@ -22,8 +22,5 @@ public abstract class Paddles {
     public int getWidth(){
         return width;
     }
-    // Neues Rectangel erzeugen für CollisionDetection
-    //public Rectangle getBounds(){
-     //   return new Rectangle(x,y,width,heigth);
-    //}
+
 }

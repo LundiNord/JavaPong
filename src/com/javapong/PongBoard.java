@@ -68,6 +68,8 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     g2d.fill3DRect(spielfeld1.getXm(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
     g2d.fill3DRect(spielfeld1.getXl(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
     g2d.fill3DRect(spielfeld1.getXr(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
+    g2d.fill3DRect(0, spielfeld1.getYo(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
+    g2d.fill3DRect(0, spielfeld1.getYu(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     }
 
     public void addNotify() {
@@ -110,6 +112,15 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
 
     }
 
+    public void checkCollision() {
+        Rectangle rB = ball1.getBounds();
+        Rectangle rPl= paddle_links.getBounds();
+        Rectangle rPr= paddle_rechts.getBounds();
+
+        if(rB.intersects(rPl)||rB.intersects(rPr)) {
+            ball1.AbprallenPaddle();
+        }
+    }
 
 
     public void actionPerformed(ActionEvent e) {        //wird nach Tastendruck ausgeführt

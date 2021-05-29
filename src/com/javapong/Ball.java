@@ -6,6 +6,8 @@ public class Ball  {
 
     private int x;
     private int y;
+    private int xo;         //x old
+    private int yo;         //y old
     private int dx=2;
     private int dy=2;
     private int width;
@@ -27,17 +29,37 @@ public class Ball  {
     }
 
     public void changespeed(int ds){
-        dx=dx+ds;
-        dy=dx+ds;
+        dx+=ds;
+        dy+=ds;
     }
     public void changeballsize(int dc){
         width= screensize.width/32+dc;
         height= screensize.height/32+dc;
     }
+
+    // Neues Rectangel erzeugen für CollisionDetection
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,getWidth(),getHeight());
+    }
+
     public void move(){
         x+=dx;
         y+=dy;
     }
+    public void berechnealtePos(){
+        xo=x-dx;
+        yo=y-dy;
+    }
+    public void AbprallenPaddle(){
+        dx=-dx;         //x dreht sich
+        dy=dy;          //y nicht
+    }
+
+    public void AbprallenBoarder(){
+        dx=dx;          //x dreht sich nicht
+        dy=-dy;         //y schon
+    }
+
     public int getX(){
         return x;
     }

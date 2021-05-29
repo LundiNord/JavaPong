@@ -8,18 +8,24 @@ public class Spielfeld {            //Mittellinie und Umrandungen
     private int ym;
     private int mwidth;
     private int mheight;
-    private int xr,xl;
+    private int xr,xl,yu,yo;
+    private int sh; //screensize.height
+    private int sw; //screensize.width
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
     public Spielfeld(){
-        mheight=screensize.height;
-        mwidth= screensize.width/256;
-        xm= screensize.width/2- screensize.width/512;
+        sw= screensize.width;
+        sh= screensize.height;
+        mheight=sh;
+        mwidth= sw/256;
+        xm= sw/2- sw/512;
         ym=0;
         xl=0;
-        xr= screensize.width-mwidth*2;
+        xr= sw-mwidth*2;
+        yo=0;
+        yu= sh-mwidth;
     }
 
     public int getXr(){
@@ -39,5 +45,22 @@ public class Spielfeld {            //Mittellinie und Umrandungen
     }
     public int getMheight(){
         return mheight;
+    }
+    public int getYu(){
+        return yu;
+    }
+    public int getYo(){
+        return yo;
+    }
+    public int getSw(){
+        return sw;
+    }
+    // Neues Rectangel erzeugen für CollisionDetection
+    public Rectangle getBoundsOben(){
+        return new Rectangle(0,yo,sw,mwidth);
+    }
+    // Neues Rectangel erzeugen für CollisionDetection
+    public Rectangle getBounds(){
+        return new Rectangle(0,yu,sw,mwidth);
     }
 }
