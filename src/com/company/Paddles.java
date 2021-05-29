@@ -6,9 +6,9 @@ public abstract class Paddles {
     //benötigte Variablen deklarieren
     protected int x;
     protected int y;
-    private int dx;
-    private int heigth;
-    private int width;
+    protected int dy;
+    protected int heigth;
+    protected int width;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -16,6 +16,10 @@ public abstract class Paddles {
         heigth= screensize.height/8;
         width= screensize.width/64;
     }
+
+        public void move(){
+        y+=dy; //= x=x+dx;
+        }
 
     public int getX(){
          return x;
@@ -29,5 +33,8 @@ public abstract class Paddles {
     public int getWidth(){
         return width;
     }
-
+    // Neues Rectangel erzeugen für CollisionDetection
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,width,heigth);
+    }
 }

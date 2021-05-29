@@ -54,16 +54,20 @@ public PongBoard(){
 
   //ActionListener funktionsfähig machen
     public void actionPerformed(ActionEvent e) {
+        paddle_rechts.move();
+        paddle_links.move();
         repaint();
     }
     private class TAdapter extends KeyAdapter {
         @Override
         public void keyReleased(KeyEvent e) {
-
+            paddle_links.keyReleased(e);
+            paddle_rechts.keyReleased(e);
         }
         @Override
         public void keyPressed(KeyEvent e) {
-
+            paddle_links.keyPressed(e);
+            paddle_rechts.keyPressed(e);
         }
 
     }
