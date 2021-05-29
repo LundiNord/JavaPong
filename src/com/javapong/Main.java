@@ -10,7 +10,6 @@
         You should have received a copy of the GNU General Public License
         along with JavaPong.  If not, see <https://www.gnu.org/licenses/>.
 */
-
 package com.javapong;
 import java.awt.EventQueue;
 import java.util.Scanner;

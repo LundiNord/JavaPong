@@ -1,31 +1,37 @@
 package com.javapong;
-//https://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
 
-import java.net.URL;
-import javax.swing.*;
-import javax.sound.sampled.*;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
-public class Sound {            //ToDo: funktioniert noch nicht
+public class Sound {            //ToDo: nicht getested
+    AudioInputStream audioInputStream1;
+    Clip clip1;
+    String Path1 = "src/resources/audio.wave";
+    Clip clip2;
+    String Path2 = null;    //ToDo: Sound hinzufügen
 
-    public Sound() throws Exception {
-        sound1();   //testing
+    public Sound() throws Exception {           //Clips initialisieren
+        clip1 = soundInit(Path1,false);
     }
 
-    public void sound1() throws Exception {
-            URL url = new URL("http://pscode.org/media/leftright.wav");
-            Clip clip = AudioSystem.getClip();
-            // getAudioInputStream() also accepts a File or InputStream
-            AudioInputStream ais = AudioSystem.getAudioInputStream(url);
-            clip.open(ais);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-            SwingUtilities.invokeLater(() -> {
-                // A GUI element to prevent the Clip's daemon Thread
-                // from terminating at the end of the main()
-                JOptionPane.showMessageDialog(null, "Close to exit!");
-            });
+    public void playSound1() {
+        clip1.start();
+    }
+    public void stopSound1() {
+        clip1.stop();
+        //clip1.close();
+    }
 
 
-}
-
-
+    public Clip soundInit(String Pfad,boolean looped) throws Exception {       //Sound initialisieren
+        audioInputStream1 = AudioSystem.getAudioInputStream(new File(Pfad).getAbsoluteFile());
+        Clip clip = AudioSystem.getClip();  //Clip erzeugen. Mit Clips kann man Audio buffern und einfach loopen
+        clip.open(audioInputStream1);
+        if(looped ==true) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);     //loopen
+        }
+        return clip;
+    }
 }
