@@ -8,14 +8,11 @@ public class Paddle_rechts extends Paddles {
     private int x;
     private int y;
     private int dy;
-    private int heigth;
-    private int width;
 
     public Paddle_rechts(){
         x=screensize.width/16+ screensize.width/16*14;
         y= screensize.height/2;
-        heigth = super.heigth;
-        width = super.width;
+
     }
     public void move(){
         y+=dy; //= x=x+dx;
@@ -41,5 +38,10 @@ public class Paddle_rechts extends Paddles {
             dy = 0;
         }
     }
-
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
 }

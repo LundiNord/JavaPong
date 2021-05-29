@@ -8,14 +8,11 @@ public class Paddle_links extends Paddles {
     private int x;
     private int y;
     private int dy;
-    private int heigth;
-    private int width;
+
 
     public Paddle_links(){
     x=screensize.width/16;
     y=screensize.height/2;
-    heigth = super.heigth;
-    width= super.width;
     }
     public void move(){
         y+=dy; //= y=y+dy;
@@ -42,5 +39,11 @@ public class Paddle_links extends Paddles {
         if (key == KeyEvent.VK_S) {
             dy = 0;
         }
+    }
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
     }
 }
