@@ -17,13 +17,11 @@ public class Paddle_rechts extends Paddles {
     }
 
     public void move(){
-        y+=dy; //= y=y+dy;
+        y = y + (dy) ; //= y=y+dy;
     }
-
     public void changeSpeed(int speed){
         this.s=speed;
     }
-
     //Eingabe erkennen
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();

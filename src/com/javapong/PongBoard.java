@@ -24,7 +24,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
     setBackground(Color.black);
     setFocusable(true);
-    paddle_links=new Paddle_links();
+    paddle_links=new Paddle_links();        //Initialisiert  Paddels
     paddle_rechts=new Paddle_rechts();
     ball1=new Ball();
     spielfeld1= new Spielfeld();
@@ -33,11 +33,10 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     this.farbe_Ball= farbe_Ball;
     timer = new Timer(delay, this);     //Irgendwas braucht das hier
     timer.start();
-}
+    }
 
-    //Paddles zeichnen
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g){         //Paddles zeichnen
     super.paintComponent(g);
     Graphics2D g2d= (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
     paintPaddle_links(g2d);
@@ -45,25 +44,20 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     paintRahmen(g2d);
     paintBall(g2d);
 
-    Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung
+    Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
     }
 
     public void paintPaddle_rechts(Graphics2D g2d){
     g2d.setColor(farbe_rechts);
-    g2d.fill3DRect(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeigth(),true);
-
+    g2d.fill3DRect(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeight(),true);
     }
-
     public void paintPaddle_links(Graphics2D g2d){
     g2d.setColor(farbe_links);
-    g2d.fill3DRect(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeigth(), true);
-
+    g2d.fill3DRect(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeight(), true);
     }
-
     public void paintBall(Graphics2D g2d){
     g2d.setColor(farbe_Ball);
     g2d.fill3DRect(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeigth(), true);
-
     }
 
     public void paintRahmen(Graphics2D g2d){
@@ -75,14 +69,17 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
 
 
 
-  //ActionListener funktionsfähig machen
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {        //wird nach Tastendruck ausgeführt
         paddle_rechts.move();
         paddle_links.move();
+        int x = paddle_rechts.getX();
+        int y = paddle_rechts.getY();
+        //nur alles repainten funktioniert
+        //repaint(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeight());
+        //repaint(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeight());
         repaint();
-        //repaint(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeigth());
     }
-    private class TAdapter extends KeyAdapter {
+    private class TAdapter extends KeyAdapter {         //gibt Tastendrücke an Paddel weiter, keine Ahnung wie
         @Override
         public void keyReleased(KeyEvent e) {
             paddle_links.keyReleased(e);
@@ -93,6 +90,5 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
             paddle_links.keyPressed(e);
             paddle_rechts.keyPressed(e);
         }
-
     }
 }

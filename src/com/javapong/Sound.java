@@ -5,7 +5,7 @@ import java.net.URL;
 import javax.swing.*;
 import javax.sound.sampled.*;
 
-public class Sound {
+public class Sound {            //ToDo: funktioniert noch nicht
 
     public Sound() throws Exception {
         sound1();   //testing

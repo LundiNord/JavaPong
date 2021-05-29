@@ -30,17 +30,14 @@ public class Ball {
         dx=dx+ds;
         dy=dx+ds;
     }
-
     public void changeballsize(int dc){
         width= screensize.width/32+dc;
         heigth= screensize.height/32+dc;
     }
-
     public void move(){
         x+=dx;
         y+=dy;
     }
-
     public int getX(){
         return x;
     }
@@ -59,8 +56,5 @@ public class Ball {
     public int getDy(){
         return dy;
     }
-
-
-
 
 }

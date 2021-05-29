@@ -18,9 +18,9 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();    //Fenster an Bildschirm anpassen
         setSize(screensize.width, screensize.height);
         setVisible(true);
-        setLocationRelativeTo(null);            //in die Mitte
+        setLocationRelativeTo(null);                        //in die Mitte
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);     //darf die Fenstergröße verändert werden?
+        setResizable(false);                        //darf die Fenstergröße verändert werden?
         setMinimumSize(new Dimension(200,200)); //Fixme : funktioniert nicht
     }
 

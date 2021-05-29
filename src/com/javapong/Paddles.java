@@ -4,21 +4,20 @@ import java.awt.*;
 
 public abstract class Paddles {
     //benötigte Variablen deklarieren
-    private int heigth;
+    private int height;
     private int width;
-
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    public Paddles(){
-        heigth= screensize.height/8;
+
+    public Paddles(){       //an bildschirm angepasste größe
+        height = screensize.height/8;
         width= screensize.width/64;
     }
     public void changeHeigth(int dheigth){
-        heigth=heigth+dheigth;
+        height = height +dheigth;
     }
-
-    public int getHeigth(){
-        return heigth;
+    public int getHeight(){
+        return height;
     }
     public int getWidth(){
         return width;

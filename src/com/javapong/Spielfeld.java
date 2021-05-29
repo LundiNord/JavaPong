@@ -2,7 +2,7 @@ package com.javapong;
 
 import java.awt.*;
 
-public class Spielfeld {
+public class Spielfeld {            //Mittellinie und Umrandungen
     //Variablen für die Mittellinie
     private int xm;
     private int ym;

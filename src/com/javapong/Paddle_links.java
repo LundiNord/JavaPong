@@ -21,18 +21,9 @@ public class Paddle_links extends Paddles {
         if (key == KeyEvent.VK_W) {
             dy = -s;
         }
-
         if (key == KeyEvent.VK_S) {
             dy = s;
         }
-    }
-
-    public void changeSpeed(int speed){
-        this.s=speed;
-    }
-
-    public void move(){
-        y+=dy; //= y=y+dy;
     }
     public void keyReleased(KeyEvent e) {
 
@@ -41,10 +32,15 @@ public class Paddle_links extends Paddles {
         if (key == KeyEvent.VK_W) {
             dy = 0;
         }
-
         if (key == KeyEvent.VK_S) {
             dy = 0;
         }
+    }
+    public void changeSpeed(int speed){
+        this.s=speed;
+    }
+    public void move(){
+        y+=dy; //= y=y+dy;
     }
     public int getX(){
         return x;
