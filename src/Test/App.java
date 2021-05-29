@@ -1,5 +1,6 @@
-package com.company;
-import java.awt.EventQueue;
+package Test;
+import Test.AniBoard;
+
 import javax.swing.JFrame;
 
 public class App extends JFrame {

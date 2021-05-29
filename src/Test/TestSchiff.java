@@ -1,4 +1,4 @@
-package com.company;
+package Test;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;

@@ -1,5 +1,5 @@
-package com.company;
-import java.awt.EventQueue;
+package Test;
+
 import javax.swing.JFrame;
 
 public class SchiffMain extends JFrame {

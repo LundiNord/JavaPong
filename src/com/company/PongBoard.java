@@ -9,8 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class PongBoard extends JPanel implements ActionListener {           //Bord des Pong-Spiel
+private Paddle_links paddle_links;
+private Paddle_rechts paddle_rechts;
+private Ball ball1;
+private int delay=16;
+
+public PongBoard(){
 
 
+}
 
 
 

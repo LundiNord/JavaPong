@@ -1,4 +1,7 @@
-package com.company;
+package Test;
+import Test.TestSchiff;
+import Test.Testschiff2;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

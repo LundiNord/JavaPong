@@ -1,4 +1,4 @@
-package com.company;
+package Test;
 
 import javax.swing.JPanel;
 

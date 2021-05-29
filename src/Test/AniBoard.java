@@ -1,4 +1,4 @@
-package com.company;
+package Test;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

@@ -1,6 +1,6 @@
 
 
-package com.company;
+package Test;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
