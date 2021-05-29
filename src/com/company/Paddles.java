@@ -4,9 +4,9 @@ import java.awt.*;
 
 public abstract class Paddles {
     //benötigte Variablen deklarieren
-    protected int x;
-    protected int y;
-    protected int dy;
+    private int x;
+    private int y;
+    private int dy;
     protected int heigth;
     protected int width;
 
@@ -17,9 +17,9 @@ public abstract class Paddles {
         width= screensize.width/64;
     }
 
-        public void move(){
+    public void move(){
         y+=dy; //= x=x+dx;
-        }
+    }
 
     public int getX(){
          return x;

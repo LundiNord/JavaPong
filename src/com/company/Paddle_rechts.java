@@ -5,10 +5,20 @@ import java.awt.event.KeyEvent;
 //Rechtes Paddle
 public class Paddle_rechts extends Paddles {
 
-    public Paddle_rechts(){
+    private int x;
+    private int y;
+    private int dy;
+    private int heigth;
+    private int width;
 
-    x=screensize.width/16+ screensize.width/16*14;
-    y= screensize.height/2;
+    public Paddle_rechts(){
+        x=screensize.width/16+ screensize.width/16*14;
+        y= screensize.height/2;
+        heigth = super.heigth;
+        width = super.width;
+    }
+    public void move(){
+        y+=dy; //= x=x+dx;
     }
 
     //Eingabe erkennen
