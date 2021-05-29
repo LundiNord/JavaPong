@@ -19,7 +19,7 @@ public class Spielfeld {            //Mittellinie und Umrandungen
         xm= screensize.width/2- screensize.width/512;
         ym=0;
         xl=0;
-        xr= screensize.width-mwidth;
+        xr= screensize.width-mwidth*2;
     }
 
     public int getXr(){
