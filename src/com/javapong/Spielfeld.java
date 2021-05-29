@@ -5,24 +5,29 @@ import java.awt.*;
 public class Spielfeld {
     //Variablen für die Mittellinie
     private int xm;
-    private int ym=0;//Muss zu Beginn 0 sein
+    private int ym;
     private int mwidth;
     private int mheight;
+    private int xr,xl;
+
+    //Kann Bildschirmgröße lesen
+    Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
     public Spielfeld(){
-        mheight=screensize.height/16;
-        mwidth= screensize.width/32;
-        xm= screensize.width/2- screensize.width/16;
-
+        mheight=screensize.height;
+        mwidth= screensize.width/256;
+        xm= screensize.width/2- screensize.width/512;
+        ym=0;
+        xl=0;
+        xr= screensize.width-mwidth;
     }
 
-    public void hochzählen(){
-      for (int i=0; i<= screensize.height/16;i++){
-
-      }
-
+    public int getXr(){
+        return xr;
     }
-
+    public int getXl(){
+        return xl;
+    }
     public int getXm(){
         return xm;
     }
@@ -35,6 +40,4 @@ public class Spielfeld {
     public int getMheight(){
         return mheight;
     }
-    //Kann Bildschirmgröße lesen
-    Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 }

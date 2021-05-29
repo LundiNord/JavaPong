@@ -20,7 +20,7 @@ private Color farbe_links;
 private Color farbe_rechts;
 private Color farbe_Ball;
 
-public PongBoard(Color farbe_rechts,Color farbe_links){
+public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
     setBackground(Color.black);
     setFocusable(true);
@@ -30,6 +30,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links){
     spielfeld1= new Spielfeld();
     this.farbe_links = farbe_links;     //Farben übernehmen
     this.farbe_rechts = farbe_rechts;
+    this.farbe_Ball= farbe_Ball;
     timer = new Timer(delay, this);     //Irgendwas braucht das hier
     timer.start();
 }
@@ -41,7 +42,9 @@ public PongBoard(Color farbe_rechts,Color farbe_links){
     Graphics2D g2d= (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
     paintPaddle_links(g2d);
     paintPaddle_rechts(g2d);
+    paintRahmen(g2d);
     paintBall(g2d);
+
     Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung
     }
 
@@ -63,17 +66,14 @@ public PongBoard(Color farbe_rechts,Color farbe_links){
 
     }
 
-    public void paintMitte(Graphics2D g2d){
+    public void paintRahmen(Graphics2D g2d){
     g2d.setColor(Color.white);
     g2d.fill3DRect(spielfeld1.getXm(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
+    g2d.fill3DRect(spielfeld1.getXl(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
+    g2d.fill3DRect(spielfeld1.getXr(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
+}
 
-    }
 
-    @Override
-    public void reshape( int x, int y, int w, int h ){
-        if( w > 100 && h > 120 )
-            super.reshape( x, y, w, h );
-    }
 
   //ActionListener funktionsfähig machen
     public void actionPerformed(ActionEvent e) {

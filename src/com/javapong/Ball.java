@@ -10,31 +10,30 @@ public class Ball {
     private int dy;
     private int width;
     private int heigth;
-    private int s; // s steht für speed
-    private int c; //Größenänderung des Balls
-
-    //Startposition festlegen (muss nach jedem Punkt ausgeführt werden)
-    public void Startposition(){
-        y= screensize.height/2;
-        x= screensize.width/2;
-    }
-
-    public void changespeed(){
-        dx+=s;
-        dy+=s;
-    }
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
     public Ball(){
-        width= screensize.width/32;
-        heigth= screensize.height/32;
+        width= screensize.width/48;
+        heigth= width;
+        Startposition();
     }
 
-    public void changeballsize(){
-        width= screensize.width/32+c;
-        heigth= screensize.height/32+c;
+    //Startposition festlegen (muss nach jedem Punkt ausgeführt werden)
+    public void Startposition(){
+        y= screensize.height/2;
+        x= screensize.width/2- screensize.width/96;
+    }
+
+    public void changespeed(int ds){
+        dx=dx+ds;
+        dy=dx+ds;
+    }
+
+    public void changeballsize(int dc){
+        width= screensize.width/32+dc;
+        heigth= screensize.height/32+dc;
     }
 
     public void move(){
@@ -60,9 +59,7 @@ public class Ball {
     public int getDy(){
         return dy;
     }
-    public int getS(){
-        return s;
-    }
+
 
 
 
