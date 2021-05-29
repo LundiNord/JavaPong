@@ -8,8 +8,8 @@ public class Ball  {
     private int y;
     private int xo;         //x old
     private int yo;         //y old
-    private int dx=2;
-    private int dy=2;
+    private int dx=6;
+    private int dy=6;
     private int width;
     private int height;
 
