@@ -88,6 +88,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
         while(true) {
 
             ball1.move();
+            checkCollision();
             repaint(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight());
 
             timeDiff = System.currentTimeMillis() - beforeTime;
