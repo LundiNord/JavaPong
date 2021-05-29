@@ -1,6 +1,4 @@
-package com.company;
-
-import Test.SchiffBord;
+package com.javapong;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,15 +14,20 @@ private Paddle_links paddle_links;
 private Paddle_rechts paddle_rechts;
 private Ball ball1;
 private int delay=16;
-    private Timer timer;
+private Timer timer;
+private Color farbe_links;
+private Color farbe_rechts;
 
-public PongBoard(){
-    addKeyListener(new PongBoard.TAdapter());
+
+public PongBoard(Color farbe_rechts,Color farbe_links){
+    addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
     setBackground(Color.black);
     setFocusable(true);
     paddle_links=new Paddle_links();
     paddle_rechts=new Paddle_rechts();
-    timer = new Timer(delay, this);
+    this.farbe_links = farbe_links;     //Farben übernehmen
+    this.farbe_rechts = farbe_rechts;
+    timer = new Timer(delay, this);     //Irgendwas braucht das hier
     timer.start();
 }
 
@@ -45,16 +48,24 @@ public PongBoard(){
 
 
     public void paintPaddle_rechts(Graphics2D g2d){
-    g2d.setColor(Color.white);
+    g2d.setColor(farbe_rechts);
     g2d.fill3DRect(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeigth(),true);
 
     }
 
     public void paintPaddle_links(Graphics2D g2d){
-    g2d.setColor(Color.white);
+    g2d.setColor(farbe_links);
     g2d.fill3DRect(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeigth(), true);
 
     }
+    @Override
+    public void reshape( int x, int y, int w, int h ){
+        if( w > 100 && h > 120 )
+            super.reshape( x, y, w, h );
+    }
+
+
+
 
 
 

@@ -1,46 +1,48 @@
-package com.company;
+package com.javapong;
 
 import java.awt.event.KeyEvent;
 
-//Rechtes Paddle
-public class Paddle_rechts extends Paddles {
+//Linkes Paddle
+public class Paddle_links extends Paddles {
 
     private int x;
     private int y;
     private int dy;
     private int s=10; //s steht für speed
 
-    public Paddle_rechts(){
-        x=screensize.width/16+ screensize.width/16*14;
-        y= screensize.height/2;
-
+    public Paddle_links(){
+    x=screensize.width/16;
+    y=screensize.height/2;
     }
 
-    public void move(){
-        y+=dy; //= y=y+dy;
+    //Eingabe erkennen
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_W) {
+            dy = -s;
+        }
+
+        if (key == KeyEvent.VK_S) {
+            dy = s;
+        }
     }
 
     public void changeSpeed(int speed){
         this.s=speed;
     }
 
-    //Eingabe erkennen
-    public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_UP) {
-            dy = -s;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = s;
-        }
+    public void move(){
+        y+=dy; //= y=y+dy;
     }
     public void keyReleased(KeyEvent e) {
+
         int key = e.getKeyCode();
-        if (key == KeyEvent.VK_UP) {
+
+        if (key == KeyEvent.VK_W) {
             dy = 0;
         }
-        if (key == KeyEvent.VK_DOWN) {
+
+        if (key == KeyEvent.VK_S) {
             dy = 0;
         }
     }
