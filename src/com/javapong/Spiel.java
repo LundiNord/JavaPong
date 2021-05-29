@@ -20,8 +20,8 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         setVisible(true);
         setLocationRelativeTo(null);                        //in die Mitte
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);                        //darf die Fenstergröße verändert werden?
-        //setMinimumSize(new Dimension(200,200)); //Fixme : funktioniert nicht
+        setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
+        //setMinimumSize(new Dimension(200,200));       //Fixme : funktioniert nicht
     }
 
 }

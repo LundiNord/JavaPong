@@ -58,9 +58,7 @@ public class Paddle_rechts extends Paddles {
     public int getY(){
         return y;
     }
-    // Neues Rectangel erzeugen für CollisionDetection
-    public Rectangle getBounds(){
+    public Rectangle getBounds(){       //Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(x,y,getWidth(),getHeight());
     }
-
 }

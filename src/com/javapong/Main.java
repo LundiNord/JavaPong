@@ -10,6 +10,7 @@ public class Main {
             Spiel spiel1 = new Spiel();
             spiel1.setVisible(true);
         });
+
         //Sound s1 = new Sound();
         //Storage s1 = new Storage();
         //s1.write("Test", 1);

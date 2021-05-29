@@ -34,22 +34,20 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     this.farbe_links = farbe_links;     //Farben übernehmen
     this.farbe_rechts = farbe_rechts;
     this.farbe_Ball= farbe_Ball;
-    timer = new Timer(delay, this);     //Irgendwas braucht das hier
+    timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
     timer.start();
     }
 
     @Override
-    public void paintComponent(Graphics g){         //Paddles zeichnen
+    public void paintComponent(Graphics g){        //Eigentliche Zeichenklasse
     super.paintComponent(g);
     Graphics2D g2d= (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
-    paintPaddle_links(g2d);
+    paintPaddle_links(g2d);         //Paddles zeichnen
     paintPaddle_rechts(g2d);
     paintRahmen(g2d);
     paintBall(g2d);
-
     Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
     }
-
     public void paintPaddle_rechts(Graphics2D g2d){
     g2d.setColor(farbe_rechts);
     g2d.fill3DRect(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeight(),true);
@@ -62,8 +60,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     g2d.setColor(farbe_Ball);
     g2d.fill3DRect(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight(), true);
     }
-
-    public void paintRahmen(Graphics2D g2d){
+    public void paintRahmen(Graphics2D g2d){            //Rahmenkomponenten zeichnen
     g2d.setColor(Color.white);
     g2d.fill3DRect(spielfeld1.getXm(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
     g2d.fill3DRect(spielfeld1.getXl(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
@@ -71,64 +68,48 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     g2d.fill3DRect(0, spielfeld1.getYo(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     g2d.fill3DRect(0, spielfeld1.getYu(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     }
-
-    public void addNotify() {
+    @Override
+    public void addNotify() {       //Der Thread für die Ball Animation wird hier gestartet
         super.addNotify();
-
         ballthread = new Thread(this);
         ballthread.start();
-
     }
-
     @Override
-    public void run(){
+    public void run(){                      //Animation des Balles
         long beforeTime, timeDiff, sleep;
-        beforeTime = System.currentTimeMillis();
-
-        while(true) {
-
-            ball1.move();
-            checkCollision();
+        beforeTime = System.currentTimeMillis();        //Timing für konstante Frames
+        while(true) {                       //läuft für immer
+            ball1.move();                   //verändern
+            checkCollision();               //Collisions detection
             repaint(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight());
-
-            timeDiff = System.currentTimeMillis() - beforeTime;
-            sleep = 16 - timeDiff;
+            timeDiff = System.currentTimeMillis() - beforeTime;     //mehr Timing
+            sleep = 16 - timeDiff;                    //theoretisch 60 FPS
             if (sleep < 0) {
                 sleep = 2;
             }
-
             try {
                 Thread.sleep(sleep);
-            } catch (InterruptedException e) {
-
+            } catch (InterruptedException e) {              //Error handling
                 String msg = String.format("Thread interrupted: %s", e.getMessage());
-
                 JOptionPane.showMessageDialog(this, msg, "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-            beforeTime = System.currentTimeMillis();
-
-
+            beforeTime = System.currentTimeMillis();        //Timing reset
         }
-
     }
-
-    public void checkCollision() {
+    public void checkCollision() {          //Collisions erkennen
         Rectangle rB = ball1.getBounds();
         Rectangle rPl= paddle_links.getBounds();
         Rectangle rPr= paddle_rechts.getBounds();
         Rectangle rBo=spielfeld1.getBoundsOben();
         Rectangle rBu=spielfeld1.getBoundsUnten();
-        if(rB.intersects(rPl)||rB.intersects(rPr)) {
+        if(rB.intersects(rPl)||rB.intersects(rPr)) {    //Unterschiedlich für Rahmen und Paddles
             ball1.AbprallenPaddle();
         }
         if(rB.intersects(rBo)||rB.intersects(rBu)){
             ball1.AbprallenBoarder();
         }
-
     }
-
-
     public void actionPerformed(ActionEvent e) {        //wird nach Tastendruck ausgeführt
         paddle_rechts.move();
         paddle_links.move();

@@ -6,8 +6,8 @@ public class Ball  {
 
     private int x;
     private int y;
-    private int xo;         //x old
-    private int yo;         //y old
+    //private int xo;         //x old
+    //private int yo;         //y old
     private int dx=6;
     private int dy=6;
     private int width;
@@ -22,12 +22,10 @@ public class Ball  {
         Startposition();
     }
 
-    //Startposition festlegen
-    public void Startposition(){
+    public void Startposition(){        //Startposition festlegen
         y= screensize.height/2;
         x= screensize.width/2- screensize.width/96;
     }
-
     public void changespeed(int ds){
         dx+=ds;
         dy+=ds;
@@ -39,7 +37,6 @@ public class Ball  {
     public Rectangle getBounds(){           // Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(x,y,getWidth(),getHeight());
     }
-
     public void move(){
         x+=dx;
         y+=dy;
@@ -52,7 +49,6 @@ public class Ball  {
         dx=dx;          //x dreht sich nicht
         dy=-dy;         //y schon
     }
-
     public int getX(){
         return x;
     }
