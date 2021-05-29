@@ -19,14 +19,14 @@ public class Paddle_rechts extends Paddles {
     }
 
     public void move(){
-        if(y>0 && y<sh) {           //Paddle darf nicht aus dem Bildschirm
+        if(y>0 && y+getHeight()<sh) {           //Paddle darf nicht aus dem Bildschirm
             y = y + (dy); //= y=y+dy;
         }
         else if(y<10){
             y = 1;
         }
         else {
-            y = sh-1;
+            y = sh-getHeight()-1;
         }
     }
     public void changeSpeed(int speed){

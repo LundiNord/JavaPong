@@ -22,7 +22,7 @@ public class Ball  {
         Startposition();
     }
 
-    //Startposition festlegen (muss nach jedem Punkt ausgeführt werden)
+    //Startposition festlegen
     public void Startposition(){
         y= screensize.height/2;
         x= screensize.width/2- screensize.width/96;
@@ -36,9 +36,7 @@ public class Ball  {
         width= screensize.width/32+dc;
         height= screensize.height/32+dc;
     }
-
-    // Neues Rectangel erzeugen für CollisionDetection
-    public Rectangle getBounds(){
+    public Rectangle getBounds(){           // Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(x,y,getWidth(),getHeight());
     }
 
@@ -46,15 +44,10 @@ public class Ball  {
         x+=dx;
         y+=dy;
     }
-    public void berechnealtePos(){
-        xo=x-dx;
-        yo=y-dy;
-    }
     public void AbprallenPaddle(){
         dx=-dx;         //x dreht sich
         dy=dy;          //y nicht
     }
-
     public void AbprallenBoarder(){
         dx=dx;          //x dreht sich nicht
         dy=-dy;         //y schon

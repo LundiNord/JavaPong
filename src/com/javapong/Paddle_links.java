@@ -43,18 +43,17 @@ public class Paddle_links extends Paddles {
         this.s=speed;
     }
     public void move(){
-        if(y>0 && y<sh) {           //Paddle darf nicht aus dem Bildschirm
+        if(y>0 && y+getHeight()<sh) {           //Paddle darf nicht aus dem Bildschirm
             y = y + (dy); //= y=y+dy;
         }
         else if(y<10){
             y = 1;
         }
         else {
-            y = sh-1;
+            y = sh-getHeight()-1;
         }
     }
-    // Neues Rectangel erzeugen für CollisionDetection
-    public Rectangle getBounds(){
+    public Rectangle getBounds(){           // Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(x,y,getWidth(),getHeight());
     }
     public int getX(){
