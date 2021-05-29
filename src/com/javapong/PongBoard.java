@@ -116,10 +116,15 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
         Rectangle rB = ball1.getBounds();
         Rectangle rPl= paddle_links.getBounds();
         Rectangle rPr= paddle_rechts.getBounds();
-
+        Rectangle rBo=spielfeld1.getBoundsOben();
+        Rectangle rBu=spielfeld1.getBoundsUnten();
         if(rB.intersects(rPl)||rB.intersects(rPr)) {
             ball1.AbprallenPaddle();
         }
+        if(rB.intersects(rBo)||rB.intersects(rBu)){
+            ball1.AbprallenBoarder();
+        }
+
     }
 
 

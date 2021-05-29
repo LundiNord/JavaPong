@@ -23,7 +23,7 @@ public class Spielfeld {            //Mittellinie und Umrandungen
         xm= sw/2- sw/512;
         ym=0;
         xl=0;
-        xr= sw-mwidth*2;
+        xr= sw-mwidth;
         yo=0;
         yu= sh-mwidth;
     }
@@ -60,7 +60,7 @@ public class Spielfeld {            //Mittellinie und Umrandungen
         return new Rectangle(0,yo,sw,mwidth);
     }
     // Neues Rectangel erzeugen für CollisionDetection
-    public Rectangle getBounds(){
+    public Rectangle getBoundsUnten(){
         return new Rectangle(0,yu,sw,mwidth);
     }
 }
