@@ -5,10 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Toolkit;
 
-public class PongBoard extends JPanel implements ActionListener {           //Bord des Pong-Spiel
+public class PongBoard extends JPanel implements Runnable, ActionListener{           //Bord des Pong-Spiel
 //Objekte deklarieren
 private Paddle_links paddle_links;
 private Paddle_rechts paddle_rechts;
@@ -19,6 +21,7 @@ private Timer timer;
 private Color farbe_links;
 private Color farbe_rechts;
 private Color farbe_Ball;
+private Thread ballthread;
 
 public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
@@ -57,7 +60,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     }
     public void paintBall(Graphics2D g2d){
     g2d.setColor(farbe_Ball);
-    g2d.fill3DRect(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeigth(), true);
+    g2d.fill3DRect(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight(), true);
     }
 
     public void paintRahmen(Graphics2D g2d){
@@ -65,7 +68,47 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     g2d.fill3DRect(spielfeld1.getXm(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
     g2d.fill3DRect(spielfeld1.getXl(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
     g2d.fill3DRect(spielfeld1.getXr(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
-}
+    }
+
+    public void addNotify() {
+        super.addNotify();
+
+        ballthread = new Thread(this);
+        ballthread.start();
+
+    }
+
+    @Override
+    public void run(){
+        long beforeTime, timeDiff, sleep;
+        beforeTime = System.currentTimeMillis();
+
+        while(true) {
+
+            ball1.move();
+            repaint(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight());
+
+            timeDiff = System.currentTimeMillis() - beforeTime;
+            sleep = 16 - timeDiff;
+            if (sleep < 0) {
+                sleep = 2;
+            }
+
+            try {
+                Thread.sleep(sleep);
+            } catch (InterruptedException e) {
+
+                String msg = String.format("Thread interrupted: %s", e.getMessage());
+
+                JOptionPane.showMessageDialog(this, msg, "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            beforeTime = System.currentTimeMillis();
+
+
+        }
+
+    }
 
 
 

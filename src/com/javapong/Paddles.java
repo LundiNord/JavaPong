@@ -9,7 +9,7 @@ public abstract class Paddles {
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
-    public Paddles(){       //an bildschirm angepasste größe
+    public Paddles(){       //an Bildschirm angepasste größe
         height = screensize.height/8;
         width= screensize.width/64;
     }

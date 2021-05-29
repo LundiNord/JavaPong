@@ -2,21 +2,21 @@ package com.javapong;
 
 import java.awt.*;
 
-public class Ball {
+public class Ball  {
 
     private int x;
     private int y;
-    private int dx;
-    private int dy;
+    private int dx=2;
+    private int dy=2;
     private int width;
-    private int heigth;
+    private int height;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
     public Ball(){
         width= screensize.width/48;
-        heigth= width;
+        height= width;
         Startposition();
     }
 
@@ -32,7 +32,7 @@ public class Ball {
     }
     public void changeballsize(int dc){
         width= screensize.width/32+dc;
-        heigth= screensize.height/32+dc;
+        height= screensize.height/32+dc;
     }
     public void move(){
         x+=dx;
@@ -47,8 +47,8 @@ public class Ball {
     public int getWidth(){
          return width;
     }
-    public int getHeigth(){
-        return heigth;
+    public int getHeight(){
+        return height;
     }
     public int getDx(){
         return dx;
