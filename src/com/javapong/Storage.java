@@ -7,10 +7,20 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class Storage {      //Wir brauchen persistent storage
-    private String Pfad = "src/resources/save/savefile.txt";
+    private String Pfad = "savefile.txt";
 
     public Storage() {
-
+        File f = new File(Pfad);            //Initialisierung der Savefile
+        if(!f.exists()) {       //Wenn sie nicht existiert wird eine default generiert
+            try {
+                FileWriter myWriter = new FileWriter(Pfad);
+                myWriter.write("test1 \n test2 \n test3 \n test4");     //Defaults
+                myWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        }
     }
 
     public void write(String save, int zeile) throws IOException {          //Schreiben
@@ -40,5 +50,4 @@ public class Storage {      //Wir brauchen persistent storage
         myReader.close();
         return data;
     }
-
 }

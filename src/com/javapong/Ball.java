@@ -67,5 +67,4 @@ public class Ball  {
     public int getDy(){
         return dy;
     }
-
 }
