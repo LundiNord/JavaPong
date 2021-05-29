@@ -1,6 +1,4 @@
 package Test;
-import Test.TestSchiff;
-import Test.Testschiff2;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,6 +1,6 @@
 package com.company;
 
-import jdk.jfr.Frequency;
+import Test.SchiffBord;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,18 +16,25 @@ private Paddle_links paddle_links;
 private Paddle_rechts paddle_rechts;
 private Ball ball1;
 private int delay=16;
+    private Timer timer;
 
 public PongBoard(){
+    addKeyListener(new PongBoard.TAdapter());
     setBackground(Color.black);
     setFocusable(true);
     paddle_links=new Paddle_links();
     paddle_rechts=new Paddle_rechts();
+    timer = new Timer(delay, this);
+    timer.start();
 }
+
+
+
     //Paddles zeichnen
     @Override
     public void paintComponent(Graphics g){
     super.paintComponent(g);
-    Graphics2D g2d= (Graphics2D)g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
+    Graphics2D g2d= (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
     paintPaddle_links(g2d);
     paintPaddle_rechts(g2d);
     Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung
@@ -57,6 +64,7 @@ public PongBoard(){
         paddle_rechts.move();
         paddle_links.move();
         repaint();
+        //repaint(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeigth());
     }
     private class TAdapter extends KeyAdapter {
         @Override
