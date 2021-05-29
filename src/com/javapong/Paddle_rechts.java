@@ -10,15 +10,24 @@ public class Paddle_rechts extends Paddles {
     private int y;
     private int dy;
     private int s=10; //s steht für speed
+    private int sh; //screensize.height
 
     public Paddle_rechts(){
+        sh= screensize.height;
         x=screensize.width/16+ screensize.width/16*14;
         y= screensize.height/2;
-
     }
 
     public void move(){
-        y = y + (dy) ; //= y=y+dy;
+        if(y>0 && y<sh) {           //Paddle darf nicht aus dem Bildschirm
+            y = y + (dy); //= y=y+dy;
+        }
+        else if(y<10){
+            y = 1;
+        }
+        else {
+            y = sh-1;
+        }
     }
     public void changeSpeed(int speed){
         this.s=speed;

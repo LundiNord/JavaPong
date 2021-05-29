@@ -10,8 +10,10 @@ public class Paddle_links extends Paddles {
     private int y;
     private int dy;
     private int s=10; //s steht für speed
+    private int sh; //screensize.height
 
     public Paddle_links(){
+    sh= screensize.height;
     x=screensize.width/16;
     y=screensize.height/2;
     }
@@ -41,7 +43,15 @@ public class Paddle_links extends Paddles {
         this.s=speed;
     }
     public void move(){
-        y+=dy; //= y=y+dy;
+        if(y>0 && y<sh) {           //Paddle darf nicht aus dem Bildschirm
+            y = y + (dy); //= y=y+dy;
+        }
+        else if(y<10){
+            y = 1;
+        }
+        else {
+            y = sh-1;
+        }
     }
     // Neues Rectangel erzeugen für CollisionDetection
     public Rectangle getBounds(){
