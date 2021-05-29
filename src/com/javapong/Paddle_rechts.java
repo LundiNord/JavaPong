@@ -50,4 +50,6 @@ public class Paddle_rechts extends Paddles {
     public int getY(){
         return y;
     }
+
+
 }
