@@ -13,43 +13,31 @@ public class Storage {      //Wir brauchen persistent storage
 
     }
 
-
-    public void write(String save, int zeile) throws IOException {
-
-        //Instantiating the Scanner class to read the file
-        Scanner sc = new Scanner(new File(Pfad));
-        //instantiating the StringBuffer class
+    public void write(String save, int zeile) throws IOException {          //Schreiben
+        Scanner sc = new Scanner(new File(Pfad));        //Scanner um die File einzulesen
+        //Idee geklaut aus einem Tutorial
         StringBuffer buffer = new StringBuffer();
-        //Reading lines of the file and appending them to StringBuffer
-        while (sc.hasNextLine()) {
+        while (sc.hasNextLine()) {                      //alle Linien des Dokuments zwischenspeichern
             buffer.append(sc.nextLine()+System.lineSeparator());
         }
-        String fileContents = buffer.toString();
-        //closing the Scanner object
+        String fileContents = buffer.toString();    //buffer in einen String umwandeln
         sc.close();
-        String oldLine = read(zeile);
+        String oldLine = read(zeile);       //Zeile zum ersetzen zwischenspeichern
         String newLine = save;
-        //Replacing the old line with new line
-        fileContents = fileContents.replaceAll(oldLine, newLine);
-        //instantiating the FileWriter class
-        FileWriter writer = new FileWriter(Pfad);
-        writer.write(fileContents);
+        fileContents = fileContents.replaceAll(oldLine, newLine);   //alte mit Regex mit der neuen ersetzen
+        FileWriter writer = new FileWriter(Pfad);                   //File writer erzeugen
+        writer.write(fileContents);                                 //Modifizierter String in Dokument speichern
         writer.flush();
     }
 
-
-
-    public String read(int zeile) throws FileNotFoundException {
-        String data = "Test";
-
-            File myObj = new File(Pfad);
-            Scanner myReader = new Scanner(myObj);
-            for(int i =0; i<zeile;i++) {           //Linien im Dokument durchgehen bis int zeile
-                data = myReader.nextLine();         //lesen
-            }
-            myReader.close();
-
-
+    public String read(int zeile) throws FileNotFoundException {        //Lesen
+        String data = "Test";       //Ohne funktioniert nicht??
+        File myObj = new File(Pfad);
+        Scanner myReader = new Scanner(myObj);
+        for(int i =0; i<zeile;i++) {           //Linien im Dokument durchgehen bis int zeile
+            data = myReader.nextLine();         //lesen
+        }
+        myReader.close();
         return data;
     }
 
