@@ -2,20 +2,20 @@ package com.company;
 import java.awt.*;
 import javax.swing.*;
 
-public class Spiel extends JFrame {
+public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
 
     public Spiel() {
         startUI();
     }
     public void startUI() {
         add(new PongBoard());
-        setTitle("Moving sprite");
-        Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setTitle("Java-Pong Spiel");
+        Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();    //Fenster an Bildschirm anpassen
         setSize(screensize.width, screensize.height);
         setVisible(true);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);            //in die Mitte
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+        setResizable(true);     //darf die Fenstergröße verändert werden?
     }
 
 }

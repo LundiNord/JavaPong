@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PongBoard extends JPanel implements ActionListener {
+public class PongBoard extends JPanel implements ActionListener {           //Bord des Pong-Spiel
 
 
 
