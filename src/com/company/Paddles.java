@@ -13,6 +13,9 @@ public abstract class Paddles {
         heigth= screensize.height/8;
         width= screensize.width/64;
     }
+    public void changeHeigth(int dheigth){
+        heigth=heigth+dheigth;
+    }
 
     public int getHeigth(){
         return heigth;

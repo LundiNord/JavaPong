@@ -8,14 +8,20 @@ public class Paddle_rechts extends Paddles {
     private int x;
     private int y;
     private int dy;
+    private int s=10; //s steht für speed
 
     public Paddle_rechts(){
         x=screensize.width/16+ screensize.width/16*14;
         y= screensize.height/2;
 
     }
+
     public void move(){
-        y+=dy; //= x=x+dx;
+        y+=dy; //= y=y+dy;
+    }
+
+    public void changeSpeed(int speed){
+        this.s=speed;
     }
 
     //Eingabe erkennen
@@ -23,10 +29,10 @@ public class Paddle_rechts extends Paddles {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_UP) {
-            dy = -2;
+            dy = -s;
         }
         if (key == KeyEvent.VK_DOWN) {
-            dy = 2;
+            dy = s;
         }
     }
     public void keyReleased(KeyEvent e) {

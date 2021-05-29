@@ -8,30 +8,36 @@ public class Paddle_links extends Paddles {
     private int x;
     private int y;
     private int dy;
-
+    private int s=10; //s steht für speed
 
     public Paddle_links(){
     x=screensize.width/16;
     y=screensize.height/2;
-    }
-    public void move(){
-        y+=dy; //= y=y+dy;
     }
 
     //Eingabe erkennen
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_W) {
-            dy = -2;
+            dy = -s;
         }
 
         if (key == KeyEvent.VK_S) {
-            dy = 2;
+            dy = s;
         }
+    }
+
+    public void changeSpeed(int speed){
+        this.s=speed;
+    }
+
+    public void move(){
+        y+=dy; //= y=y+dy;
     }
     public void keyReleased(KeyEvent e) {
 
         int key = e.getKeyCode();
+
         if (key == KeyEvent.VK_W) {
             dy = 0;
         }
