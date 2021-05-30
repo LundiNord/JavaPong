@@ -28,6 +28,8 @@ private int PunkteLinks=0;
 private int PunkteRechts=0;
 private Font retroFont;
 boolean spielEnde = false;
+private int delayBspeed= 3000;
+
 
 
 public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws IOException, FontFormatException {
@@ -37,7 +39,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
     setFocusable(true);
     paddle_links=new Paddle_links();        //Initialisiert  Paddels
     paddle_rechts=new Paddle_rechts();
-    ball1=new Ball();
+    ball1=new Ball(delayBspeed);
     spielfeld1= new Spielfeld();
     this.farbe_links = farbe_links;     //Farben übernehmen
     this.farbe_rechts = farbe_rechts;

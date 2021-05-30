@@ -1,7 +1,10 @@
 package com.javapong;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.Timer;
 
 public class Ball  {
 
@@ -14,16 +17,29 @@ public class Ball  {
     private int width;
     private int height;
     private int defaultSpeed = 10;
+    private int delayBspeed;
+    private Timer timerBspeed;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
-    public Ball(){
+    public Ball(int delayBspeed){
         width= screensize.width/48;
         height= width;
         Startposition();
         startBall();
+        this.delayBspeed = delayBspeed;
+        timerBspeed = new Timer(delayBspeed, actionListener1);
+        timerBspeed.start();
     }
+
+    ActionListener actionListener1= new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            defaultSpeed=defaultSpeed+2;
+        }
+    };
 
     public void Startposition(){        //Startposition festlegen
         y= screensize.height/2;
@@ -113,9 +129,9 @@ public class Ball  {
         }
     }
 
-    public void Speedincrease(){
-        defaultSpeed=defaultSpeed+2;
-    }
+
+
+
 
     public static void wait(int ms)     //Warten Methode
     {
