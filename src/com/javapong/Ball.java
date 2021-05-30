@@ -29,16 +29,15 @@ public class Ball  {
         Startposition();
         startBall();
         this.delayBspeed = delayBspeed;
-        timerBspeed = new Timer(delayBspeed, actionListener1);
-        timerBspeed.start();
+        timerBspeed = new Timer(delayBspeed, actionListener1);      //Timer der alle (delay) Feuert
+        timerBspeed.start();                                        //für den schneller werdenden Ball
     }
 
-    ActionListener actionListener1= new ActionListener() {
-
+    ActionListener actionListener1= new ActionListener() {      //Diese Methode wird vom Timer ausgeführt
         @Override
         public void actionPerformed(ActionEvent e) {
-            defaultSpeed=defaultSpeed+2;
-            if(dx<0) {
+            //defaultSpeed=defaultSpeed+2;
+            if(dx<0) {              //Speed wird erhöht aber nur bis zum Ballreset
                 dx = dx -2;
             }
             else {
@@ -52,7 +51,6 @@ public class Ball  {
             }
         }
     };
-
     public void Startposition(){        //Startposition festlegen
         y= screensize.height/2;
         x= screensize.width/2- screensize.width/96;
@@ -113,9 +111,9 @@ public class Ball  {
             dy = -defaultSpeed;
         }
     }
-    public void resetBall(boolean links) {
+    public void resetBall(boolean links) {          //Ball nach einem Tor auf den Mittelpunkt setzen
         int d = new java.util.Random().nextInt(3);
-        if(links==true) {
+        if(links==true) {                   //fliegt nach links weg
             Startposition();
             wait(100);
             if(d==1) {
@@ -127,7 +125,7 @@ public class Ball  {
                 dy = -defaultSpeed;
             }
         }
-        else {
+        else {                          //fliegt nach rechts weg
             Startposition();
             wait(100);
             if(d==1) {
@@ -140,11 +138,6 @@ public class Ball  {
             }
         }
     }
-
-
-
-
-
     public static void wait(int ms)     //Warten Methode
     {
         try
