@@ -13,7 +13,7 @@ public class Ball  {
     private int dy;
     private int width;
     private int height;
-    private int defaultSpeed = 20;
+    private int defaultSpeed = 10;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -112,6 +112,11 @@ public class Ball  {
             }
         }
     }
+
+    public void Speedincrease(){
+        defaultSpeed=defaultSpeed+2;
+    }
+
     public static void wait(int ms)     //Warten Methode
     {
         try
