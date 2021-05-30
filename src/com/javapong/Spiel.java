@@ -16,7 +16,9 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
         setTitle("Java-Pong Spiel");
         Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();    //Fenster an Bildschirm anpassen
-        setSize(screensize.width, screensize.height);
+        //setSize(screensize.width, screensize.height);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setVisible(true);
         setLocationRelativeTo(null);                        //in die Mitte
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
