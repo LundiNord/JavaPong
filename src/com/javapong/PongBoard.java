@@ -88,9 +88,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         g2d.setFont(retroFont);
         g2d.drawString(String.valueOf(PunkteLinks),spielfeld1.getxAl(),spielfeld1.getyA());         //linke
         g2d.drawString(String.valueOf(PunkteRechts),spielfeld1.getxAr(),spielfeld1.getyA());         //rechte
-
     }
-
 
     @Override
     public void addNotify() {       //Der Thread für die Ball Animation wird hier gestartet
@@ -122,9 +120,6 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         }
     }
 
-
-
-
     public void checkCollision() {          //Collisions erkennen
         Rectangle rB = ball1.getBounds();
         Rectangle rPl= paddle_links.getBounds();
@@ -140,16 +135,18 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
             ball1.AbprallenBoarder();
         }
         if(rB.intersects(rBl)||rB.intersects(rBr)){
-            Punktedetector(rBr, rBl, rB);
+            Punktedetektor(rBr, rBl, rB);
         }
     }
 
-    public void Punktedetector(Rectangle rBr, Rectangle rBl, Rectangle rB){     //ToDO Sound für Punkte einfügen
+    public void Punktedetektor(Rectangle rBr, Rectangle rBl, Rectangle rB){     //ToDo Sound für Punkte einfügen
        if(rB.intersects(rBl)) {
             PunkteRechts= PunkteRechts+1;
+            ball1.resetBall(true);
        }
        else {
             PunkteLinks= PunkteLinks+1;
+            ball1.resetBall(false);
        }
     }
 

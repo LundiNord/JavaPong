@@ -1,6 +1,7 @@
 package com.javapong;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Ball  {
 
@@ -8,10 +9,11 @@ public class Ball  {
     private int y;
     //private int xo;         //x old
     //private int yo;         //y old
-    private int dx=6;
-    private int dy=6;
+    private int dx;
+    private int dy;
     private int width;
     private int height;
+    private int defaultSpeed = 6;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -20,15 +22,12 @@ public class Ball  {
         width= screensize.width/48;
         height= width;
         Startposition();
+        startBall();
     }
 
     public void Startposition(){        //Startposition festlegen
         y= screensize.height/2;
         x= screensize.width/2- screensize.width/96;
-    }
-    public void changespeed(int ds){
-        dx+=ds;
-        dy+=ds;
     }
     public void changeballsize(int dc){
         width= screensize.width/32+dc;
@@ -66,5 +65,62 @@ public class Ball  {
     }
     public int getDy(){
         return dy;
+    }
+    public void startBall() {       //Ball fliegt zufällig los
+        int d = new java.util.Random().nextInt(5);
+        if(d==1) {
+            dx = defaultSpeed;
+            dy = defaultSpeed;
+        }
+        else if(d==2) {
+            dx = -defaultSpeed;
+            dy = -defaultSpeed;
+        }
+        else if(d==3) {
+            dx = -defaultSpeed;
+            dy = defaultSpeed;
+        }
+        else {
+            dx = defaultSpeed;
+            dy = -defaultSpeed;
+        }
+    }
+    public void resetBall(boolean links) {
+        int d = new java.util.Random().nextInt(3);
+        if(links==true) {
+            Startposition();
+            wait(100);
+            if(d==1) {
+                dx = -defaultSpeed;
+                dy = defaultSpeed;
+            }
+            else {
+                dx = -defaultSpeed;
+                dy = -defaultSpeed;
+            }
+        }
+        else {
+            Startposition();
+            wait(100);
+            if(d==1) {
+                dx = defaultSpeed;
+                dy = -defaultSpeed;
+            }
+            else {
+                dx = defaultSpeed;
+                dy = defaultSpeed;
+            }
+        }
+    }
+    public static void wait(int ms)     //Warten Methode
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }

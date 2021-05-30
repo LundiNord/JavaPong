@@ -29,7 +29,7 @@ public class Spielfeld {            //Mittellinie und Umrandungen
         yu= sh-mwidth;
         xAl= sw/4;
         xAr= sw/4 *3;
-        yA = sh/12;
+        yA = sh/10;
     }
 
     public int getXr(){
@@ -76,8 +76,8 @@ public class Spielfeld {            //Mittellinie und Umrandungen
     }
     public Rectangle getBoundsLinks(){             // Neues Rectangle erzeugen für CollisionDetection
         return new Rectangle(xl,ym,mwidth,mheight);
-
-    }public Rectangle getBoundsRechts(){           // Neues Rectangle erzeugen für CollisionDetection
-        return new Rectangle(xr,yu,mwidth,mheight);
+    }
+    public Rectangle getBoundsRechts(){           // Neues Rectangle erzeugen für CollisionDetection
+        return new Rectangle(xr,ym,mwidth,mheight);
     }
 }
