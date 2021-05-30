@@ -27,6 +27,7 @@ private Thread ballthread;
 private int PunkteLinks=0;
 private int PunkteRechts=0;
 private Font retroFont;
+boolean spielEnde = false;
 
 
 public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws IOException, FontFormatException {
@@ -47,18 +48,21 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
 
     @Override
     public void paintComponent(Graphics g){        //Eigentliche Zeichenklasse
-    super.paintComponent(g);
-    Graphics2D g2d= (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
-    paintPaddle_links(g2d);         //Paddles zeichnen
-    paintPaddle_rechts(g2d);
-    paintRahmen(g2d);
-    paintBall(g2d);
+        super.paintComponent(g);
+        Graphics2D g2d= (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
+        paintPaddle_links(g2d);         //Paddles zeichnen
+        paintPaddle_rechts(g2d);
+        paintRahmen(g2d);
+        paintBall(g2d);
         try {
             paintPunkte(g2d);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (FontFormatException e) {
             e.printStackTrace();
+        }
+        if(spielEnde==true) {
+            paintYouWin(g2d);
         }
         Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
     }
@@ -82,12 +86,16 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
     g2d.fill3DRect(0, spielfeld1.getYo(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     g2d.fill3DRect(0, spielfeld1.getYu(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     }
-
     public void paintPunkte(Graphics2D g2d) throws IOException, FontFormatException {
         g2d.setColor(Color.white);
         g2d.setFont(retroFont);
         g2d.drawString(String.valueOf(PunkteLinks),spielfeld1.getxAl(),spielfeld1.getyA());         //linke
         g2d.drawString(String.valueOf(PunkteRechts),spielfeld1.getxAr(),spielfeld1.getyA());         //rechte
+    }
+    public void paintYouWin(Graphics2D g2d) {
+        g2d.setColor(Color.white);
+        g2d.setFont(retroFont);
+        g2d.drawString("You win!",spielfeld1.getxT(), spielfeld1.getyT());
     }
 
     @Override
@@ -119,7 +127,6 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
             beforeTime = System.currentTimeMillis();        //Timing reset
         }
     }
-
     public void checkCollision() {          //Collisions erkennen
         Rectangle rB = ball1.getBounds();
         Rectangle rPl= paddle_links.getBounds();
@@ -148,6 +155,19 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
             PunkteLinks= PunkteLinks+1;
             ball1.resetBall(false);
        }
+       if(PunkteLinks>=7||PunkteRechts>=7) {
+           spielEnde();
+       }
+    }
+    public  void spielEnde() {      //Ende und close    //Ball stoppen
+        if(PunkteLinks>=7) {
+            spielfeld1.youWin(true);
+        }
+        else {
+            spielfeld1.youWin(false);
+        }
+        spielEnde = true;
+        ballthread.stop();
     }
 
     public void actionPerformed(ActionEvent e) {        //wird nach Tastendruck ausgeführt
