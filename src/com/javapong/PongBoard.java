@@ -22,6 +22,9 @@ private Color farbe_links;
 private Color farbe_rechts;
 private Color farbe_Ball;
 private Thread ballthread;
+private int PunkteLinks=0;
+private int PunkteRechts=0;
+
 
 public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
@@ -68,6 +71,11 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     g2d.fill3DRect(0, spielfeld1.getYo(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     g2d.fill3DRect(0, spielfeld1.getYu(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     }
+
+    public void paintPunkte(Graphics2D g2d){
+
+    }
+
     @Override
     public void addNotify() {       //Der Thread für die Ball Animation wird hier gestartet
         super.addNotify();
@@ -103,13 +111,28 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
         Rectangle rPr= paddle_rechts.getBounds();
         Rectangle rBo=spielfeld1.getBoundsOben();
         Rectangle rBu=spielfeld1.getBoundsUnten();
+        Rectangle rBl=spielfeld1.getBoundsLinks();
+        Rectangle rBr=spielfeld1.getBoundsRechts();
         if(rB.intersects(rPl)||rB.intersects(rPr)) {    //Unterschiedlich für Rahmen und Paddles
             ball1.AbprallenPaddle();
         }
         if(rB.intersects(rBo)||rB.intersects(rBu)){
             ball1.AbprallenBoarder();
         }
+        if(rB.intersects(rBl)||rB.intersects(rBr)){
+            Punktedetector(rBr, rBl, rB);
+        }
     }
+
+    public void Punktedetector(Rectangle rBr, Rectangle rBl, Rectangle rB){     //ToDO Sound für Punkte einfügen
+       if(rB.intersects(rBl)) {
+            PunkteRechts= PunkteRechts+1;
+       }
+       else {
+            PunkteLinks= PunkteLinks+1;
+       }
+    }
+
     public void actionPerformed(ActionEvent e) {        //wird nach Tastendruck ausgeführt
         paddle_rechts.move();
         paddle_links.move();

@@ -12,6 +12,7 @@
 */
 package com.javapong;
 import java.awt.EventQueue;
+import java.awt.GraphicsEnvironment;
 import java.util.Scanner;
 
 //JavaPong by Jan,Ricardo,Leon
@@ -36,5 +37,10 @@ public class Main {
         String y = String.valueOf(x);
         s1.write(y,2);
         System.out.println(s1.read(2)); */
+        GraphicsEnvironment ge =
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fontList = ge.getAvailableFontFamilyNames();
+        for (String s:fontList)
+            System.out.println(s);
     }
 }

@@ -55,10 +55,16 @@ public class Spielfeld {            //Mittellinie und Umrandungen
     public int getSw(){
         return sw;
     }
-    public Rectangle getBoundsOben(){       // Neues Rectangel erzeugen für CollisionDetection
+    public Rectangle getBoundsOben(){              // Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(0,yo,sw,mwidth);
     }
-    public Rectangle getBoundsUnten(){      // Neues Rectangle erzeugen für CollisionDetection
+    public Rectangle getBoundsUnten(){             // Neues Rectangle erzeugen für CollisionDetection
         return new Rectangle(0,yu,sw,mwidth);
+    }
+    public Rectangle getBoundsLinks(){             // Neues Rectangle erzeugen für CollisionDetection
+        return new Rectangle(xl,ym,mwidth,mheight);
+
+    }public Rectangle getBoundsRechts(){           // Neues Rectangle erzeugen für CollisionDetection
+        return new Rectangle(xr,yu,mwidth,mheight);
     }
 }
