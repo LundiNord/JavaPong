@@ -1,7 +1,8 @@
 package com.javapong;
 import java.awt.*;
 import javax.swing.*;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
@@ -10,12 +11,18 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private Color farbe_rechts = Color.blue;
     private Color farbe_Ball= Color.white;          //Farbe des Balls
     private Object Dimension;
+    private Timer timerClose;
+    private PongBoard pongBoard1;
 
     public Spiel() throws IOException, FontFormatException {
         startUI();
+        timerClose = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
+        timerClose.start();
     }
     public void startUI() throws IOException, FontFormatException {
-        add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
+        pongBoard1 = new PongBoard(farbe_rechts, farbe_links, farbe_Ball);
+        add(pongBoard1);
+        //add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
         setTitle("Java-Pong Spiel");
         Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();    //Fenster an Bildschirm anpassen
         //setSize(screensize.width, screensize.height);
@@ -26,8 +33,15 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
         //setMinimumSize(new Dimension(200,200));       //Fixme : funktioniert nicht
+
     }
 
-
-
+    ActionListener actionListener1= new ActionListener() {      //Diese Methode wird vom Timer ausgeführt
+        @Override
+        public void actionPerformed(ActionEvent e) {            //Wenn ESC gedrückt wird, wir geschlossen
+            if(pongBoard1.getClose()==true) {
+                dispose();
+            }
+        }
+    };
 }

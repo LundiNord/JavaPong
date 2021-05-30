@@ -29,8 +29,7 @@ private int PunkteRechts=0;
 private Font retroFont;
 boolean spielEnde = false;
 private int delayBspeed= 3000;
-
-
+private boolean close = false;      //Das ist so hässlich und furchtbar
 
 public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws IOException, FontFormatException {
     startFont();                                    //Font init
@@ -147,7 +146,6 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
             Punktedetektor(rBr, rBl, rB);
         }
     }
-
     public void Punktedetektor(Rectangle rBr, Rectangle rBl, Rectangle rB){     //ToDo Sound für Punkte einfügen
        if(rB.intersects(rBl)) {
             PunkteRechts= PunkteRechts+1;
@@ -161,7 +159,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
            spielEnde();
        }
     }
-    public  void spielEnde() {      //Ende und close    //Ball stoppen
+    public void spielEnde() {      //Ende und close    //Ball stoppen
         if(PunkteLinks>=7) {
             spielfeld1.youWin(true);
         }
@@ -171,7 +169,6 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         spielEnde = true;
         ballthread.stop();
     }
-
     public void actionPerformed(ActionEvent e) {        //wird nach Tastendruck ausgeführt
         paddle_rechts.move();
         paddle_links.move();
@@ -190,8 +187,12 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         }
         @Override
         public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
             paddle_links.keyPressed(e);
             paddle_rechts.keyPressed(e);
+            if (key == KeyEvent.VK_ESCAPE) {        //bei ESC schließen
+                close = true;
+            }
         }
     }
     public void startFont() throws IOException, FontFormatException {       //Custom Font init
@@ -201,5 +202,8 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(PressStart);                                            //keine Ahnung
         retroFont = PressStart;                                                 //Abspeichern
+    }
+    public boolean getClose() {
+        return close;
     }
 }

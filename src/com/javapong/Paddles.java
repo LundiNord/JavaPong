@@ -22,5 +22,4 @@ public abstract class Paddles {
     public int getWidth(){
         return width;
     }
-
 }
