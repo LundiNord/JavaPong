@@ -1,6 +1,8 @@
 package com.javapong;
 import java.awt.*;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
 
@@ -9,10 +11,10 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private Color farbe_Ball= Color.white;          //Farbe des Balls
     private Object Dimension;
 
-    public Spiel() {
+    public Spiel() throws IOException, FontFormatException {
         startUI();
     }
-    public void startUI() {
+    public void startUI() throws IOException, FontFormatException {
         add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
         setTitle("Java-Pong Spiel");
         Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();    //Fenster an Bildschirm anpassen
@@ -25,5 +27,7 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
         //setMinimumSize(new Dimension(200,200));       //Fixme : funktioniert nicht
     }
+
+
 
 }

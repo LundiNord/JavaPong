@@ -11,8 +11,8 @@
         along with JavaPong.  If not, see <https://www.gnu.org/licenses/>.
 */
 package com.javapong;
-import java.awt.EventQueue;
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 //JavaPong by Jan,Ricardo,Leon
@@ -23,8 +23,15 @@ public class Main {
     {
        EventQueue.invokeLater(() ->     //keine Ahnung wofür das ist
          {
-            Spiel spiel1 = new Spiel();
-            spiel1.setVisible(true);
+             Spiel spiel1 = null;
+             try {
+                 spiel1 = new Spiel();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             } catch (FontFormatException e) {
+                 e.printStackTrace();
+             }
+             spiel1.setVisible(true);
         });
 
         //Sound s1 = new Sound();

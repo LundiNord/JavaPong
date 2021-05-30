@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 
 public class PongBoard extends JPanel implements Runnable, ActionListener{           //Bord des Pong-Spiel
 //Objekte deklarieren
@@ -24,9 +26,11 @@ private Color farbe_Ball;
 private Thread ballthread;
 private int PunkteLinks=0;
 private int PunkteRechts=0;
+private Font retroFont;
 
 
-public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
+public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws IOException, FontFormatException {
+    startFont();                                    //Font init
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
     setBackground(Color.black);
     setFocusable(true);
@@ -49,7 +53,14 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     paintPaddle_rechts(g2d);
     paintRahmen(g2d);
     paintBall(g2d);
-    Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
+        try {
+            paintPunkte(g2d);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        }
+        Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
     }
     public void paintPaddle_rechts(Graphics2D g2d){
     g2d.setColor(farbe_rechts);
@@ -72,9 +83,14 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
     g2d.fill3DRect(0, spielfeld1.getYu(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     }
 
-    public void paintPunkte(Graphics2D g2d){
+    public void paintPunkte(Graphics2D g2d) throws IOException, FontFormatException {
+        g2d.setColor(Color.white);
+        g2d.setFont(retroFont);
+        g2d.drawString(String.valueOf(PunkteLinks),spielfeld1.getxAl(),spielfeld1.getyA());         //linke
+        g2d.drawString(String.valueOf(PunkteRechts),spielfeld1.getxAr(),spielfeld1.getyA());         //rechte
 
     }
+
 
     @Override
     public void addNotify() {       //Der Thread für die Ball Animation wird hier gestartet
@@ -105,6 +121,10 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
             beforeTime = System.currentTimeMillis();        //Timing reset
         }
     }
+
+
+
+
     public void checkCollision() {          //Collisions erkennen
         Rectangle rB = ball1.getBounds();
         Rectangle rPl= paddle_links.getBounds();
@@ -154,5 +174,13 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball){
             paddle_links.keyPressed(e);
             paddle_rechts.keyPressed(e);
         }
+    }
+    public void startFont() throws IOException, FontFormatException {       //Custom Font init
+        File f = new File("src/resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
+        Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
+        PressStart = PressStart.deriveFont(Font.PLAIN,70);                  //Größe, ... festlegen
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(PressStart);                                            //keine Ahnung
+        retroFont = PressStart;                                                 //Abspeichern
     }
 }
