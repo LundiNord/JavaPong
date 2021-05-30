@@ -14,8 +14,8 @@ public class Paddle_links extends Paddles {
 
     public Paddle_links(){
     sh= screensize.height;
-    x=screensize.width/16;
-    y=screensize.height/2;
+    x= screensize.width/16;
+    y= screensize.height/2;
     }
 
     //Eingabe erkennen

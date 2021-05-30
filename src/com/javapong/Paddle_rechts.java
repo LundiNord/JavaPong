@@ -14,7 +14,7 @@ public class Paddle_rechts extends Paddles {
 
     public Paddle_rechts(){
         sh= screensize.height;
-        x=screensize.width/16+ screensize.width/16*14;
+        x= (screensize.width/16)*15-getWidth();
         y= screensize.height/2;
     }
 
