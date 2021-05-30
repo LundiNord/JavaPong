@@ -9,7 +9,7 @@ public class Paddle_links extends Paddles {
     private int x;
     private int y;
     private int dy;
-    private int s=10; //s steht für speed
+    private int s=15; //s steht für speed
     private int sh; //screensize.height
 
     public Paddle_links(){

@@ -38,6 +38,18 @@ public class Ball  {
         @Override
         public void actionPerformed(ActionEvent e) {
             defaultSpeed=defaultSpeed+2;
+            if(dx<0) {
+                dx = dx -2;
+            }
+            else {
+                dx = dx+2;
+            }
+            if(dy<0) {
+                dy = dy -2;
+            }
+            else {
+                dy = dy+2;
+            }
         }
     };
 
