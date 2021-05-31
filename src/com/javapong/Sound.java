@@ -27,6 +27,10 @@ public class Sound {            //ToDo: nicht getestet
         clip1.stop();
         //clip1.close();
     }
+    public void playSoundOnce() {
+        clip1.start();
+        clip1.setFramePosition(0);        //reset zum start
+    }
 
     public Clip soundInit(String Pfad,boolean looped) throws Exception {       //Sound initialisieren
         audioInputStream1 = AudioSystem.getAudioInputStream(new File(Pfad).getAbsoluteFile());
