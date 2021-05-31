@@ -19,7 +19,7 @@ public class MenuBoard extends JPanel implements ActionListener {
 
     public MenuBoard() throws IOException, FontFormatException  {
         startFont();
-        addKeyListener(new PongBoard.BAdapter());       //Initialisiert Key listener
+        addKeyListener(new MenuBoard.BAdapter());       //Initialisiert Key listener
         setBackground(Color.black);
         setFocusable(true);
     }
