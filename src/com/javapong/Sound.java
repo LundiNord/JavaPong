@@ -9,11 +9,12 @@ import javax.sound.sampled.*;
 public class Sound {            //ToDo: nicht getestet
     AudioInputStream audioInputStream1;
     Clip clip1;
-    String Path1 = "src/resources/sound/198896__bone666138__8-bit-circus-music.wav";
-    Clip clip2;
-    String Path2 = null;    //ToDo: Sound hinzufügen
+    String Path1;
+    private float LautstaerkeMinus;
 
-    public Sound() throws Exception {           //Clips initialisieren
+    public Sound(String Path,float LautMinus) throws Exception {           //Clips initialisieren
+        Path1 = Path;
+        LautstaerkeMinus = LautMinus;
         clip1 = soundInit(Path1,false);
     }
 
@@ -25,13 +26,12 @@ public class Sound {            //ToDo: nicht getestet
         //clip1.close();
     }
 
-
     public Clip soundInit(String Pfad,boolean looped) throws Exception {       //Sound initialisieren
         audioInputStream1 = AudioSystem.getAudioInputStream(new File(Pfad).getAbsoluteFile());
         Clip clip = AudioSystem.getClip();  //Clip erzeugen. Mit Clips kann man Audio buffern und einfach loopen
         clip.open(audioInputStream1);
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(-20.0f);
+        gainControl.setValue(-LautstaerkeMinus);
         if(looped ==true) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);     //loopen
         }

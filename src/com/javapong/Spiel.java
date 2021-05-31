@@ -39,7 +39,7 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
 
 
     public void Menusoundstarten() throws Exception {
-        Menusound= new Sound();
+        Menusound= new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20);
         Menusound.playSound1();
     }
 
