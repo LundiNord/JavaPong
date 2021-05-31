@@ -49,8 +49,8 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
     timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
     timer.start();
     hit = new Sound("src/resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
-    goal = new Sound("src/resources/sound/511484__mattleschuck__success-bell.wav",20,false);
-    //win = new Sound("src/resources/sound/270319__littlerobotsoundfactory__jingle-win-01.wav",20,false);
+    goal = new Sound("src/resources/sound/463067__gamer127__success-02.wav",20,false);
+    win = new Sound("src/resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,true);
     }
 
     @Override
@@ -152,7 +152,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         }
         if(rB.intersects(rBl)||rB.intersects(rBr)){
             Punktedetektor(rBr, rBl, rB);
-            //goal.playSoundOnce();
+            goal.playSound1();
         }
     }
     public void Punktedetektor(Rectangle rBr, Rectangle rBl, Rectangle rB){     //ToDo Sound für Punkte einfügen
@@ -202,6 +202,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
             paddle_rechts.keyPressed(e);
             if (key == KeyEvent.VK_ESCAPE) {        //bei ESC schließen
                 close = true;
+                win.stopSound1();
             }
         }
     }

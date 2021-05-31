@@ -38,6 +38,7 @@ public class Sound {            //ToDo: nicht getestet
         clip.open(audioInputStream1);
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(-LautstaerkeMinus);
+
         if(looped ==true) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);     //loopen
         }
