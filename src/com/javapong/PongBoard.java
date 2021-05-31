@@ -152,7 +152,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         }
         if(rB.intersects(rBl)||rB.intersects(rBr)){
             Punktedetektor(rBr, rBl, rB);
-            goal.playSound1();
+            goal.playSoundOnce();
         }
     }
     public void Punktedetektor(Rectangle rBr, Rectangle rBl, Rectangle rB){     //ToDo Sound für Punkte einfügen
@@ -176,7 +176,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
             spielfeld1.youWin(false);
         }
         spielEnde = true;
-        //win.playSoundOnce();
+        win.playSoundOnce();
         ballthread.stop();
     }
     public void actionPerformed(ActionEvent e) {        //wird nach Tastendruck ausgeführt
