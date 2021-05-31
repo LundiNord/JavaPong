@@ -4,6 +4,7 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 
 public class Sound {            //ToDo: nicht getestet
     AudioInputStream audioInputStream1;
@@ -29,6 +30,8 @@ public class Sound {            //ToDo: nicht getestet
         audioInputStream1 = AudioSystem.getAudioInputStream(new File(Pfad).getAbsoluteFile());
         Clip clip = AudioSystem.getClip();  //Clip erzeugen. Mit Clips kann man Audio buffern und einfach loopen
         clip.open(audioInputStream1);
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-20.0f);
         if(looped ==true) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);     //loopen
         }
