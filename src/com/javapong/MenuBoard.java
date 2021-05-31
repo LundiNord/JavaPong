@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MenuBoard extends JPanel implements ActionListener {
+
     private Font retroFont;
     private JButton Startbutton;
     private boolean menu2;
@@ -55,16 +56,21 @@ public class MenuBoard extends JPanel implements ActionListener {
     }
 
     public void paintStartbutton(){
-        Startbutton.setVisible(true);
+
         Startbutton.setText("Start");
         Startbutton.setSize(100,50);
         Startbutton.setLocation(200,200);
-        Startbutton.setOpaque(false);
-        Startbutton.setContentAreaFilled(false);
-        Startbutton.setBorderPainted(false);
-        add(Startbutton);
-
+        add(initButton(Startbutton));
     }
+
+    public JButton initButton(JButton button1) {        //Init Button
+        button1.setVisible(true);
+        button1.setOpaque(false);
+        button1.setContentAreaFilled(false);
+        button1.setBorderPainted(false);
+        return button1;
+    }
+
     public void startFont() throws IOException, FontFormatException {       //Custom Font init
         File f = new File("src/resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
         Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
@@ -75,18 +81,19 @@ public class MenuBoard extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent m) {            //wenn Key gepressed wird
 
     }
-
-    private class BAdapter extends KeyAdapter  {         //gibt Tastendrücke an Paddel weiter, keine Ahnung wie
+    private class BAdapter extends KeyAdapter  {
         @Override
-        public void keyReleased(KeyEvent e) {
+        public void keyReleased(KeyEvent m) {
+
         }
 
         @Override
-        public void keyPressed(KeyEvent e) {
-            int key = e.getKeyCode();
+        public void keyPressed(KeyEvent m) {
+            int key = m.getKeyCode();
+
         }
 
     }
@@ -97,10 +104,8 @@ public class MenuBoard extends JPanel implements ActionListener {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(null, "Start");
+
                 }
             });
-
-
-
     }
 }
