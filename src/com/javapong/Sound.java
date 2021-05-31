@@ -8,7 +8,7 @@ import javax.sound.sampled.Clip;
 public class Sound {            //ToDo: nicht getestet
     AudioInputStream audioInputStream1;
     Clip clip1;
-    String Path1 = "src/resources/sound/198896bone6661388-bit-circus-music.wav";
+    String Path1 = "src/resources/sound/198896__bone666138__8-bit-circus-music.wav";
     Clip clip2;
     String Path2 = null;    //ToDo: Sound hinzufügen
 
