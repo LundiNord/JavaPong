@@ -18,7 +18,7 @@ public class MenuBoard extends JPanel implements ActionListener {
     private JButton startbutton2;
     private JButton startbutton2online;
     private JButton exitbutton;
-    private boolean menu2;
+    private boolean menu2 = false;
     private Sound menusound;
 
     //Kann Bildschirmgröße lesen
@@ -30,6 +30,8 @@ public class MenuBoard extends JPanel implements ActionListener {
         setBackground(Color.black);
         setFocusable(true);
         Menusoundstarten();
+        InitStartbutton1();
+        InitStartButton2();
         InitStartbutton2online();
         InitExitButton();
 
@@ -41,8 +43,8 @@ public class MenuBoard extends JPanel implements ActionListener {
         paintTitle(g2d);
         paintSubtitle(g2d);
         if(menu2==false) {
-            //paintStartbutton1();
-            //paintStartbutton2();
+            paintStartbutton1();
+            paintStartbutton2();
             paintStartbutton2online();
             paintExitButton();
         }
@@ -62,7 +64,7 @@ public class MenuBoard extends JPanel implements ActionListener {
         g2d.drawString("by Ricardo, Léon und Jan",100,100);
     }
 
-    public void paintStartbutton1(){        //Einzelspieler Start
+    public void InitStartbutton1() {
         startbutton1 = new JButton();
         startbutton1.addActionListener(new ActionListener() {
             @Override
@@ -74,9 +76,12 @@ public class MenuBoard extends JPanel implements ActionListener {
         startbutton1.setText("Start");
         startbutton1.setSize(100,50);
         startbutton1.setLocation(200,200);
-        add(initButton(startbutton1));
+        startbutton1= initButton(startbutton1);
     }
-    public void paintStartbutton2() {           //lokaler Multiplayer Button
+    public void paintStartbutton1(){        //Einzelspieler Start
+        //add(startbutton1);
+    }
+    public void InitStartButton2() {
         startbutton2 = new JButton();
         startbutton2.addActionListener(new ActionListener() {
             @Override
@@ -88,8 +93,10 @@ public class MenuBoard extends JPanel implements ActionListener {
         startbutton2.setText("Start2");
         startbutton2.setSize(100,50);
         startbutton2.setLocation(300,200);
-        add(initButton(startbutton2));
-        repaint();
+        startbutton2= initButton(startbutton2);
+    }
+    public void paintStartbutton2() {           //lokaler Multiplayer Button
+        //add(startbutton2);
     }
     public void InitStartbutton2online() {
         startbutton2online = new JButton();
@@ -111,7 +118,6 @@ public class MenuBoard extends JPanel implements ActionListener {
     }
     public void paintStartbutton2online() {         //OnlineMultiplayer Button
         add(startbutton2online);
-
     }
     public void InitExitButton() {
         exitbutton = new JButton();
@@ -130,8 +136,6 @@ public class MenuBoard extends JPanel implements ActionListener {
     public void paintExitButton() {
         add(exitbutton);
     }
-
-
 
 
     public JButton initButton(JButton button1) {        //Init Button
