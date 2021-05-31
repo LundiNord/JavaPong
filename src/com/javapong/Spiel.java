@@ -15,13 +15,14 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private PongBoard pongBoard1;
     private Sound Menusound;
     private float LautMinus=20;
-
+    private Menu menu1;
     public Spiel() throws Exception {
-        startUI();
+
+        startGame();
         timerClose = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
         timerClose.start();
     }
-    public void startUI() throws Exception {
+    public void startGame() throws Exception {
         pongBoard1 = new PongBoard(farbe_rechts,farbe_links,farbe_Ball,LautMinus);
         add(pongBoard1);
         //add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));

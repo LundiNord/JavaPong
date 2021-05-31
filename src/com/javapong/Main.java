@@ -23,15 +23,13 @@ public class Main {
     {
        EventQueue.invokeLater(() ->     //keine Ahnung wofür das ist
          {
-             Spiel spiel1 = null;
+             Menu menu1 = null;
              try {
-                 spiel1 = new Spiel();
-             } catch (IOException e) {
-                 e.printStackTrace();
+                 menu1 = new Menu();
              } catch (Exception e) {
                  e.printStackTrace();
              }
-             spiel1.setVisible(true);
+             menu1.setVisible(true);
         });
 
         //Sound s1 = new Sound();
