@@ -30,6 +30,8 @@ public class MenuBoard extends JPanel implements ActionListener {
         setBackground(Color.black);
         setFocusable(true);
         Menusoundstarten();
+        InitStartbutton2online();
+        InitExitButton();
 
     }
     @Override
@@ -39,8 +41,8 @@ public class MenuBoard extends JPanel implements ActionListener {
         paintTitle(g2d);
         paintSubtitle(g2d);
         if(menu2==false) {
-            paintStartbutton1();
-            paintStartbutton2();
+            //paintStartbutton1();
+            //paintStartbutton2();
             paintStartbutton2online();
             paintExitButton();
         }
@@ -83,12 +85,13 @@ public class MenuBoard extends JPanel implements ActionListener {
 
             }
         });
-        startbutton2.setText("Start");
+        startbutton2.setText("Start2");
         startbutton2.setSize(100,50);
         startbutton2.setLocation(300,200);
         add(initButton(startbutton2));
+        repaint();
     }
-    public void paintStartbutton2online() {         //OnlineMultiplayer Button
+    public void InitStartbutton2online() {
         startbutton2online = new JButton();
         startbutton2online.addActionListener(new ActionListener() {
             @Override
@@ -97,12 +100,20 @@ public class MenuBoard extends JPanel implements ActionListener {
 
             }
         });
-        startbutton2online.setText("Start");
-        startbutton2online.setSize(400,50);
-        startbutton2online.setLocation(200,200);
-        add(initButton(startbutton2online));
+        startbutton2online.setText("Startonline");
+        startbutton2online.setSize(100,50);
+        startbutton2online.setLocation(400,300);
+        startbutton2online.setVisible(true);
+        startbutton2online.setOpaque(false);
+        startbutton2online.setContentAreaFilled(false);
+        startbutton2online.setBorderPainted(false);
+
     }
-    public void paintExitButton() {
+    public void paintStartbutton2online() {         //OnlineMultiplayer Button
+        add(startbutton2online);
+
+    }
+    public void InitExitButton() {
         exitbutton = new JButton();
         exitbutton.addActionListener(new ActionListener() {
             @Override
@@ -111,11 +122,17 @@ public class MenuBoard extends JPanel implements ActionListener {
 
             }
         });
-        exitbutton.setText("Start");
-        exitbutton.setSize(500,50);
-        exitbutton.setLocation(200,200);
-        add(initButton(exitbutton));
+        exitbutton.setText("Exit");
+        exitbutton.setSize(100,50);
+        exitbutton.setLocation(500,200);
+        exitbutton = initButton(exitbutton);
     }
+    public void paintExitButton() {
+        add(exitbutton);
+    }
+
+
+
 
     public JButton initButton(JButton button1) {        //Init Button
         button1.setVisible(true);
