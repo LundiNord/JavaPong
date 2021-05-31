@@ -17,16 +17,18 @@ public class MenuBoard extends JPanel implements ActionListener {
     private Font retroFont;
     private JButton Startbutton;
     private boolean menu2;
+    private Sound menusound;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
-    public MenuBoard() throws IOException, FontFormatException  {
+    public MenuBoard() throws Exception {
         startFont();
         Startbutton();
         addKeyListener(new MenuBoard.BAdapter());       //Initialisiert Key listener
         setBackground(Color.black);
         setFocusable(true);
+        Menusoundstarten();
 
     }
     @Override
@@ -107,5 +109,9 @@ public class MenuBoard extends JPanel implements ActionListener {
 
                 }
             });
+    }
+    public void Menusoundstarten() throws Exception {
+        menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
+        menusound.playSound1();
     }
 }

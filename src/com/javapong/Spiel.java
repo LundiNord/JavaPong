@@ -10,14 +10,13 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private Color farbe_links = Color.white;        //Farbe der Paddles
     private Color farbe_rechts = Color.blue;
     private Color farbe_Ball= Color.white;          //Farbe des Balls
-    private Object Dimension;
     private Timer timerClose;
     private PongBoard pongBoard1;
-    private Sound Menusound;
     private float LautMinus=20;
     private Menu menu1;
-    public Spiel() throws Exception {
+    private int mode;               //Spielmodus
 
+    public Spiel() throws Exception {
         startGame();
         timerClose = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
         timerClose.start();
@@ -35,13 +34,6 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         setLocationRelativeTo(null);                        //in die Mitte
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
-
-    }
-
-
-    public void Menusoundstarten() throws Exception {
-        Menusound= new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
-        Menusound.playSound1();
     }
 
     ActionListener actionListener1= new ActionListener() {      //Diese Methode wird vom Timer ausgeführt

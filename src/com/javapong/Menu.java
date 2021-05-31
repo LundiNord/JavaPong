@@ -8,13 +8,15 @@ import java.io.IOException;
 import javax.swing.*;
 
 public class Menu extends JFrame {
-    private MenuBoard menuBoard1;
 
-    public Menu() throws IOException, FontFormatException {
+    private MenuBoard menuBoard1;
+    private float LautMinus;
+
+    public Menu() throws Exception {
         startMenu();
     }
 
-    public void startMenu() throws IOException, FontFormatException {
+    public void startMenu() throws Exception {
         menuBoard1= new MenuBoard();
         add(menuBoard1);
         setTitle("Java-Pong-Menu");
