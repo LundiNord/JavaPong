@@ -11,9 +11,11 @@ public class Sound {            //ToDo: nicht getestet
     Clip clip1;
     String Path1;
     private float LautstaerkeMinus;
+    boolean looped;
 
-    public Sound(String Path,float LautMinus) throws Exception {           //Clips initialisieren
+    public Sound(String Path,float LautMinus,boolean looped) throws Exception {           //Clips initialisieren
         Path1 = Path;
+        this.looped = looped;
         LautstaerkeMinus = LautMinus;
         clip1 = soundInit(Path1,false);
     }

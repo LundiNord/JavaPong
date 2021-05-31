@@ -34,12 +34,12 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
         //setMinimumSize(new Dimension(200,200));       //Fixme : funktioniert nicht
-        Menusoundstarten();
+
     }
 
 
     public void Menusoundstarten() throws Exception {
-        Menusound= new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20);
+        Menusound= new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
         Menusound.playSound1();
     }
 

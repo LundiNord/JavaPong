@@ -30,8 +30,9 @@ private Font retroFont;
 boolean spielEnde = false;
 private int delayBspeed= 3000;
 private boolean close = false;      //Das ist so hässlich und furchtbar
+private Sound Hit;
 
-public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws IOException, FontFormatException {
+public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws Exception {
     startFont();                                    //Font init
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
     setBackground(Color.black);
@@ -45,6 +46,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
     this.farbe_Ball= farbe_Ball;
     timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
     timer.start();
+    Hit = new Sound("src/resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
     }
 
     @Override
@@ -138,9 +140,11 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
         Rectangle rBr=spielfeld1.getBoundsRechts();
         if(rB.intersects(rPl)||rB.intersects(rPr)) {    //Unterschiedlich für Rahmen und Paddles
             ball1.AbprallenPaddle();
+            Hit.playSound1();
         }
         if(rB.intersects(rBo)||rB.intersects(rBu)){
             ball1.AbprallenBoarder();
+            Hit.playSound1();
         }
         if(rB.intersects(rBl)||rB.intersects(rBr)){
             Punktedetektor(rBr, rBl, rB);
