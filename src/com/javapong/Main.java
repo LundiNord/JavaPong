@@ -28,7 +28,7 @@ public class Main {
                  spiel1 = new Spiel();
              } catch (IOException e) {
                  e.printStackTrace();
-             } catch (FontFormatException e) {
+             } catch (Exception e) {
                  e.printStackTrace();
              }
              spiel1.setVisible(true);

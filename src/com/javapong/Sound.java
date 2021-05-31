@@ -5,10 +5,10 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class Sound {            //ToDo: nicht getested
+public class Sound {            //ToDo: nicht getestet
     AudioInputStream audioInputStream1;
     Clip clip1;
-    String Path1 = "src/resources/audio.wave";
+    String Path1 = "src/resources/sound/198896bone6661388-bit-circus-music.wav";
     Clip clip2;
     String Path2 = null;    //ToDo: Sound hinzufügen
 

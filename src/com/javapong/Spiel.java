@@ -13,13 +13,14 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private Object Dimension;
     private Timer timerClose;
     private PongBoard pongBoard1;
+    private Sound Menusound;
 
-    public Spiel() throws IOException, FontFormatException {
+    public Spiel() throws Exception {
         startUI();
         timerClose = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
         timerClose.start();
     }
-    public void startUI() throws IOException, FontFormatException {
+    public void startUI() throws Exception {
         pongBoard1 = new PongBoard(farbe_rechts, farbe_links, farbe_Ball);
         add(pongBoard1);
         //add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
@@ -33,7 +34,13 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
         //setMinimumSize(new Dimension(200,200));       //Fixme : funktioniert nicht
+        Menusoundstarten();
+    }
 
+
+    public void Menusoundstarten() throws Exception {
+        Menusound= new Sound();
+        Menusound.playSound1();
     }
 
     ActionListener actionListener1= new ActionListener() {      //Diese Methode wird vom Timer ausgeführt
