@@ -31,7 +31,6 @@ public class Sound {            //ToDo: nicht getestet
         clip1.start();
         clip1.setFramePosition(0);        //reset zum start
     }
-
     public Clip soundInit(String Pfad,boolean looped) throws Exception {       //Sound initialisieren
         audioInputStream1 = AudioSystem.getAudioInputStream(new File(Pfad).getAbsoluteFile());
         Clip clip = AudioSystem.getClip();  //Clip erzeugen. Mit Clips kann man Audio buffern und einfach loopen

@@ -33,8 +33,9 @@ private boolean close = false;      //Das ist so hässlich und furchtbar
 private Sound hit;                  //Soundeffekte
 private Sound goal;
 private Sound win;
+private float LautMinus;
 
-public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws Exception {
+public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus) throws Exception {
     startFont();                                    //Font init
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
     setBackground(Color.black);
@@ -48,6 +49,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links, Color farbe_Ball) throws 
     this.farbe_Ball= farbe_Ball;
     timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
     timer.start();
+    this.LautMinus = LautMinus;
     hit = new Sound("src/resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
     goal = new Sound("src/resources/sound/463067__gamer127__success-02.wav",20,false);
     win = new Sound("src/resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,true);
