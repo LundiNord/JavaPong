@@ -175,6 +175,6 @@ public class MenuBoard extends JPanel implements ActionListener {
 
     public void Menusoundstarten() throws Exception {
         menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
-        menusound.playSound1();
+        //menusound.playSound1();
     }
 }
