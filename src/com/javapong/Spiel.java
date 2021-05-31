@@ -22,7 +22,7 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         timerClose.start();
     }
     public void startUI() throws Exception {
-        pongBoard1 = new PongBoard(farbe_rechts, farbe_links, farbe_Ball,LautMinus);
+        pongBoard1 = new PongBoard(farbe_rechts,farbe_links,farbe_Ball,LautMinus);
         add(pongBoard1);
         //add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
         setTitle("Java-Pong Spiel");
@@ -34,7 +34,6 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         setLocationRelativeTo(null);                        //in die Mitte
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
-        //setMinimumSize(new Dimension(200,200));       //Fixme : funktioniert nicht
 
     }
 
