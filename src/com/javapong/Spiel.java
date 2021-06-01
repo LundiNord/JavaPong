@@ -10,6 +10,7 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private Color farbe_links = Color.white;        //Farbe der Paddles
     private Color farbe_rechts = Color.blue;
     private Color farbe_Ball= Color.white;          //Farbe des Balls
+    private int modus;
     private Timer timerClose;
     private PongBoard pongBoard1;
     private float LautMinus;
@@ -17,17 +18,18 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private int mode;               //Spielmodus
     private boolean spielstopp=false;
 
-    public Spiel(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus) throws Exception {
+    public Spiel(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus, int modus) throws Exception {
         this.farbe_links = farbe_links;
         this.farbe_rechts = farbe_rechts;
         this.farbe_Ball = farbe_Ball;
         this.LautMinus = LautMinus;
+        this.modus= modus;
         startGame();
         timerClose = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
         timerClose.start();
     }
     public void startGame() throws Exception {
-        pongBoard1 = new PongBoard(farbe_rechts,farbe_links,farbe_Ball,LautMinus);
+        pongBoard1 = new PongBoard(farbe_rechts,farbe_links,farbe_Ball,LautMinus, modus);
         add(pongBoard1);
         //add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
         setTitle("Java-Pong Spiel");

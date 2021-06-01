@@ -13,47 +13,54 @@ import java.io.File;
 import java.io.IOException;
 
 public class PongBoard extends JPanel implements Runnable, ActionListener{           //Bord des Pong-Spiel
-//Objekte deklarieren
-private Paddle_links paddle_links;
-private Paddle_rechts paddle_rechts;
-private Ball ball1;
-private Spielfeld spielfeld1;
-private int delay=16;
-private Timer timer;
-private Color farbe_links;
-private Color farbe_rechts;
-private Color farbe_Ball;
-private Thread ballthread;
-private int PunkteLinks=0;
-private int PunkteRechts=0;
-private Font retroFont;
-boolean spielEnde = false;
-private int delayBspeed= 3000;
-private boolean close = false;      //Das ist so hässlich und furchtbar
-private Sound hit;                  //Soundeffekte
-private Sound goal;
-private Sound win;
-private float LautMinus;
+    //Objekte deklarieren
+    private Paddle_links paddle_links;
+    private Paddle_rechts paddle_rechts;
+    private Ball ball1;
+    private Spielfeld spielfeld1;
+    private int delay=16;
+    private Timer timer;
+    private Color farbe_links;
+    private Color farbe_rechts;
+    private Color farbe_Ball;
+    private Thread ballthread;
+    private int PunkteLinks=0;
+    private int PunkteRechts=0;
+    private Font retroFont;
+    boolean spielEnde = false;
+    private int delayBspeed= 3000;
+    private boolean close = false;      //Das ist so hässlich und furchtbar
+    private Sound hit;                  //Soundeffekte
+    private Sound goal;
+    private Sound win;
+    private float LautMinus;
+    private int modus;
 
 
-public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus) throws Exception {
-    startFont();                                    //Font init
-    addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
-    setBackground(Color.black);
-    setFocusable(true);
-    paddle_links=new Paddle_links();        //Initialisiert  Paddels
-    paddle_rechts=new Paddle_rechts();
-    ball1=new Ball(delayBspeed);
-    spielfeld1= new Spielfeld();
-    this.farbe_links = farbe_links;     //Farben übernehmen
-    this.farbe_rechts = farbe_rechts;
-    this.farbe_Ball= farbe_Ball;
-    timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
-    timer.start();
-    this.LautMinus = LautMinus;
-    hit = new Sound("src/resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
-    goal = new Sound("src/resources/sound/463067__gamer127__success-02.wav",20,false);
-    win = new Sound("src/resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,true);
+    public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus,int modus) throws Exception {
+        this.modus= modus;
+        startFont();                                    //Font init
+        addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
+        setBackground(Color.black);
+        setFocusable(true);
+        paddle_links=new Paddle_links();        //Initialisiert  Paddels
+        if(modus==1||modus==2||modus==3) {
+            paddle_rechts = new Paddle_rechts_Bot();
+        }
+        else{
+            paddle_rechts= new Paddle_rechts();
+        }
+        ball1=new Ball(delayBspeed);
+        spielfeld1= new Spielfeld();
+        this.farbe_links = farbe_links;     //Farben übernehmen
+        this.farbe_rechts = farbe_rechts;
+        this.farbe_Ball= farbe_Ball;
+        timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
+        timer.start();
+        this.LautMinus = LautMinus;
+        hit = new Sound("src/resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
+        goal = new Sound("src/resources/sound/463067__gamer127__success-02.wav",20,false);
+        win = new Sound("src/resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,true);
     }
 
     @Override
@@ -120,8 +127,12 @@ public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float Lau
         beforeTime = System.currentTimeMillis();        //Timing für konstante Frames
         while(true) {                       //läuft für immer
             ball1.move();                   //verändern
+            pushXYBall();
             checkCollision();               //Collisions detection
             repaint(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight());
+            if(modus==1||modus==2||modus==3){
+                paddle_rechts.move();
+            }
             timeDiff = System.currentTimeMillis() - beforeTime;     //mehr Timing
             sleep = 16 - timeDiff;                    //theoretisch 60 FPS
             if (sleep < 0) {
@@ -136,6 +147,9 @@ public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float Lau
             }
             beforeTime = System.currentTimeMillis();        //Timing reset
         }
+    }
+    public void pushXYBall(){
+        paddle_rechts.setXbYb(ball1.getX(),ball1.getY());
     }
     public void checkCollision() {          //Collisions erkennen
         Rectangle rB = ball1.getBounds();

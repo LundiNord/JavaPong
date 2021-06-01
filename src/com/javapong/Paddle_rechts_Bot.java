@@ -2,16 +2,18 @@ package com.javapong;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.*;
 
-//Rechtes Paddle
-public class Paddle_rechts extends Paddles {
+public class Paddle_rechts_Bot extends Paddle_rechts {
 
     private int x;
     private int y;
     private int dy;
+    private int xb;
+    private int yb;
     private int s=15; //s steht für speed
     private int sh; //screensize.height
-    public Paddle_rechts(){
+    public Paddle_rechts_Bot(){
         sh= screensize.height;
         x= (screensize.width/16)*15-getWidth();
         y= screensize.height/2;
@@ -19,7 +21,7 @@ public class Paddle_rechts extends Paddles {
 
     public void move(){
         if(y>0 && y+getHeight()<sh) {           //Paddle darf nicht aus dem Bildschirm
-            y = y + (dy); //= y=y+dy;
+            y = yb;
         }
         else if(y<10){
             y = 1;
@@ -33,25 +35,14 @@ public class Paddle_rechts extends Paddles {
     }
     //Eingabe erkennen
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_UP) {
-            dy = -s;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = s;
-        }
     }
     public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-        }
     }
 
+    public void setXbYb(int xb, int yb){
+        this.xb=xb;
+        this.yb=yb;
+    }
     public int getX(){
         return x;
     }
@@ -60,8 +51,5 @@ public class Paddle_rechts extends Paddles {
     }
     public Rectangle getBounds(){       //Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(x,y,getWidth(),getHeight());
-    }
-    public void setXbYb(int xb, int yb){        //muss existieren, weil hässlich
-
     }
 }

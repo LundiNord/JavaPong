@@ -41,11 +41,12 @@ public class Menu extends JFrame {
         public void actionPerformed(ActionEvent e) {            //Wenn der Modus wechselt
             int modus = menuBoard1.getModus();
 
-            if(modus==4){
+
+            if(modus==1||modus==2||modus==3||modus==4){
                 menuBoard1.setModus(0);                 //Modus wieder auf 0 setzen, sonst öffnet sich Pong dauerhaft
                 menuBoard1.Menusoundstoppen();          // Musik stoppen, sonst Überlagerung
                 try {
-                    spiel1= new Spiel(farbe_rechts,farbe_links,farbe_Ball,LautMinus);
+                    spiel1= new Spiel(farbe_rechts,farbe_links,farbe_Ball,LautMinus,modus);
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
