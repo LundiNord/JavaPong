@@ -208,6 +208,9 @@ public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float Lau
             }
         }
     }
+    public void stop(){
+    ballthread.stop();
+    }
     public void startFont() throws IOException, FontFormatException {       //Custom Font init
         File f = new File("src/resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
         Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen

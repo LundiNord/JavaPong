@@ -300,7 +300,13 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
         menusound.playSound1();
     }
+    public void Menusoundstoppen(){
+        menusound.stopSound1();
+    }
     public int getModus() {
         return modus;
+    }
+    public void setModus(int modus){
+        this.modus=modus;
     }
 }

@@ -12,7 +12,7 @@ public class Menu extends JFrame {
     private MenuBoardNeu menuBoard1;
     private float LautMinus;
     private Timer timerSpielStart;
-
+    private Spiel spiel1;
     public Menu() throws Exception {
         startMenu();
         timerSpielStart = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
@@ -36,6 +36,21 @@ public class Menu extends JFrame {
         public void actionPerformed(ActionEvent e) {            //Wenn der Modus wechselt
             int modus = menuBoard1.getModus();
 
+            if(modus==4){
+                menuBoard1.setModus(0);                 //Modus wieder auf 0 setzen, sonst öffnet sich Pong dauerhaft
+                menuBoard1.Menusoundstoppen();          // Musik stoppen, sonst Überlagerung
+                try {
+                    spiel1= new Spiel();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+
+            }
+
+            if(modus==6){
+                dispose();
+                System.exit(0);                 //Programm beenden
+            }
 
         }
     };

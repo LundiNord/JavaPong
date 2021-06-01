@@ -41,6 +41,7 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
         public void actionPerformed(ActionEvent e) {            //Wenn ESC gedrückt wird, wir geschlossen
             if(pongBoard1.getClose()==true) {
                 dispose();
+                pongBoard1.stop();
             }
         }
     };

@@ -11,7 +11,6 @@ public class Paddle_rechts extends Paddles {
     private int dy;
     private int s=15; //s steht für speed
     private int sh; //screensize.height
-
     public Paddle_rechts(){
         sh= screensize.height;
         x= (screensize.width/16)*15-getWidth();
@@ -52,6 +51,7 @@ public class Paddle_rechts extends Paddles {
             dy = 0;
         }
     }
+
     public int getX(){
         return x;
     }
