@@ -25,15 +25,16 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
     private boolean menu2;
     private Sound menusound;
     private int modus=0;
-
+    private float LautMinus;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    /*  Hier gibt es bei den Buttons viel Code der Mehrfach vorkommt und unnötig ist. Wir haben es anders versucht,
+    /*  Hier gibt es bei den Buttons viel Code der mehrfach vorkommt und unnötig ist. Wir haben es anders versucht,
         hat aber nicht funktioniert weil Buttons Arschlöcher sind. Deswegen jetzt so.
      */
 
-    public MenuBoardNeu() throws Exception {            //Konstruktor
+    public MenuBoardNeu(float LautMinus) throws Exception {            //Konstruktor
+        this.LautMinus = LautMinus;
         startFont();
         Startbutton();              //button Init
         Startbutton2();
@@ -240,6 +241,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 modus=5;
+                JOptionPane.showMessageDialog(null, "Feature coming soon!");
             }
         });
     }
@@ -249,7 +251,6 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 modus=6;
-
             }
         });
     }
@@ -297,7 +298,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
     }
 
     public void Menusoundstarten() throws Exception {
-        menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
+        menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",LautMinus,true);
         menusound.playSound1();
     }
     public void Menusoundstoppen(){

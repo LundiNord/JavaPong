@@ -209,7 +209,7 @@ public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float Lau
             }
         }
     }
-    public void stop(){
+    public void stop(){     //Geräusche stoppen
     ballthread.stop();
     }
     public void startFont() throws IOException, FontFormatException {       //Custom Font init

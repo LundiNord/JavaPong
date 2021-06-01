@@ -10,9 +10,14 @@ import javax.swing.*;
 public class Menu extends JFrame {
 
     private MenuBoardNeu menuBoard1;
-    private float LautMinus;
+    private float LautMinus = 20;
     private Timer timerSpielStart;
     private Spiel spiel1;
+    private Color farbe_links = Color.white;        //Farbe der Paddles
+    private Color farbe_rechts = Color.blue;
+    private Color farbe_Ball= Color.white;
+
+
     public Menu() throws Exception {
         startMenu();
         timerSpielStart = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
@@ -20,7 +25,7 @@ public class Menu extends JFrame {
     }
 
     public void startMenu() throws Exception {
-        menuBoard1= new MenuBoardNeu();
+        menuBoard1= new MenuBoardNeu(LautMinus);
         add(menuBoard1);
         setTitle("Java-Pong-Menu");
         setSize(700,500);
@@ -40,18 +45,17 @@ public class Menu extends JFrame {
                 menuBoard1.setModus(0);                 //Modus wieder auf 0 setzen, sonst öffnet sich Pong dauerhaft
                 menuBoard1.Menusoundstoppen();          // Musik stoppen, sonst Überlagerung
                 try {
-                    spiel1= new Spiel();
+                    spiel1= new Spiel(farbe_rechts,farbe_links,farbe_Ball,LautMinus);
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
-
             }
 
             if(modus==6){
                 dispose();
                 System.exit(0);                 //Programm beenden
             }
-            if(spiel1!=null) {
+            if(spiel1!=null) {              //Wenn das Spiel geschlossen wird, kommt das Menu wieder
                 if (spiel1.getSpielstopp() == true) {
                     try {
                         menuBoard1.Menusoundstarten();

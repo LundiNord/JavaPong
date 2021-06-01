@@ -12,12 +12,16 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private Color farbe_Ball= Color.white;          //Farbe des Balls
     private Timer timerClose;
     private PongBoard pongBoard1;
-    private float LautMinus=20;
+    private float LautMinus;
     private Menu menu1;
     private int mode;               //Spielmodus
     private boolean spielstopp=false;
 
-    public Spiel() throws Exception {
+    public Spiel(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus) throws Exception {
+        this.farbe_links = farbe_links;
+        this.farbe_rechts = farbe_rechts;
+        this.farbe_Ball = farbe_Ball;
+        this.LautMinus = LautMinus;
         startGame();
         timerClose = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
         timerClose.start();
