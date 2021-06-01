@@ -3,6 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 /*
     Es wäre besser wenn Menu und Spiel zusammengeführt werden. Wir haben das versucht, hat aber nicht funktioniert.
@@ -12,15 +13,18 @@ import java.awt.event.ActionListener;
 public class Menu extends JFrame {
 
     private MenuBoardNeu menuBoard1;
-    private float LautMinus = 20;
+    private float LautMinus;
     private Timer timerSpielStart;
     private Spiel spiel1;
-    private Color farbe_links = Color.white;        //Farbe der Paddles
-    private Color farbe_rechts = Color.blue;
-    private Color farbe_Ball= Color.white;
-    private int delayBspeed = 6000;     //Schneller werden des Balls in ms
+    private Color farbe_links;        //Farbe der Paddles
+    private Color farbe_rechts;
+    private Color farbe_Ball;
+    private int delayBspeed;     //Schneller werden des Balls in ms
+    private Storage storage1;           //Persistent storage file
 
     public Menu() throws Exception {
+        storage1 = new Storage();
+        loadConfig();
         startMenu();                                    //Menu starten
         timerSpielStart = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
         timerSpielStart.start();                                    //für Abfragen aus dem Menu
@@ -70,4 +74,11 @@ public class Menu extends JFrame {
             }
         }
     };
+    public void loadConfig() throws FileNotFoundException {
+        LautMinus = storage1.readFloat(3);
+        delayBspeed = storage1.readInt(5);
+        farbe_Ball = storage1.readFarbe(8);
+        farbe_links = storage1.readFarbe(10);
+        farbe_rechts = storage1.readFarbe(12);
+    }
 }

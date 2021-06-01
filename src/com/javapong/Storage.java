@@ -1,15 +1,20 @@
 package com.javapong;
 
+import java.awt.*;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-public class Storage {      //Wir brauchen persistent storage
-    private String Pfad = "savefile.txt";
+public class Storage {                  //Wir brauchen persistent storage die leicht Veränderbar ist.
+    private String Pfad = "resources/save/savefile.conf";
 
     public Storage() {
+
+    }
+    public void InitStorage() {             //Bei uns wird diese Methode auch nicht gebraucht
         File f = new File(Pfad);            //Initialisierung der Savefile
         if(!f.exists()) {       //Wenn sie nicht existiert wird eine default generiert
             try {
@@ -22,8 +27,10 @@ public class Storage {      //Wir brauchen persistent storage
             }
         }
     }
-
     public void write(String save, int zeile) throws IOException {          //Schreiben
+        /*
+            Im Endeffekt braucht unser Programm kein write Methode. Sie bleibt für ein eventuelles JavaPong2 hier.
+         */
         Scanner sc = new Scanner(new File(Pfad));        //Scanner um die File einzulesen
         //Idee geklaut aus einem Tutorial
         StringBuffer buffer = new StringBuffer();
@@ -39,7 +46,6 @@ public class Storage {      //Wir brauchen persistent storage
         writer.write(fileContents);                                 //Modifizierter String in Dokument speichern
         writer.flush();
     }
-
     public String read(int zeile) throws FileNotFoundException {        //Lesen
         String data = "Test";       //Ohne funktioniert nicht??
         File myObj = new File(Pfad);
@@ -49,5 +55,21 @@ public class Storage {      //Wir brauchen persistent storage
         }
         myReader.close();
         return data;
+    }
+    public int readInt(int zeile) throws FileNotFoundException {
+        return Integer.parseInt(read(zeile));
+    }
+    public float readFloat(int zeile) throws FileNotFoundException {
+        return Float.parseFloat(read(zeile));
+    }
+    public Color readFarbe(int zeile) {
+        Color farbe1;           //String to Farbe straight aus StackOverflow
+        try {
+            Field field = Class.forName("java.awt.Color").getField(read(zeile));
+            farbe1 = (Color)field.get(null);
+        } catch (Exception e) {
+            farbe1 = null; // Not defined
+        }
+        return farbe1;
     }
 }

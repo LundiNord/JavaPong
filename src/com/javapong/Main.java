@@ -14,6 +14,9 @@ package com.javapong;
 import java.awt.*;
 
 //JavaPong by Jan,Ricardo,Leon
+/*
+
+ */
 
 public class Main {
 
@@ -30,7 +33,7 @@ public class Main {
              menu1.setVisible(true);
         });
 
-        //Sound s1 = new Sound();
+
         /*
         Storage s1 = new Storage();
         s1.write("Testgfdfgydfgd", 1);
