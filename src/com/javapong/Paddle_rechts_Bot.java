@@ -19,20 +19,24 @@ public class Paddle_rechts_Bot extends Paddle_rechts {
         y= screensize.height/2;
     }
 
+
     public void move(){
-        if(y>0 && y+getHeight()<sh) {           //Paddle darf nicht aus dem Bildschirm
-            y = yb;
-        }
-        else if(y<10){
-            y = 1;
-        }
-        else {
-            y = sh-getHeight()-1;
+        if(xb>=screensize.width/2) {
+            int d = yb - (y+ sh/32);
+            if (d < 0) {   //Paddle muss nach oben
+                dy = -s;
+            }
+            if (d > 0) {
+                dy = s;
+            }
+            y += dy;
         }
     }
     public void changeSpeed(int speed){
-        this.s=speed;
-    }
+            this.s = speed;
+
+        }
+
     //Eingabe erkennen
     public void keyPressed(KeyEvent e) {
     }
