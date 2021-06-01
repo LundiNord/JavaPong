@@ -35,6 +35,7 @@ private Sound goal;
 private Sound win;
 private float LautMinus;
 
+
 public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus) throws Exception {
     startFont();                                    //Font init
     addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener

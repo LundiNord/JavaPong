@@ -51,7 +51,13 @@ public class Menu extends JFrame {
                 dispose();
                 System.exit(0);                 //Programm beenden
             }
-
+            if (spiel1.getSpielstopp()==true){
+                try {
+                    menuBoard1.Menusoundstarten();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
         }
     };
 }

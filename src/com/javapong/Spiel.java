@@ -15,6 +15,7 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private float LautMinus=20;
     private Menu menu1;
     private int mode;               //Spielmodus
+    private boolean spielstopp=false;
 
     public Spiel() throws Exception {
         startGame();
@@ -42,7 +43,11 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
             if(pongBoard1.getClose()==true) {
                 dispose();
                 pongBoard1.stop();
+                spielstopp=true;
             }
         }
     };
+    public boolean getSpielstopp(){
+        return spielstopp;
+    }
 }
