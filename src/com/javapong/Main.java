@@ -12,8 +12,6 @@
 */
 package com.javapong;
 import java.awt.*;
-import java.io.IOException;
-import java.util.Scanner;
 
 //JavaPong by Jan,Ricardo,Leon
 

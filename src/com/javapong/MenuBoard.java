@@ -11,6 +11,10 @@ import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
 
+/*
+        --Funktioniert nicht -> MenuBoardNeu
+ */
+
 public class MenuBoard extends JPanel implements ActionListener {
 
     private Font retroFont;
@@ -50,7 +54,6 @@ public class MenuBoard extends JPanel implements ActionListener {
         add(Startbutton);
 
     }
-
 
     @Override
     public void paintComponent(Graphics g) {        //Eigentliche Zeichenklasse

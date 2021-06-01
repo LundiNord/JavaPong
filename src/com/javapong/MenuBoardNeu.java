@@ -12,7 +12,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
-public class MenuBoardNeu extends JPanel implements ActionListener {
+public class MenuBoardNeu extends JPanel {
     private Font retroFont;
     private JButton Startbutton;
     private JButton Startbutton2;
@@ -27,10 +27,9 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
     private int modus=0;
     private float LautMinus;
 
-    //Kann Bildschirmgröße lesen
-    Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     /*  Hier gibt es bei den Buttons viel Code der mehrfach vorkommt und unnötig ist. Wir haben es anders versucht,
         hat aber nicht funktioniert weil Buttons Arschlöcher sind. Deswegen jetzt so.
+        Hier wird das Menu gezeichnet
      */
 
     public MenuBoardNeu(float LautMinus) throws Exception {            //Konstruktor
@@ -44,25 +43,24 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ButtonMittel();
         ButtonSchwer();
         ButtonZurueck();
-        //addKeyListener(new MenuBoardNeu.BAdapter());       //Initialisiert Key listener
         setBackground(Color.black);
         setFocusable(true);
         Menusoundstarten();
     }
-    @Override
-    public void paintComponent(Graphics g) {        //Eigentliche Zeichenklasse
+    @Override                                           //Eigentliche Zeichenmethode
+    public void paintComponent(Graphics g) {            //Überschriebene Methode aus dem JPanel
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
         paintTitle(g2d);
         paintSubtitle(g2d);
-        if(menu2==false) {
+        if(menu2==false) {      //Menu1
             paintStartbutton();
             paintStartbutton2();
             paintStartbutton2online();
             paintExitbutton();
             paintButton(g2d);
         }
-        else if(menu2==true) {
+        else if(menu2==true) {      //Menu2
             paintModusLeicht();
             paintModusMittel();
             paintModusSchwer();
@@ -70,10 +68,10 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
             paintButton2(g2d);
         }
     }
-
+//paint Methoden
     public void paintTitle(Graphics2D g2d){
         g2d.setColor(Color.white);
-        Font kretrofont= retroFont.deriveFont(Font.PLAIN,70);
+        Font kretrofont= retroFont.deriveFont(Font.PLAIN,70);       //Größe der Font aendern
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(kretrofont);
         g2d.setFont(kretrofont);
@@ -187,31 +185,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         g2d.drawString("Zurück",295,415);
     }
 
-    public void startFont() throws IOException, FontFormatException {       //Custom Font init
-        File f = new File("src/resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
-        Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
-        PressStart = PressStart.deriveFont(Font.PLAIN,20);                  //Größe, ... festlegen
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(PressStart);                                            //keine Ahnung
-        retroFont = PressStart;                                                 //Abspeichern
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {        //Ausgeführt wenn eine Taste gedrückt wird
-
-    }
-    private class BAdapter extends KeyAdapter  {         //gibt Tastendrücke an Paddel weiter, keine Ahnung wie
-        @Override
-        public void keyReleased(KeyEvent e) {
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            int key = e.getKeyCode();
-        }
-
-    }
-
+//Button Init Menu2
     public void Startbutton() {
         Startbutton= new JButton();
         Startbutton.addActionListener(new ActionListener() {
@@ -254,7 +228,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
             }
         });
     }
-
+//Button Init Menu2
     public void ButtonLeicht() {
         ButtonLeicht= new JButton();
         ButtonLeicht.addActionListener(new ActionListener() {
@@ -309,5 +283,13 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
     }
     public void setModus(int modus){
         this.modus=modus;
+    }
+    public void startFont() throws IOException, FontFormatException {       //Custom Font init
+        File f = new File("resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
+        Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
+        PressStart = PressStart.deriveFont(Font.PLAIN,20);                  //Größe, ... festlegen
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(PressStart);                                            //keine Ahnung
+        retroFont = PressStart;                                                 //Abspeichern
     }
 }

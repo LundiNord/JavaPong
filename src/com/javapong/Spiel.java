@@ -3,7 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
 
@@ -17,22 +16,23 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private Menu menu1;
     private int mode;               //Spielmodus
     private boolean spielstopp=false;
+    private int delayBspeed;
 
-    public Spiel(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus, int modus) throws Exception {
+    public Spiel(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus, int modus,int delayBspeed) throws Exception {
         this.farbe_links = farbe_links;
         this.farbe_rechts = farbe_rechts;
         this.farbe_Ball = farbe_Ball;
         this.LautMinus = LautMinus;
         this.modus= modus;
-        startGame();
+        this.delayBspeed = delayBspeed;
+        startGame();                        //Spielstart
         timerClose = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
         timerClose.start();
     }
     public void startGame() throws Exception {
-        pongBoard1 = new PongBoard(farbe_rechts,farbe_links,farbe_Ball,LautMinus, modus);
+        pongBoard1 = new PongBoard(farbe_rechts,farbe_links,farbe_Ball,LautMinus, modus,delayBspeed);
         add(pongBoard1);
-        //add(new PongBoard(farbe_rechts, farbe_links, farbe_Ball));
-        setTitle("Java-Pong Spiel");
+        setTitle("Java-Pong-Spiel");
         Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();    //Fenster an Bildschirm anpassen
         //setSize(screensize.width, screensize.height);
         setExtendedState(JFrame.MAXIMIZED_BOTH);

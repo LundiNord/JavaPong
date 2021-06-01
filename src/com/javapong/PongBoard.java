@@ -12,6 +12,10 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
+/*
+    Die Methode in der das Spiel gezeichnet wird. Grafikelemente werden von hier aus gestartet.
+ */
+
 public class PongBoard extends JPanel implements Runnable, ActionListener{           //Bord des Pong-Spiel
     //Objekte deklarieren
     private Paddle_links paddle_links;
@@ -28,7 +32,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
     private int PunkteRechts=0;
     private Font retroFont;
     boolean spielEnde = false;
-    private int delayBspeed= 6000;
+    private int delayBspeed;
     private boolean close = false;      //Das ist so hässlich und furchtbar
     private Sound hit;                  //Soundeffekte
     private Sound goal;
@@ -37,14 +41,15 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
     private int modus;
 
 
-    public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus,int modus) throws Exception {
+    public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus,int modus,int delayBspeed) throws Exception {
         this.modus= modus;
+        this.delayBspeed = delayBspeed;
         startFont();                                    //Font init
         addKeyListener(new PongBoard.TAdapter());       //Initialisiert Key listener
         setBackground(Color.black);
         setFocusable(true);
         paddle_links=new Paddle_links();        //Initialisiert  Paddels
-        if(modus==1||modus==2||modus==3) {
+        if(modus==1||modus==2||modus==3) {      //Einzelspieler -> Bot
             paddle_rechts = new Paddle_rechts_Bot();
             if(modus==1){
                 paddle_rechts.setS(5);
@@ -56,7 +61,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
                 paddle_rechts.setS(10);
             }
         }
-        else{
+        else{                                   //LMultiplayer -> kein Bot
             paddle_rechts= new Paddle_rechts();
         }
         ball1=new Ball(delayBspeed);
@@ -67,13 +72,13 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
         timer.start();
         this.LautMinus = LautMinus;
-        hit = new Sound("src/resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
-        goal = new Sound("src/resources/sound/463067__gamer127__success-02.wav",20,false);
-        win = new Sound("src/resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,true);
+        hit = new Sound("resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
+        goal = new Sound("resources/sound/463067__gamer127__success-02.wav",20,false);
+        win = new Sound("resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,true);
     }
 
     @Override
-    public void paintComponent(Graphics g){        //Eigentliche Zeichenklasse
+    public void paintComponent(Graphics g){        //Eigentliche Zeichenmethode
         super.paintComponent(g);
         Graphics2D g2d= (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
         paintPaddle_links(g2d);         //Paddles zeichnen
@@ -92,6 +97,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         }
         Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
     }
+//paint Methoden
     public void paintPaddle_rechts(Graphics2D g2d){
     g2d.setColor(farbe_rechts);
     g2d.fill3DRect(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeight(),true);
@@ -131,7 +137,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         ballthread.start();
     }
     @Override
-    public void run(){                      //Animation des Balles
+    public void run(){                              //Animation des Balles
         long beforeTime, timeDiff, sleep;
         beforeTime = System.currentTimeMillis();        //Timing für konstante Frames
         while(true) {                       //läuft für immer
@@ -157,7 +163,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
             beforeTime = System.currentTimeMillis();        //Timing reset
         }
     }
-    public void pushXYBall(){
+    public void pushXYBall(){       //Ballkoordinaten an den Bot pushen
         paddle_rechts.setXbYb(ball1.getX(),ball1.getY());
     }
     public void checkCollision() {          //Collisions erkennen
@@ -181,7 +187,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
             goal.playSoundOnce();
         }
     }
-    public void Punktedetektor(Rectangle rBr, Rectangle rBl, Rectangle rB){     //ToDo Sound für Punkte einfügen
+    public void Punktedetektor(Rectangle rBr, Rectangle rBl, Rectangle rB){
        if(rB.intersects(rBl)) {
             PunkteRechts= PunkteRechts+1;
             ball1.resetBall(true);
@@ -232,11 +238,11 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
             }
         }
     }
-    public void stop(){     //Geräusche stoppen
+    public void stop(){     //Geräusche stoppen indem wir den Ball stoppen
     ballthread.stop();
     }
     public void startFont() throws IOException, FontFormatException {       //Custom Font init
-        File f = new File("src/resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
+        File f = new File("resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
         Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
         PressStart = PressStart.deriveFont(Font.PLAIN,70);                  //Größe, ... festlegen
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
