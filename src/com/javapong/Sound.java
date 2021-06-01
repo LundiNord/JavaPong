@@ -17,7 +17,7 @@ public class Sound {            //ToDo: nicht getestet
         Path1 = Path;
         this.looped = looped;
         LautstaerkeMinus = LautMinus;
-        clip1 = soundInit(Path1,false);
+        clip1 = soundInit(Path1,looped);
     }
 
     public void playSound1() {
