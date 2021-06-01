@@ -11,9 +11,12 @@ public class Menu extends JFrame {
 
     private MenuBoardNeu menuBoard1;
     private float LautMinus;
+    private Timer timerSpielStart;
 
     public Menu() throws Exception {
         startMenu();
+        timerSpielStart = new Timer(64, actionListener1);      //Timer der alle (delay) Feuert
+        timerSpielStart.start();
     }
 
     public void startMenu() throws Exception {
@@ -28,4 +31,12 @@ public class Menu extends JFrame {
         setResizable(false);                             //darf die Fenstergröße verändert werden? -> Nein
     }
 
+    ActionListener actionListener1= new ActionListener() {      //Diese Methode wird vom Timer ausgeführt
+        @Override
+        public void actionPerformed(ActionEvent e) {            //Wenn der Modus wechselt
+            int modus = menuBoard1.getModus();
+
+
+        }
+    };
 }

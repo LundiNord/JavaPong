@@ -24,13 +24,18 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
     private JButton ButtonZurueck;
     private boolean menu2;
     private Sound menusound;
+    private int modus=0;
+
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    /*  Hier gibt es bei den Buttons viel Code der Mehrfach vorkommt und unnötig ist. Wir haben es anders versucht,
+        hat aber nicht funktioniert weil Buttons Arschlöcher sind. Deswegen jetzt so.
+     */
 
-    public MenuBoardNeu() throws Exception {
+    public MenuBoardNeu() throws Exception {            //Konstruktor
         startFont();
-        Startbutton();
+        Startbutton();              //button Init
         Startbutton2();
         Startbutton2online();
         Exitbutton();
@@ -38,11 +43,10 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ButtonMittel();
         ButtonSchwer();
         ButtonZurueck();
-        addKeyListener(new MenuBoardNeu.BAdapter());       //Initialisiert Key listener
+        //addKeyListener(new MenuBoardNeu.BAdapter());       //Initialisiert Key listener
         setBackground(Color.black);
         setFocusable(true);
         Menusoundstarten();
-
     }
     @Override
     public void paintComponent(Graphics g) {        //Eigentliche Zeichenklasse
@@ -74,14 +78,12 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         g2d.setFont(kretrofont);
         g2d.drawString("Java-Pong",30,75);
     }
-
-    public void paintSubtitle(Graphics2D g2d){
+    public void paintSubtitle(Graphics2D g2d){      //selbsterklärend
         g2d.setColor(Color.white);
         g2d.setFont(retroFont);
         g2d.drawString("by Ricardo, Léon und Jan",100,100);
     }
-
-    public void paintButton(Graphics2D g2d){
+    public void paintButton(Graphics2D g2d){        //Buttontext
         g2d.setColor(Color.white);
         Font kretrofont= retroFont.deriveFont(Font.PLAIN,15);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -92,7 +94,6 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         g2d.drawString("Online Modus",255,340);
         g2d.drawString("Beenden",290,415);
     }
-
     public void paintStartbutton(){
         Startbutton.setVisible(true);
         //Startbutton.setText("Start");
@@ -133,7 +134,6 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ExitButton.setBorderPainted(false);
         add(ExitButton);
     }
-
     public void paintModusLeicht(){
         ButtonLeicht.setVisible(true);
         //Startbutton.setText("Start");
@@ -174,8 +174,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ButtonZurueck.setBorderPainted(false);
         add(ButtonZurueck);
     }
-
-    public void paintButton2(Graphics2D g2d){
+    public void paintButton2(Graphics2D g2d){       //Buttontext 2
         g2d.setColor(Color.white);
         Font kretrofont= retroFont.deriveFont(Font.PLAIN,15);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -197,10 +196,9 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {        //Ausgeführt wenn eine Taste gedrückt wird
 
     }
-
     private class BAdapter extends KeyAdapter  {         //gibt Tastendrücke an Paddel weiter, keine Ahnung wie
         @Override
         public void keyReleased(KeyEvent e) {
@@ -219,6 +217,10 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 menu2=true;
+                Startbutton.setVisible(false);
+                Startbutton2.setVisible(false);
+                Startbutton2online.setVisible(false);
+                ExitButton.setVisible(false);
                 repaint();
             }
         });
@@ -228,7 +230,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         Startbutton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start");
+                modus=4;
             }
         });
     }
@@ -237,7 +239,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         Startbutton2online.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start");
+                modus=5;
             }
         });
     }
@@ -246,7 +248,8 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ExitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start");
+                modus=6;
+
             }
         });
     }
@@ -256,7 +259,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ButtonLeicht.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start");
+                modus=1;
             }
         });
     }
@@ -265,7 +268,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ButtonMittel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start");
+                modus=2;
             }
         });
     }
@@ -274,7 +277,7 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ButtonSchwer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start");
+                modus=3;
             }
         });
     }
@@ -284,15 +287,20 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 menu2=false;
+                ButtonLeicht.setVisible(false);
+                ButtonMittel.setVisible(false);
+                ButtonSchwer.setVisible(false);
+                ButtonZurueck.setVisible(false);
                 repaint();
             }
         });
-
     }
-
 
     public void Menusoundstarten() throws Exception {
         menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
         menusound.playSound1();
+    }
+    public int getModus() {
+        return modus;
     }
 }
