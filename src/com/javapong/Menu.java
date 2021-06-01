@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class Menu extends JFrame {
 
-    private MenuBoard menuBoard1;
+    private MenuBoardNeu menuBoard1;
     private float LautMinus;
 
     public Menu() throws Exception {
@@ -17,7 +17,7 @@ public class Menu extends JFrame {
     }
 
     public void startMenu() throws Exception {
-        menuBoard1= new MenuBoard();
+        menuBoard1= new MenuBoardNeu();
         add(menuBoard1);
         setTitle("Java-Pong-Menu");
         setSize(700,500);

@@ -20,6 +20,8 @@ public class MenuBoard extends JPanel implements ActionListener {
     private JButton exitbutton;
     private boolean menu2 = false;
     private Sound menusound;
+    private int x = 0;
+    private JButton Startbutton;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,20 +36,36 @@ public class MenuBoard extends JPanel implements ActionListener {
         InitStartButton2();
         InitStartbutton2online();
         InitExitButton();
+        System.out.print("test");
 
     }
+    public void paintStartbutton() {
+        Startbutton.setVisible(true);
+        Startbutton.setText("Start");
+        Startbutton.setSize(100,50);
+        Startbutton.setLocation(200,200);
+        Startbutton.setOpaque(false);
+        Startbutton.setContentAreaFilled(false);
+        Startbutton.setBorderPainted(false);
+        add(Startbutton);
+
+    }
+
+
     @Override
     public void paintComponent(Graphics g) {        //Eigentliche Zeichenklasse
         super.paintComponent(g);
+
         Graphics2D g2d = (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
         paintTitle(g2d);
         paintSubtitle(g2d);
-        if(menu2==false) {
-            paintStartbutton1();
-            paintStartbutton2();
-            paintStartbutton2online();
-            paintExitButton();
-        }
+        paintStartbutton();
+        //if(menu2==false) {
+            //paintExitButton();
+           // paintStartbutton2online();
+            //InitStartbutton2online();
+        //}
+
     }
 
     public void paintTitle(Graphics2D g2d){
@@ -97,6 +115,7 @@ public class MenuBoard extends JPanel implements ActionListener {
     }
     public void paintStartbutton2() {           //lokaler Multiplayer Button
         //add(startbutton2);
+
     }
     public void InitStartbutton2online() {
         startbutton2online = new JButton();
@@ -114,6 +133,7 @@ public class MenuBoard extends JPanel implements ActionListener {
         startbutton2online.setOpaque(false);
         startbutton2online.setContentAreaFilled(false);
         startbutton2online.setBorderPainted(false);
+        //add(startbutton2online);
 
     }
     public void paintStartbutton2online() {         //OnlineMultiplayer Button
