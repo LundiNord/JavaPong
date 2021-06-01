@@ -56,4 +56,8 @@ public class Paddle_rechts_Bot extends Paddle_rechts {
     public Rectangle getBounds(){       //Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(x,y,getWidth(),getHeight());
     }
+
+    public void setS(int s){
+        this.s=s;
+    }
 }

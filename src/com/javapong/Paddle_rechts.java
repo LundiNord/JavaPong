@@ -62,6 +62,8 @@ public class Paddle_rechts extends Paddles {
         return new Rectangle(x,y,getWidth(),getHeight());
     }
     public void setXbYb(int xb, int yb){        //muss existieren, weil hässlich
+    }
+    public void setS(int s){
 
     }
 }

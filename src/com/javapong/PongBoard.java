@@ -28,7 +28,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
     private int PunkteRechts=0;
     private Font retroFont;
     boolean spielEnde = false;
-    private int delayBspeed= 3000;
+    private int delayBspeed= 6000;
     private boolean close = false;      //Das ist so hässlich und furchtbar
     private Sound hit;                  //Soundeffekte
     private Sound goal;
@@ -46,6 +46,15 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         paddle_links=new Paddle_links();        //Initialisiert  Paddels
         if(modus==1||modus==2||modus==3) {
             paddle_rechts = new Paddle_rechts_Bot();
+            if(modus==1){
+                paddle_rechts.setS(5);
+            }
+            else if(modus==2){
+                paddle_rechts.setS(7);
+            }
+            else if(modus==3){
+                paddle_rechts.setS(10);
+            }
         }
         else{
             paddle_rechts= new Paddle_rechts();
