@@ -18,20 +18,30 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
     private JButton Startbutton2;
     private JButton Startbutton2online;
     private JButton ExitButton;
+    private JButton ButtonLeicht;
+    private JButton ButtonMittel;
+    private JButton ButtonSchwer;
+    private JButton ButtonZurueck;
     private boolean menu2;
+    private Sound menusound;
 
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
-    public MenuBoardNeu() throws IOException, FontFormatException  {
+    public MenuBoardNeu() throws Exception {
         startFont();
         Startbutton();
         Startbutton2();
         Startbutton2online();
         Exitbutton();
+        ButtonLeicht();
+        ButtonMittel();
+        ButtonSchwer();
+        ButtonZurueck();
         addKeyListener(new MenuBoardNeu.BAdapter());       //Initialisiert Key listener
         setBackground(Color.black);
         setFocusable(true);
+        Menusoundstarten();
 
     }
     @Override
@@ -46,6 +56,13 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
             paintStartbutton2online();
             paintExitbutton();
             paintButton(g2d);
+        }
+        else if(menu2==true) {
+            paintModusLeicht();
+            paintModusMittel();
+            paintModusSchwer();
+            paintZurück();
+            paintButton2(g2d);
         }
     }
 
@@ -116,6 +133,60 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         ExitButton.setBorderPainted(false);
         add(ExitButton);
     }
+
+    public void paintModusLeicht(){
+        ButtonLeicht.setVisible(true);
+        //Startbutton.setText("Start");
+        ButtonLeicht.setSize(160,60);
+        ButtonLeicht.setLocation(260,150);
+        ButtonLeicht.setOpaque(false);
+        ButtonLeicht.setContentAreaFilled(false);
+        ButtonLeicht.setBorderPainted(false);
+        add(ButtonLeicht);
+    }
+    public void paintModusMittel(){
+        ButtonMittel.setVisible(true);
+        //Startbutton2.setText("Start2");
+        ButtonMittel.setSize(160,60);
+        ButtonMittel.setLocation(260,225);
+        ButtonMittel.setOpaque(false);
+        ButtonMittel.setContentAreaFilled(false);
+        ButtonMittel.setBorderPainted(false);
+        add(ButtonMittel);
+    }
+    public void paintModusSchwer(){
+        ButtonSchwer.setVisible(true);
+        //Startbutton2online.setText("Start2o");
+        ButtonSchwer.setSize(160,60);
+        ButtonSchwer.setLocation(260,300);
+        ButtonSchwer.setOpaque(false);
+        ButtonSchwer.setContentAreaFilled(false);
+        ButtonSchwer.setBorderPainted(false);
+        add(ButtonSchwer);
+    }
+    public void paintZurück(){
+        ButtonZurueck.setVisible(true);
+        //ExitButton.setText("Exit");
+        ButtonZurueck.setSize(130,60);
+        ButtonZurueck.setLocation(275,375);
+        ButtonZurueck.setOpaque(false);
+        ButtonZurueck.setContentAreaFilled(false);
+        ButtonZurueck.setBorderPainted(false);
+        add(ButtonZurueck);
+    }
+
+    public void paintButton2(Graphics2D g2d){
+        g2d.setColor(Color.white);
+        Font kretrofont= retroFont.deriveFont(Font.PLAIN,15);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(kretrofont);
+        g2d.setFont(kretrofont);
+        g2d.drawString("Leicht",295,190);
+        g2d.drawString("Mittel",295,265);
+        g2d.drawString("Schwer",295,340);
+        g2d.drawString("Zurück",295,415);
+    }
+
     public void startFont() throws IOException, FontFormatException {       //Custom Font init
         File f = new File("src/resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
         Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
@@ -147,7 +218,8 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
         Startbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Start");
+                menu2=true;
+                repaint();
             }
         });
     }
@@ -177,5 +249,50 @@ public class MenuBoardNeu extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Start");
             }
         });
+    }
+
+    public void ButtonLeicht() {
+        ButtonLeicht= new JButton();
+        ButtonLeicht.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Start");
+            }
+        });
+    }
+    public void ButtonMittel() {
+        ButtonMittel= new JButton();
+        ButtonMittel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Start");
+            }
+        });
+    }
+    public void ButtonSchwer() {
+        ButtonSchwer= new JButton();
+        ButtonSchwer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Start");
+            }
+        });
+    }
+    public void ButtonZurueck() {
+        ButtonZurueck= new JButton();
+        ButtonZurueck.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menu2=false;
+                repaint();
+            }
+        });
+
+    }
+
+
+    public void Menusoundstarten() throws Exception {
+        menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",20,true);
+        menusound.playSound1();
     }
 }
