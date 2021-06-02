@@ -51,6 +51,8 @@ public class MenuBoardNeu extends JPanel {
         ButtonSettings();
         ButtonZurueck2();
         ButtonLLeise();
+        ButtonLMittel();
+        ButtonLLaut();
         setBackground(Color.black);
         setFocusable(true);
         Menusoundstarten();
@@ -79,6 +81,8 @@ public class MenuBoardNeu extends JPanel {
         } else if (menu == 3) {
             paintZurück2();
             paintButtonLLeise();
+            paintButtonLMittel();
+            paintButtonLLaut();
             paintButton3(g2d);
         }
     }
@@ -235,13 +239,32 @@ public class MenuBoardNeu extends JPanel {
         ButtonZurueck2.setBorderPainted(false);
         add(ButtonZurueck2);
     }
+    public void paintButtonLMittel(){
+        ButtonLMittel.setVisible(true);
+        ButtonLMittel.setSize(120,30);
+        ButtonLMittel.setLocation(290,175);
+        ButtonLMittel.setOpaque(false);
+        ButtonLMittel.setContentAreaFilled(false);
+        ButtonLMittel.setBorderPainted(true);
+        add(ButtonLMittel);
+    }
+    public void paintButtonLLaut(){
+        ButtonLLaut.setVisible(true);
+        ButtonLLaut.setSize(120,30);
+        ButtonLLaut.setLocation(290,175);
+        ButtonLLaut.setOpaque(false);
+        ButtonLLaut.setContentAreaFilled(false);
+        ButtonLLaut.setBorderPainted(true);
+        add(ButtonLLaut);
+    }
     public void paintButtonLLeise(){
         ButtonLLeise.setVisible(true);
-        ButtonLLeise.setSize(130,60);
-        ButtonLLeise.setLocation(155,200);
+        ButtonLLeise.setSize(100,30);
+        ButtonLLeise.setLocation(430,175);
         ButtonLLeise.setOpaque(false);
         ButtonLLeise.setContentAreaFilled(false);
         ButtonLLeise.setBorderPainted(true);
+        add(ButtonLLeise);
     }
     public void paintButton3(Graphics2D g2d) {       //Buttontext 2
         g2d.setColor(Color.white);
@@ -381,6 +404,37 @@ public class MenuBoardNeu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Menusoundstoppen();
                 LautMinus=40;
+                try {
+                    Menusoundstarten();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void ButtonLMittel(){
+        ButtonLMittel= new JButton();
+        ButtonLMittel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Menusoundstoppen();
+                LautMinus=20;
+                try {
+                    Menusoundstarten();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+    }
+    public void ButtonLLaut(){
+        ButtonLLaut= new JButton();
+        ButtonLLaut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Menusoundstoppen();
+                LautMinus=1;
                 try {
                     Menusoundstarten();
                 } catch (Exception exception) {
