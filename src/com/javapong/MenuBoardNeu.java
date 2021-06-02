@@ -61,29 +61,28 @@ public class MenuBoardNeu extends JPanel {
     @Override                                           //Eigentliche Zeichenmethode
     public void paintComponent(Graphics g) {            //Überschriebene Methode aus dem JPanel
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
+        Graphics2D g2d = (Graphics2D) g;    //Grafikobjekt in 2D-Grafikobjekt umwandeln
         paintTitle(g2d);
         paintSubtitle(g2d);
-        if (menu == 1) {      //Menu1
+        if (menu == 1) {        //Menu1
             paintStartbutton();
             paintStartbutton2();
             paintStartbutton2online();
             paintExitbutton();
-            paintButton(g2d);
+            paintMenu1(g2d);
             paintSettingsbutton();
-            g2d.drawImage(ButtonImage, 620, 400, null);
         } else if (menu == 2) {      //Menu2
             paintModusLeicht();
             paintModusMittel();
             paintModusSchwer();
             paintZurück();
-            paintButton2(g2d);
-        } else if (menu == 3) {
+            paintMenu2(g2d);
+        } else if (menu == 3) {     //Menu 3 (Settings)
             paintZurück2();
             paintButtonLLeise();
             paintButtonLMittel();
             paintButtonLLaut();
-            paintButton3(g2d);
+            paintMenu3(g2d);
         }
     }
 
@@ -96,14 +95,13 @@ public class MenuBoardNeu extends JPanel {
         g2d.setFont(kretrofont);
         g2d.drawString("Java-Pong", 30, 75);
     }
-
     public void paintSubtitle(Graphics2D g2d) {      //selbsterklärend
         g2d.setColor(Color.white);
         g2d.setFont(retroFont);
         g2d.drawString("by Ricardo, Léon und Jan", 100, 100);
     }
-
-    public void paintButton(Graphics2D g2d) {        //Buttontext
+//Menu 1 + Buttons
+    public void paintMenu1(Graphics2D g2d) {        //Buttontext
         g2d.setColor(Color.white);
         Font kretrofont = retroFont.deriveFont(Font.PLAIN, 15);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -113,12 +111,10 @@ public class MenuBoardNeu extends JPanel {
         g2d.drawString("Lokaler Mehrspieler", 200, 265);
         g2d.drawString("Online Modus", 255, 340);
         g2d.drawString("Beenden", 290, 415);
-
+        g2d.drawImage(ButtonImage, 620, 400, null);
     }
-
-    public void paintStartbutton() {
+    public void paintStartbutton() {        //eigentlich Selbsterklärend
         Startbutton.setVisible(true);
-        //Startbutton.setText("Start");
         Startbutton.setSize(205, 60);
         Startbutton.setLocation(245, 150);
         Startbutton.setOpaque(false);
@@ -126,7 +122,6 @@ public class MenuBoardNeu extends JPanel {
         Startbutton.setBorderPainted(false);
         add(Startbutton);
     }
-
     public void paintStartbutton2() {
         Startbutton2.setVisible(true);
         //Startbutton2.setText("Start2");
@@ -137,7 +132,6 @@ public class MenuBoardNeu extends JPanel {
         Startbutton2.setBorderPainted(false);
         add(Startbutton2);
     }
-
     public void paintStartbutton2online() {
         Startbutton2online.setVisible(true);
         //Startbutton2online.setText("Start2o");
@@ -148,7 +142,6 @@ public class MenuBoardNeu extends JPanel {
         Startbutton2online.setBorderPainted(false);
         add(Startbutton2online);
     }
-
     public void paintExitbutton() {
         ExitButton.setVisible(true);
         //ExitButton.setText("Exit");
@@ -159,52 +152,18 @@ public class MenuBoardNeu extends JPanel {
         ExitButton.setBorderPainted(false);
         add(ExitButton);
     }
-
-    public void paintModusLeicht() {
-        ButtonLeicht.setVisible(true);
-        //Startbutton.setText("Start");
-        ButtonLeicht.setSize(160, 60);
-        ButtonLeicht.setLocation(260, 150);
-        ButtonLeicht.setOpaque(false);
-        ButtonLeicht.setContentAreaFilled(false);
-        ButtonLeicht.setBorderPainted(false);
-        add(ButtonLeicht);
-    }
-
-    public void paintModusMittel() {
-        ButtonMittel.setVisible(true);
-        //Startbutton2.setText("Start2");
-        ButtonMittel.setSize(160, 60);
-        ButtonMittel.setLocation(260, 225);
-        ButtonMittel.setOpaque(false);
-        ButtonMittel.setContentAreaFilled(false);
-        ButtonMittel.setBorderPainted(false);
-        add(ButtonMittel);
-    }
-
-    public void paintModusSchwer() {
-        ButtonSchwer.setVisible(true);
-        //Startbutton2online.setText("Start2o");
-        ButtonSchwer.setSize(160, 60);
-        ButtonSchwer.setLocation(260, 300);
-        ButtonSchwer.setOpaque(false);
-        ButtonSchwer.setContentAreaFilled(false);
-        ButtonSchwer.setBorderPainted(false);
-        add(ButtonSchwer);
-    }
-
-    public void paintZurück() {
-        ButtonZurueck.setVisible(true);
+    public void paintSettingsbutton() {
+        ButtonSettings.setVisible(true);
         //ExitButton.setText("Exit");
-        ButtonZurueck.setSize(130, 60);
-        ButtonZurueck.setLocation(275, 375);
-        ButtonZurueck.setOpaque(false);
-        ButtonZurueck.setContentAreaFilled(false);
-        ButtonZurueck.setBorderPainted(false);
-        add(ButtonZurueck);
+        ButtonSettings.setSize(50, 50);
+        ButtonSettings.setLocation(620, 400);
+        ButtonSettings.setOpaque(false);
+        ButtonSettings.setContentAreaFilled(false);
+        ButtonSettings.setBorderPainted(false);
+        add(ButtonSettings);
     }
-
-    public void paintButton2(Graphics2D g2d) {       //Buttontext 2
+//Menu 2 + Buttons
+    public void paintMenu2(Graphics2D g2d) {       //Buttontext 2
         g2d.setColor(Color.white);
         Font kretrofont = retroFont.deriveFont(Font.PLAIN, 15);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -215,62 +174,48 @@ public class MenuBoardNeu extends JPanel {
         g2d.drawString("Schwer", 295, 340);
         g2d.drawString("Zurück", 295, 415);
     }
-
-
-    public void paintSettingsbutton() {
-        ButtonSettings.setVisible(true);
+    public void paintModusLeicht() {
+        ButtonLeicht.setVisible(true);
+        //Startbutton.setText("Start");
+        ButtonLeicht.setSize(160, 60);
+        ButtonLeicht.setLocation(260, 150);
+        ButtonLeicht.setOpaque(false);
+        ButtonLeicht.setContentAreaFilled(false);
+        ButtonLeicht.setBorderPainted(false);
+        add(ButtonLeicht);
+    }
+    public void paintModusMittel() {
+        ButtonMittel.setVisible(true);
+        //Startbutton2.setText("Start2");
+        ButtonMittel.setSize(160, 60);
+        ButtonMittel.setLocation(260, 225);
+        ButtonMittel.setOpaque(false);
+        ButtonMittel.setContentAreaFilled(false);
+        ButtonMittel.setBorderPainted(false);
+        add(ButtonMittel);
+    }
+    public void paintModusSchwer() {
+        ButtonSchwer.setVisible(true);
+        //Startbutton2online.setText("Start2o");
+        ButtonSchwer.setSize(160, 60);
+        ButtonSchwer.setLocation(260, 300);
+        ButtonSchwer.setOpaque(false);
+        ButtonSchwer.setContentAreaFilled(false);
+        ButtonSchwer.setBorderPainted(false);
+        add(ButtonSchwer);
+    }
+    public void paintZurück() {
+        ButtonZurueck.setVisible(true);
         //ExitButton.setText("Exit");
-        ButtonSettings.setSize(50, 50);
-        ButtonSettings.setLocation(620, 400);
-        ButtonSettings.setOpaque(false);
-        ButtonSettings.setContentAreaFilled(false);
-        ButtonSettings.setBorderPainted(false);
-        add(ButtonSettings);
-
+        ButtonZurueck.setSize(130, 60);
+        ButtonZurueck.setLocation(275, 375);
+        ButtonZurueck.setOpaque(false);
+        ButtonZurueck.setContentAreaFilled(false);
+        ButtonZurueck.setBorderPainted(false);
+        add(ButtonZurueck);
     }
-
-    public void paintZurück2() {
-        ButtonZurueck2.setVisible(true);
-        //ExitButton.setText("Exit");
-        ButtonZurueck2.setSize(130, 60);
-        ButtonZurueck2.setLocation(275, 375);
-        ButtonZurueck2.setOpaque(false);
-        ButtonZurueck2.setContentAreaFilled(false);
-        ButtonZurueck2.setBorderPainted(false);
-        add(ButtonZurueck2);
-    }
-
-    public void paintButtonLLeise(){
-        ButtonLLeise.setVisible(true);
-        ButtonLLeise.setSize(100,30);
-        ButtonLLeise.setLocation(145,175);
-        ButtonLLeise.setOpaque(false);
-        ButtonLLeise.setContentAreaFilled(false);
-        ButtonLLeise.setBorderPainted(false);
-        add(ButtonLLeise);
-    }
-
-    public void paintButtonLMittel(){
-        ButtonLMittel.setVisible(true);
-        ButtonLMittel.setSize(110,30);
-        ButtonLMittel.setLocation(285,175);
-        ButtonLMittel.setOpaque(false);
-        ButtonLMittel.setContentAreaFilled(false);
-        ButtonLMittel.setBorderPainted(false);
-        add(ButtonLMittel);
-    }
-
-    public void paintButtonLLaut(){
-        ButtonLLaut.setVisible(true);
-        ButtonLLaut.setSize(80,30);
-        ButtonLLaut.setLocation(440,175);
-        ButtonLLaut.setOpaque(false);
-        ButtonLLaut.setContentAreaFilled(false);
-        ButtonLLaut.setBorderPainted(false);
-        add(ButtonLLaut);
-    }
-
-    public void paintButton3(Graphics2D g2d) {       //Buttontext 2
+//Menu 3 + Buttons
+    public void paintMenu3(Graphics2D g2d) {       //Buttontext 2
         g2d.setColor(Color.white);
         Font kretrofont = retroFont.deriveFont(Font.PLAIN, 15);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -281,8 +226,44 @@ public class MenuBoardNeu extends JPanel {
         g2d.drawString("Laut", 450, 200);
         g2d.drawString("Zurück", 295, 415);
     }
+    public void paintButtonLLeise(){
+        ButtonLLeise.setVisible(true);
+        ButtonLLeise.setSize(100,30);
+        ButtonLLeise.setLocation(145,175);
+        ButtonLLeise.setOpaque(false);
+        ButtonLLeise.setContentAreaFilled(false);
+        ButtonLLeise.setBorderPainted(false);
+        add(ButtonLLeise);
+    }
+    public void paintButtonLMittel(){
+        ButtonLMittel.setVisible(true);
+        ButtonLMittel.setSize(110,30);
+        ButtonLMittel.setLocation(285,175);
+        ButtonLMittel.setOpaque(false);
+        ButtonLMittel.setContentAreaFilled(false);
+        ButtonLMittel.setBorderPainted(false);
+        add(ButtonLMittel);
+    }
+    public void paintButtonLLaut(){
+        ButtonLLaut.setVisible(true);
+        ButtonLLaut.setSize(80,30);
+        ButtonLLaut.setLocation(440,175);
+        ButtonLLaut.setOpaque(false);
+        ButtonLLaut.setContentAreaFilled(false);
+        ButtonLLaut.setBorderPainted(false);
+        add(ButtonLLaut);
+    }
+    public void paintZurück2() {
+        ButtonZurueck2.setVisible(true);
+        ButtonZurueck2.setSize(130, 60);
+        ButtonZurueck2.setLocation(275, 375);
+        ButtonZurueck2.setOpaque(false);
+        ButtonZurueck2.setContentAreaFilled(false);
+        ButtonZurueck2.setBorderPainted(false);
+        add(ButtonZurueck2);
+    }
 
-    //Button Init Menu2
+    //Button Init Menu1
     public void Startbutton() {
         Startbutton = new JButton();
         Startbutton.addActionListener(new ActionListener() {
@@ -297,7 +278,6 @@ public class MenuBoardNeu extends JPanel {
             }
         });
     }
-
     public void Startbutton2() {
         Startbutton2 = new JButton();
         Startbutton2.addActionListener(new ActionListener() {
@@ -307,7 +287,6 @@ public class MenuBoardNeu extends JPanel {
             }
         });
     }
-
     public void Startbutton2online() {
         Startbutton2online = new JButton();
         Startbutton2online.addActionListener(new ActionListener() {
@@ -318,7 +297,6 @@ public class MenuBoardNeu extends JPanel {
             }
         });
     }
-
     public void Exitbutton() {
         ExitButton = new JButton();
         ExitButton.addActionListener(new ActionListener() {
@@ -328,53 +306,6 @@ public class MenuBoardNeu extends JPanel {
             }
         });
     }
-
-    //Button Init Menu2
-    public void ButtonLeicht() {
-        ButtonLeicht = new JButton();
-        ButtonLeicht.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                modus = 1;
-            }
-        });
-    }
-
-    public void ButtonMittel() {
-        ButtonMittel = new JButton();
-        ButtonMittel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                modus = 2;
-            }
-        });
-    }
-
-    public void ButtonSchwer() {
-        ButtonSchwer = new JButton();
-        ButtonSchwer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                modus = 3;
-            }
-        });
-    }
-
-    public void ButtonZurueck() {
-        ButtonZurueck = new JButton();
-        ButtonZurueck.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                menu = 1;
-                ButtonLeicht.setVisible(false);
-                ButtonMittel.setVisible(false);
-                ButtonSchwer.setVisible(false);
-                ButtonZurueck.setVisible(false);
-                repaint();
-            }
-        });
-    }
-
     public void ButtonSettings() {
         ButtonSettings = new JButton();
         ButtonSettings.addActionListener(new ActionListener() {
@@ -390,20 +321,50 @@ public class MenuBoardNeu extends JPanel {
         });
     }
 
-    public void ButtonZurueck2() {
-        ButtonZurueck2 = new JButton();
-        ButtonZurueck2.addActionListener(new ActionListener() {
+    //Button Init Menu2
+    public void ButtonLeicht() {
+        ButtonLeicht = new JButton();
+        ButtonLeicht.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modus = 1;
+            }
+        });
+    }
+    public void ButtonMittel() {
+        ButtonMittel = new JButton();
+        ButtonMittel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modus = 2;
+            }
+        });
+    }
+    public void ButtonSchwer() {
+        ButtonSchwer = new JButton();
+        ButtonSchwer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modus = 3;
+            }
+        });
+    }
+    public void ButtonZurueck() {
+        ButtonZurueck = new JButton();
+        ButtonZurueck.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 menu = 1;
-                ButtonLLeise.setVisible(false);
-                ButtonLMittel.setVisible(false);
-                ButtonLLaut.setVisible(false);
+                ButtonLeicht.setVisible(false);
+                ButtonMittel.setVisible(false);
+                ButtonSchwer.setVisible(false);
+                ButtonZurueck.setVisible(false);
                 repaint();
             }
         });
     }
 
+    //Button Init Menu3
     public void ButtonLLeise() {
         ButtonLLeise = new JButton();
         ButtonLLeise.addActionListener(new ActionListener() {
@@ -419,7 +380,6 @@ public class MenuBoardNeu extends JPanel {
             }
         });
     }
-
     public void ButtonLMittel(){
         ButtonLMittel= new JButton();
         ButtonLMittel.addActionListener(new ActionListener() {
@@ -450,6 +410,20 @@ public class MenuBoardNeu extends JPanel {
             }
         });
     }
+    public void ButtonZurueck2() {
+        ButtonZurueck2 = new JButton();
+        ButtonZurueck2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menu = 1;
+                ButtonLLeise.setVisible(false);
+                ButtonLMittel.setVisible(false);
+                ButtonLLaut.setVisible(false);
+                repaint();
+            }
+        });
+    }
+
     public void Menusoundstarten() throws Exception {
         menusound = new Sound("resources/sound/198896__bone666138__8-bit-circus-music.wav",LautMinus,true);
         menusound.playSound1();
