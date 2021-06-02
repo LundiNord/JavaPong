@@ -20,6 +20,7 @@ public class MenuBoardNeu extends JPanel {
     private JButton ButtonSchwer;
     private JButton ButtonZurueck;
     private JButton ButtonSettings;
+    private Image ButtonImage;
     private int menu=1;
     private Sound menusound;
     private int modus=0;
@@ -32,6 +33,8 @@ public class MenuBoardNeu extends JPanel {
 
     public MenuBoardNeu(float LautMinus) throws Exception {            //Konstruktor
         this.LautMinus = LautMinus;
+        ImageIcon IS= new ImageIcon("resources/icons8-gears-50.png");
+        ButtonImage= IS.getImage();
         startFont();
         Startbutton();              //button Init
         Startbutton2();
@@ -59,6 +62,7 @@ public class MenuBoardNeu extends JPanel {
             paintExitbutton();
             paintButton(g2d);
             paintSettingsbutton();
+            g2d.drawImage(ButtonImage, 620,400,null);
         }
         else if(menu ==2) {      //Menu2
             paintModusLeicht();
@@ -196,7 +200,7 @@ public class MenuBoardNeu extends JPanel {
         ButtonSettings.setLocation(620,400);
         ButtonSettings.setOpaque(false);
         ButtonSettings.setContentAreaFilled(false);
-        ButtonSettings.setBorderPainted(true);
+        ButtonSettings.setBorderPainted(false);
         add(ButtonSettings);
 
     }
@@ -301,7 +305,7 @@ public class MenuBoardNeu extends JPanel {
         });
     }
     public void Menusoundstarten() throws Exception {
-        menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",LautMinus,true);
+        menusound = new Sound("resources/sound/198896__bone666138__8-bit-circus-music.wav",LautMinus,true);
         menusound.playSound1();
     }
     public void Menusoundstoppen(){
