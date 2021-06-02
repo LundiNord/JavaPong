@@ -29,6 +29,9 @@ public class MenuBoardNeu extends JPanel {
     private Sound menusound;
     private int modus = 0;
     private float LautMinus;
+    private JTextField farbeBall;
+    private JTextField farbePaddleLinks;
+    private JTextField farbePaddleRechts;
 
     /*  Hier gibt es bei den Buttons viel Code der mehrfach vorkommt und unnötig ist. Wir haben es anders versucht,
         hat aber nicht funktioniert weil Buttons Arschlöcher sind. Deswegen jetzt so.
@@ -53,6 +56,9 @@ public class MenuBoardNeu extends JPanel {
         ButtonLLeise();
         ButtonLMittel();
         ButtonLLaut();
+        TextFeldBall();         //Textfeld Init
+        TextFeldPaddleLinks();
+        TextFeldPaddleRechts();
         setBackground(Color.black);
         setFocusable(true);
         Menusoundstarten();
@@ -78,10 +84,13 @@ public class MenuBoardNeu extends JPanel {
             paintZurück();
             paintMenu2(g2d);
         } else if (menu == 3) {     //Menu 3 (Settings)
-            paintZurück2();
             paintButtonLLeise();
             paintButtonLMittel();
             paintButtonLLaut();
+            paintTextFeldBall();
+            paintTextFeldPaddleLinks();
+            paintTextFeldPaddleRechts();
+            paintZurück2();
             paintMenu3(g2d);
         }
     }
@@ -262,6 +271,33 @@ public class MenuBoardNeu extends JPanel {
         ButtonZurueck2.setBorderPainted(false);
         add(ButtonZurueck2);
     }
+    public void paintTextFeldBall() {
+        farbeBall.setVisible(true);
+        farbeBall.setSize(130,60);
+        farbeBall.setFont(retroFont);
+        farbeBall.setLocation(175, 275);
+        //farbeBall.setOpaque(false);
+        farbeBall.setBackground(Color.black);
+        add(farbeBall);
+    }
+    public void paintTextFeldPaddleLinks() {
+        farbePaddleLinks.setVisible(true);
+        farbePaddleLinks.setSize(130,60);
+        farbePaddleLinks.setFont(retroFont);
+        farbePaddleLinks.setLocation(275, 275);
+        //farbeBall.setOpaque(false);
+        farbePaddleLinks.setBackground(Color.black);
+        add(farbePaddleLinks);
+    }
+    public void paintTextFeldPaddleRechts() {
+        farbePaddleRechts.setVisible(true);
+        farbePaddleRechts.setSize(130,60);
+        farbePaddleRechts.setFont(retroFont);
+        farbePaddleRechts.setLocation(375, 275);
+        //farbeBall.setOpaque(false);
+        farbePaddleRechts.setBackground(Color.black);
+        add(farbePaddleRechts);
+    }
 
     //Button Init Menu1
     public void Startbutton() {
@@ -419,7 +455,40 @@ public class MenuBoardNeu extends JPanel {
                 ButtonLLeise.setVisible(false);
                 ButtonLMittel.setVisible(false);
                 ButtonLLaut.setVisible(false);
+                farbeBall.setVisible(false);
+                farbePaddleLinks.setVisible(false);
+                farbePaddleRechts.setVisible(false);
                 repaint();
+            }
+        });
+    }
+    public void TextFeldBall() {
+        farbeBall = new JTextField();
+        farbeBall.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = farbeBall.getText();
+                System.out.println(input);
+            }
+        });
+    }
+    public void TextFeldPaddleLinks() {
+        farbePaddleLinks = new JTextField();
+        farbePaddleLinks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = farbePaddleLinks.getText();
+                System.out.println(input);
+            }
+        });
+    }
+    public void TextFeldPaddleRechts() {
+        farbePaddleRechts = new JTextField();
+        farbePaddleRechts.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = farbePaddleRechts.getText();
+                System.out.println(input);
             }
         });
     }
