@@ -239,33 +239,37 @@ public class MenuBoardNeu extends JPanel {
         ButtonZurueck2.setBorderPainted(false);
         add(ButtonZurueck2);
     }
-    public void paintButtonLMittel(){
-        ButtonLMittel.setVisible(true);
-        ButtonLMittel.setSize(120,30);
-        ButtonLMittel.setLocation(290,175);
-        ButtonLMittel.setOpaque(false);
-        ButtonLMittel.setContentAreaFilled(false);
-        ButtonLMittel.setBorderPainted(true);
-        add(ButtonLMittel);
-    }
-    public void paintButtonLLaut(){
-        ButtonLLaut.setVisible(true);
-        ButtonLLaut.setSize(120,30);
-        ButtonLLaut.setLocation(290,175);
-        ButtonLLaut.setOpaque(false);
-        ButtonLLaut.setContentAreaFilled(false);
-        ButtonLLaut.setBorderPainted(true);
-        add(ButtonLLaut);
-    }
+
     public void paintButtonLLeise(){
         ButtonLLeise.setVisible(true);
         ButtonLLeise.setSize(100,30);
-        ButtonLLeise.setLocation(430,175);
+        ButtonLLeise.setLocation(145,175);
         ButtonLLeise.setOpaque(false);
         ButtonLLeise.setContentAreaFilled(false);
-        ButtonLLeise.setBorderPainted(true);
+        ButtonLLeise.setBorderPainted(false);
         add(ButtonLLeise);
     }
+
+    public void paintButtonLMittel(){
+        ButtonLMittel.setVisible(true);
+        ButtonLMittel.setSize(110,30);
+        ButtonLMittel.setLocation(285,175);
+        ButtonLMittel.setOpaque(false);
+        ButtonLMittel.setContentAreaFilled(false);
+        ButtonLMittel.setBorderPainted(false);
+        add(ButtonLMittel);
+    }
+
+    public void paintButtonLLaut(){
+        ButtonLLaut.setVisible(true);
+        ButtonLLaut.setSize(80,30);
+        ButtonLLaut.setLocation(440,175);
+        ButtonLLaut.setOpaque(false);
+        ButtonLLaut.setContentAreaFilled(false);
+        ButtonLLaut.setBorderPainted(false);
+        add(ButtonLLaut);
+    }
+
     public void paintButton3(Graphics2D g2d) {       //Buttontext 2
         g2d.setColor(Color.white);
         Font kretrofont = retroFont.deriveFont(Font.PLAIN, 15);
@@ -274,7 +278,7 @@ public class MenuBoardNeu extends JPanel {
         g2d.setFont(kretrofont);
         g2d.drawString("Leise", 155, 200);
         g2d.drawString("Mittel", 295, 200);
-        g2d.drawString("Laut", 435, 200);
+        g2d.drawString("Laut", 450, 200);
         g2d.drawString("Zurück", 295, 415);
     }
 
@@ -392,6 +396,9 @@ public class MenuBoardNeu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 menu = 1;
+                ButtonLLeise.setVisible(false);
+                ButtonLMittel.setVisible(false);
+                ButtonLLaut.setVisible(false);
                 repaint();
             }
         });
