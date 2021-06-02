@@ -45,6 +45,7 @@ public class Menu extends JFrame {
     ActionListener actionListener1= new ActionListener() {      //Diese Methode wird vom Timer ausgeführt
         @Override                                               //Wir schauen ob sich was im Menu tut
         public void actionPerformed(ActionEvent e) {            //Modus wechselt -> aktion
+            LautMinus= menuBoard1.getLautstärke();
             int modus = menuBoard1.getModus();
 
 
@@ -81,4 +82,5 @@ public class Menu extends JFrame {
         farbe_links = storage1.readFarbe(10);
         farbe_rechts = storage1.readFarbe(12);
     }
+
 }
