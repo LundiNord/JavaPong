@@ -68,7 +68,7 @@ public class Storage {                  //Wir brauchen persistent storage die le
             Field field = Class.forName("java.awt.Color").getField(read(zeile));
             farbe1 = (Color)field.get(null);
         } catch (Exception e) {
-            farbe1 = null; // Not defined
+            farbe1 = Color.white; // Not defined
         }
         return farbe1;
     }

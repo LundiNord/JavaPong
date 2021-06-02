@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 public class MenuBoardNeu extends JPanel {
     private Font retroFont;
@@ -29,9 +30,12 @@ public class MenuBoardNeu extends JPanel {
     private Sound menusound;
     private int modus = 0;
     private float LautMinus;
-    private JTextField farbeBall;
-    private JTextField farbePaddleLinks;
-    private JTextField farbePaddleRechts;
+    private JTextField textfarbeBall;
+    private JTextField textfarbePaddleLinks;
+    private JTextField textfarbePaddleRechts;
+    private Color farbeBall;
+    private Color farbePaddleLinks;
+    private Color farbePaddleRechts;
 
     /*  Hier gibt es bei den Buttons viel Code der mehrfach vorkommt und unnötig ist. Wir haben es anders versucht,
         hat aber nicht funktioniert weil Buttons Arschlöcher sind. Deswegen jetzt so.
@@ -272,31 +276,31 @@ public class MenuBoardNeu extends JPanel {
         add(ButtonZurueck2);
     }
     public void paintTextFeldBall() {
-        farbeBall.setVisible(true);
-        farbeBall.setSize(130,60);
-        farbeBall.setFont(retroFont);
-        farbeBall.setLocation(175, 275);
+        textfarbeBall.setVisible(true);
+        textfarbeBall.setSize(130,60);
+        textfarbeBall.setFont(retroFont);
+        textfarbeBall.setLocation(175, 275);
         //farbeBall.setOpaque(false);
-        farbeBall.setBackground(Color.black);
-        add(farbeBall);
+        textfarbeBall.setBackground(Color.black);
+        add(textfarbeBall);
     }
     public void paintTextFeldPaddleLinks() {
-        farbePaddleLinks.setVisible(true);
-        farbePaddleLinks.setSize(130,60);
-        farbePaddleLinks.setFont(retroFont);
-        farbePaddleLinks.setLocation(275, 275);
+        textfarbePaddleLinks.setVisible(true);
+        textfarbePaddleLinks.setSize(130,60);
+        textfarbePaddleLinks.setFont(retroFont);
+        textfarbePaddleLinks.setLocation(275, 275);
         //farbeBall.setOpaque(false);
-        farbePaddleLinks.setBackground(Color.black);
-        add(farbePaddleLinks);
+        textfarbePaddleLinks.setBackground(Color.black);
+        add(textfarbePaddleLinks);
     }
     public void paintTextFeldPaddleRechts() {
-        farbePaddleRechts.setVisible(true);
-        farbePaddleRechts.setSize(130,60);
-        farbePaddleRechts.setFont(retroFont);
-        farbePaddleRechts.setLocation(375, 275);
+        textfarbePaddleRechts.setVisible(true);
+        textfarbePaddleRechts.setSize(130,60);
+        textfarbePaddleRechts.setFont(retroFont);
+        textfarbePaddleRechts.setLocation(375, 275);
         //farbeBall.setOpaque(false);
-        farbePaddleRechts.setBackground(Color.black);
-        add(farbePaddleRechts);
+        textfarbePaddleRechts.setBackground(Color.black);
+        add(textfarbePaddleRechts);
     }
 
     //Button Init Menu1
@@ -455,40 +459,43 @@ public class MenuBoardNeu extends JPanel {
                 ButtonLLeise.setVisible(false);
                 ButtonLMittel.setVisible(false);
                 ButtonLLaut.setVisible(false);
-                farbeBall.setVisible(false);
-                farbePaddleLinks.setVisible(false);
-                farbePaddleRechts.setVisible(false);
+                textfarbeBall.setVisible(false);
+                textfarbePaddleLinks.setVisible(false);
+                textfarbePaddleRechts.setVisible(false);
                 repaint();
             }
         });
     }
-    public void TextFeldBall() {
-        farbeBall = new JTextField();
-        farbeBall.addActionListener(new ActionListener() {
+    public void TextFeldBall() {        //Text Felder
+        textfarbeBall = new JTextField();
+        textfarbeBall.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                String input = farbeBall.getText();
-                System.out.println(input);
+            public void actionPerformed(ActionEvent e) {    //Input wird abgespeichert
+                String input = textfarbeBall.getText();
+                farbeBall = getFarbefromString(input);
+                modus = 7;
             }
         });
     }
     public void TextFeldPaddleLinks() {
-        farbePaddleLinks = new JTextField();
-        farbePaddleLinks.addActionListener(new ActionListener() {
+        textfarbePaddleLinks = new JTextField();
+        textfarbePaddleLinks.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String input = farbePaddleLinks.getText();
-                System.out.println(input);
+                String input = textfarbePaddleLinks.getText();
+                farbePaddleLinks = getFarbefromString(input);
+                modus = 8;
             }
         });
     }
     public void TextFeldPaddleRechts() {
-        farbePaddleRechts = new JTextField();
-        farbePaddleRechts.addActionListener(new ActionListener() {
+        textfarbePaddleRechts = new JTextField();
+        textfarbePaddleRechts.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String input = farbePaddleRechts.getText();
-                System.out.println(input);
+                String input = textfarbePaddleRechts.getText();
+                farbePaddleRechts = getFarbefromString(input);
+                modus=9;
             }
         });
     }
@@ -505,6 +512,25 @@ public class MenuBoardNeu extends JPanel {
     }
     public int getModus() {
         return modus;
+    }
+    public Color getFarbeBall() {
+        return farbeBall;
+    }
+    public Color getFarbePaddleLinks() {
+        return farbePaddleLinks;
+    }
+    public Color getFarbePaddleRechts() {
+        return farbePaddleRechts;
+    }
+    public Color getFarbefromString(String farbe) {       //Verschiedene Farben zurückgeben
+        Color farbe1;           //String -> Farbe
+        try {
+            Field field = Class.forName("java.awt.Color").getField(farbe);
+            farbe1 = (Color)field.get(null);
+        } catch (Exception e) {
+            farbe1 = null;      //default weiß
+        }
+        return farbe1;
     }
     public void setModus(int modus){
         this.modus=modus;

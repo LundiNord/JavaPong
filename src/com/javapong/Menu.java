@@ -45,9 +45,8 @@ public class Menu extends JFrame {
     ActionListener actionListener1= new ActionListener() {      //Diese Methode wird vom Timer ausgeführt
         @Override                                               //Wir schauen ob sich was im Menu tut
         public void actionPerformed(ActionEvent e) {            //Modus wechselt -> aktion
-            LautMinus= menuBoard1.getLautstärke();
+            LautMinus= menuBoard1.getLautstärke();  //Abrufen
             int modus = menuBoard1.getModus();
-
 
             if(modus==1||modus==2||modus==3||modus==4){ //Bei diesen Modi wird ein Spiel gestartet
                 menuBoard1.setModus(0);                 //Modus wieder auf 0 setzen, sonst öffnet sich Pong dauerhaft
@@ -58,7 +57,6 @@ public class Menu extends JFrame {
                     exception.printStackTrace();
                 }
             }
-
             if(modus==6){                               //6=Exit
                 dispose();
                 System.exit(0);                 //Programm beenden
@@ -72,6 +70,18 @@ public class Menu extends JFrame {
                     }
                 spiel1=null;                //altes Spiel =null
                 }
+            }
+            if(modus==7) {          //Inputs aus den Farbeinstellungen abrufen
+                farbe_Ball=menuBoard1.getFarbeBall();
+                menuBoard1.setModus(0);
+            }
+            if(modus==8) {
+                farbe_links=menuBoard1.getFarbePaddleLinks();
+                menuBoard1.setModus(0);
+            }
+            if(modus==9) {
+                farbe_rechts = menuBoard1.getFarbePaddleRechts();
+                menuBoard1.setModus(0);
             }
         }
     };

@@ -26,3 +26,7 @@ Modi:
 5= MO
 
 6= Exit
+
+7= neue Farb Einstellung Ball
+8= neue Farb Einstellung Paddle Links
+9= neue Farb Einstellung Paddle Rechts
