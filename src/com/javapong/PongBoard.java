@@ -74,7 +74,8 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         this.LautMinus = LautMinus;
         hit = new Sound("resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
         goal = new Sound("resources/sound/463067__gamer127__success-02.wav",20,false);
-        win = new Sound("resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,true);
+        win = new Sound("resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,false);
+        System.out.print("Hello");
     }
 
     @Override
