@@ -71,9 +71,9 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         timer = new Timer(delay, this);     //Irgendwas braucht das hier (die Bewegungsanimation der Paddles)
         timer.start();
         this.LautMinus = LautMinus;
-        hit = new Sound("resources/sound/4382__noisecollector__pongblipd-5.wav",20,false);
-        goal = new Sound("resources/sound/463067__gamer127__success-02.wav",20,false);
-        win = new Sound("resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",20,false);
+        hit = new Sound("resources/sound/4382__noisecollector__pongblipd-5.wav",LautMinus,false);
+        goal = new Sound("resources/sound/463067__gamer127__success-02.wav",LautMinus,false);
+        win = new Sound("resources/sound/518308__mrthenoronha__world-clear-8-bit.wav",LautMinus,false);
         System.out.print("Hello");
     }
 
