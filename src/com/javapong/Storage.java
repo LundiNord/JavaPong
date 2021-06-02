@@ -16,7 +16,7 @@ public class Storage {                  //Wir brauchen persistent storage die le
     }
     public void InitStorage() {             //Bei uns wird diese Methode auch nicht gebraucht
         File f = new File(Pfad);            //Initialisierung der Savefile
-        if(!f.exists()) {       //Wenn sie nicht existiert wird eine default generiert
+        if(!f.exists()) {                   //Wenn sie nicht existiert wird eine default generiert
             try {
                 FileWriter myWriter = new FileWriter(Pfad);
                 myWriter.write("test1 \n test2 \n test3 \n test4");     //Defaults
@@ -29,7 +29,7 @@ public class Storage {                  //Wir brauchen persistent storage die le
     }
     public void write(String save, int zeile) throws IOException {          //Schreiben
         /*
-            Im Endeffekt braucht unser Programm kein write Methode. Sie bleibt für ein eventuelles JavaPong2 hier.
+            Im Endeffekt braucht unser Programm keine write Methode. Sie bleibt für ein eventuelles JavaPong2 hier.
          */
         Scanner sc = new Scanner(new File(Pfad));        //Scanner um die File einzulesen
         //Idee geklaut aus einem Tutorial

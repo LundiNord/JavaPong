@@ -36,10 +36,9 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
     private boolean close = false;      //Das ist so hässlich und furchtbar
     private Sound hit;                  //Soundeffekte
     private Sound goal;
-    private Sound win;
+    private Sound  win;
     private float LautMinus;
     private int modus;
-
 
     public PongBoard(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus,int modus,int delayBspeed) throws Exception {
         this.modus= modus;

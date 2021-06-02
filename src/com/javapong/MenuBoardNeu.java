@@ -3,12 +3,9 @@ package com.javapong;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,7 +19,8 @@ public class MenuBoardNeu extends JPanel {
     private JButton ButtonMittel;
     private JButton ButtonSchwer;
     private JButton ButtonZurueck;
-    private boolean menu2;
+    private JButton ButtonSettings;
+    private int menu=1;
     private Sound menusound;
     private int modus=0;
     private float LautMinus;
@@ -43,6 +41,7 @@ public class MenuBoardNeu extends JPanel {
         ButtonMittel();
         ButtonSchwer();
         ButtonZurueck();
+        ButtonSettings();
         setBackground(Color.black);
         setFocusable(true);
         Menusoundstarten();
@@ -53,19 +52,23 @@ public class MenuBoardNeu extends JPanel {
         Graphics2D g2d = (Graphics2D) g; //Grafikobjekt in 2D-Grafikobjekt umwandeln
         paintTitle(g2d);
         paintSubtitle(g2d);
-        if(menu2==false) {      //Menu1
+        if(menu ==1) {      //Menu1
             paintStartbutton();
             paintStartbutton2();
             paintStartbutton2online();
             paintExitbutton();
             paintButton(g2d);
+            paintSettingsbutton();
         }
-        else if(menu2==true) {      //Menu2
+        else if(menu ==2) {      //Menu2
             paintModusLeicht();
             paintModusMittel();
             paintModusSchwer();
             paintZurück();
             paintButton2(g2d);
+        }
+        else if(menu==3){
+
         }
     }
 //paint Methoden
@@ -92,6 +95,7 @@ public class MenuBoardNeu extends JPanel {
         g2d.drawString("Lokaler Mehrspieler",200,265);
         g2d.drawString("Online Modus",255,340);
         g2d.drawString("Beenden",290,415);
+
     }
     public void paintStartbutton(){
         Startbutton.setVisible(true);
@@ -185,13 +189,25 @@ public class MenuBoardNeu extends JPanel {
         g2d.drawString("Zurück",295,415);
     }
 
+    public void paintSettingsbutton(){
+        ButtonSettings.setVisible(true);
+        //ExitButton.setText("Exit");
+        ButtonSettings.setSize(50,50);
+        ButtonSettings.setLocation(620,400);
+        ButtonSettings.setOpaque(false);
+        ButtonSettings.setContentAreaFilled(false);
+        ButtonSettings.setBorderPainted(true);
+        add(ButtonSettings);
+
+    }
+
 //Button Init Menu2
     public void Startbutton() {
         Startbutton= new JButton();
         Startbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menu2=true;
+                menu =2;
                 Startbutton.setVisible(false);
                 Startbutton2.setVisible(false);
                 Startbutton2online.setVisible(false);
@@ -261,7 +277,7 @@ public class MenuBoardNeu extends JPanel {
         ButtonZurueck.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menu2=false;
+                menu =1;
                 ButtonLeicht.setVisible(false);
                 ButtonMittel.setVisible(false);
                 ButtonSchwer.setVisible(false);
@@ -270,7 +286,20 @@ public class MenuBoardNeu extends JPanel {
             }
         });
     }
-
+    public void ButtonSettings() {
+        ButtonSettings= new JButton();
+        ButtonSettings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menu=3;
+                Startbutton.setVisible(false);
+                Startbutton2.setVisible(false);
+                Startbutton2online.setVisible(false);
+                ExitButton.setVisible(false);
+                repaint();
+            }
+        });
+    }
     public void Menusoundstarten() throws Exception {
         menusound = new Sound("src/resources/sound/198896__bone666138__8-bit-circus-music.wav",LautMinus,true);
         menusound.playSound1();
