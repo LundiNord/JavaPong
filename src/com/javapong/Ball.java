@@ -66,15 +66,7 @@ public class Ball  {
         x+=dx;
         y+=dy;
     }
-    public void AbprallenGanzOben(){
-        dx=dx;
-        dy=-dy;
-    }
-    public void AbprallenOben(){
-        dx=-dx*3/4;
-        dy=dy*5/4;
-    }
-    public void AbprallenMitte(){
+    public void AbprallenPaddle(){
         dx=-dx;         //x dreht sich
         dy=dy;          //y nicht
     }
@@ -146,8 +138,7 @@ public class Ball  {
             }
         }
     }
-    public static void wait(int ms)     //Warten Methode
-    {
+    public static void wait(int ms){
         try
         {
             Thread.sleep(ms);
@@ -157,4 +148,5 @@ public class Ball  {
             Thread.currentThread().interrupt();
         }
     }
+
 }

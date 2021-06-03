@@ -279,27 +279,27 @@ public class MenuBoardNeu extends JPanel {
         textfarbeBall.setVisible(true);
         textfarbeBall.setSize(130,60);
         textfarbeBall.setFont(retroFont);
-        textfarbeBall.setLocation(175, 275);
-        //farbeBall.setOpaque(false);
+        textfarbeBall.setLocation(145, 275);
         textfarbeBall.setBackground(Color.black);
+        textfarbeBall.setForeground(Color.white);
         add(textfarbeBall);
     }
     public void paintTextFeldPaddleLinks() {
         textfarbePaddleLinks.setVisible(true);
         textfarbePaddleLinks.setSize(130,60);
         textfarbePaddleLinks.setFont(retroFont);
-        textfarbePaddleLinks.setLocation(275, 275);
-        //farbeBall.setOpaque(false);
+        textfarbePaddleLinks.setLocation(285, 275);
         textfarbePaddleLinks.setBackground(Color.black);
+        textfarbePaddleLinks.setForeground(Color.white);
         add(textfarbePaddleLinks);
     }
     public void paintTextFeldPaddleRechts() {
         textfarbePaddleRechts.setVisible(true);
         textfarbePaddleRechts.setSize(130,60);
         textfarbePaddleRechts.setFont(retroFont);
-        textfarbePaddleRechts.setLocation(375, 275);
-        //farbeBall.setOpaque(false);
+        textfarbePaddleRechts.setLocation(440, 275);
         textfarbePaddleRechts.setBackground(Color.black);
+        textfarbePaddleRechts.setForeground(Color.white);
         add(textfarbePaddleRechts);
     }
 

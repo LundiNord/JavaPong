@@ -97,26 +97,26 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         }
         Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
     }
-//paint Methoden
+    //paint Methoden
     public void paintPaddle_rechts(Graphics2D g2d){
-    g2d.setColor(farbe_rechts);
-    g2d.fill3DRect(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeight(),true);
+        g2d.setColor(farbe_rechts);
+        g2d.fill3DRect(paddle_rechts.getX(), paddle_rechts.getY(), paddle_rechts.getWidth(), paddle_rechts.getHeight(),true);
     }
     public void paintPaddle_links(Graphics2D g2d){
-    g2d.setColor(farbe_links);
-    g2d.fill3DRect(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeight(), true);
+        g2d.setColor(farbe_links);
+        g2d.fill3DRect(paddle_links.getX(), paddle_links.getY(), paddle_links.getWidth(), paddle_links.getHeight(), true);
     }
     public void paintBall(Graphics2D g2d){
-    g2d.setColor(farbe_Ball);
-    g2d.fill3DRect(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight(), true);
+        g2d.setColor(farbe_Ball);
+        g2d.fill3DRect(ball1.getX(), ball1.getY(), ball1.getWidth(), ball1.getHeight(), true);
     }
     public void paintRahmen(Graphics2D g2d){            //Rahmenkomponenten zeichnen
-    g2d.setColor(Color.white);
-    g2d.fill3DRect(spielfeld1.getXm(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
-    g2d.fill3DRect(spielfeld1.getXl(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
-    g2d.fill3DRect(spielfeld1.getXr(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
-    g2d.fill3DRect(0, spielfeld1.getYo(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
-    g2d.fill3DRect(0, spielfeld1.getYu(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
+        g2d.setColor(Color.white);
+        g2d.fill3DRect(spielfeld1.getXm(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
+        g2d.fill3DRect(spielfeld1.getXl(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
+        g2d.fill3DRect(spielfeld1.getXr(), spielfeld1.getYm(), spielfeld1.getMwidth(), spielfeld1.getMheight(), true);
+        g2d.fill3DRect(0, spielfeld1.getYo(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
+        g2d.fill3DRect(0, spielfeld1.getYu(), spielfeld1.getSw(), spielfeld1.getMwidth(), true);
     }
     public void paintPunkte(Graphics2D g2d) throws IOException, FontFormatException {
         g2d.setColor(Color.white);
@@ -168,38 +168,14 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
     }
     public void checkCollision() {          //Collisions erkennen
         Rectangle rB = ball1.getBounds();
-        Rectangle rPl= paddle_links.getBounds1();
-        Rectangle rPl2= paddle_links.getBounds2();
-        Rectangle rPl3= paddle_links.getBounds3();
-        Rectangle rPl4= paddle_links.getBounds4();
-        Rectangle rPl5= paddle_links.getBounds5();
-        Rectangle rPr= paddle_rechts.getBounds1();
-        Rectangle rPr2= paddle_rechts.getBounds2();
-        Rectangle rPr3= paddle_rechts.getBounds3();
-        Rectangle rPr4= paddle_rechts.getBounds4();
-        Rectangle rPr5= paddle_rechts.getBounds5();
+        Rectangle rPl= paddle_links.getBounds();
+        Rectangle rPr= paddle_rechts.getBounds();
         Rectangle rBo=spielfeld1.getBoundsOben();
         Rectangle rBu=spielfeld1.getBoundsUnten();
         Rectangle rBl=spielfeld1.getBoundsLinks();
         Rectangle rBr=spielfeld1.getBoundsRechts();
         if(rB.intersects(rPl)||rB.intersects(rPr)) {    //Unterschiedlich für Rahmen und Paddles
-            ball1.AbprallenGanzOben();
-            hit.playSoundOnce();
-        }
-        else if(rB.intersects(rPl2)||rB.intersects(rPr2)){
-            ball1.AbprallenOben();
-            hit.playSoundOnce();
-        }
-        else if (rB.intersects(rPl3)||rB.intersects(rPr3)){
-            ball1.AbprallenMitte();
-            hit.playSoundOnce();
-        }
-        else if(rB.intersects(rPl4)||rB.intersects(rPr4)){
-            ball1.AbprallenOben();
-            hit.playSoundOnce();
-        }
-        else if (rB.intersects(rPl5)||rB.intersects(rPr5)){
-            ball1.AbprallenGanzOben();
+            ball1.AbprallenPaddle();
             hit.playSoundOnce();
         }
         if(rB.intersects(rBo)||rB.intersects(rBu)){
@@ -212,17 +188,17 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         }
     }
     public void Punktedetektor(Rectangle rBr, Rectangle rBl, Rectangle rB){
-       if(rB.intersects(rBl)) {
+        if(rB.intersects(rBl)) {
             PunkteRechts= PunkteRechts+1;
             ball1.resetBall(true);
-       }
-       else {
+        }
+        else {
             PunkteLinks= PunkteLinks+1;
             ball1.resetBall(false);
-       }
-       if(PunkteLinks>=7||PunkteRechts>=7) {
-           spielEnde();
-       }
+        }
+        if(PunkteLinks>=7||PunkteRechts>=7) {
+            spielEnde();
+        }
     }
     public void spielEnde() {      //Ende und close    //Ball stoppen
         if(PunkteLinks>=7) {
@@ -263,7 +239,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         }
     }
     public void stop(){     //Geräusche stoppen indem wir den Ball stoppen
-    ballthread.stop();
+        ballthread.stop();
     }
     public void startFont() throws IOException, FontFormatException {       //Custom Font init
         File f = new File("resources/font/PressStart2P.ttf");       //Pfad zu .ttf File
