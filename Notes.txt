@@ -4,6 +4,10 @@ Paddles
 - paddles_links
 - paddles_rechts
 
+rPr/l= ganz oben             height entspricht rPr/l5
+rPr/l2= zweites von oben    height entspricht rPr/l4
+rPr/l3= drittes von oben
+
 
 
 

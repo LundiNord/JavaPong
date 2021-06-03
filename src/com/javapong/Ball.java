@@ -66,7 +66,15 @@ public class Ball  {
         x+=dx;
         y+=dy;
     }
-    public void AbprallenPaddle(){
+    public void AbprallenGanzOben(){
+        dx=dx;
+        dy=-dy;
+    }
+    public void AbprallenOben(){
+        dx=-dx*3/4;
+        dy=dy*5/4;
+    }
+    public void AbprallenMitte(){
         dx=-dx;         //x dreht sich
         dy=dy;          //y nicht
     }
