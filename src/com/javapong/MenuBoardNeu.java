@@ -238,6 +238,12 @@ public class MenuBoardNeu extends JPanel {
         g2d.drawString("Mittel", 295, 200);
         g2d.drawString("Laut", 450, 200);
         g2d.drawString("Zurück", 295, 415);
+
+        g2d.drawString("Farbe:", 325,250);
+        g2d.drawString("Paddle L",100, 290);
+        g2d.drawString("Ball",325, 290);
+        g2d.drawString("Paddle R",500,290);
+        g2d.drawString("Lautstärke",250, 150 );
     }
     public void paintButtonLLeise(){
         ButtonLLeise.setVisible(true);
@@ -277,27 +283,27 @@ public class MenuBoardNeu extends JPanel {
     }
     public void paintTextFeldBall() {
         textfarbeBall.setVisible(true);
-        textfarbeBall.setSize(130,60);
+        textfarbeBall.setSize(100,40);
         textfarbeBall.setFont(retroFont);
-        textfarbeBall.setLocation(145, 275);
+        textfarbeBall.setLocation(300, 300);
         textfarbeBall.setBackground(Color.black);
         textfarbeBall.setForeground(Color.white);
         add(textfarbeBall);
     }
     public void paintTextFeldPaddleLinks() {
         textfarbePaddleLinks.setVisible(true);
-        textfarbePaddleLinks.setSize(130,60);
+        textfarbePaddleLinks.setSize(100,40);
         textfarbePaddleLinks.setFont(retroFont);
-        textfarbePaddleLinks.setLocation(285, 275);
+        textfarbePaddleLinks.setLocation(100, 300);
         textfarbePaddleLinks.setBackground(Color.black);
         textfarbePaddleLinks.setForeground(Color.white);
         add(textfarbePaddleLinks);
     }
     public void paintTextFeldPaddleRechts() {
         textfarbePaddleRechts.setVisible(true);
-        textfarbePaddleRechts.setSize(130,60);
+        textfarbePaddleRechts.setSize(100,40);
         textfarbePaddleRechts.setFont(retroFont);
-        textfarbePaddleRechts.setLocation(440, 275);
+        textfarbePaddleRechts.setLocation(500, 300);
         textfarbePaddleRechts.setBackground(Color.black);
         textfarbePaddleRechts.setForeground(Color.white);
         add(textfarbePaddleRechts);
