@@ -235,15 +235,15 @@ public class MenuBoardNeu extends JPanel {
         ge.registerFont(kretrofont);
         g2d.setFont(kretrofont);
         g2d.drawString("Leise", 155, 200);
-        g2d.drawString("Mittel", 295, 200);
+        g2d.drawString("Mittel", 300, 200);
         g2d.drawString("Laut", 450, 200);
-        g2d.drawString("Zurück", 295, 415);
+        g2d.drawString("Zurück", 300, 415);
 
-        g2d.drawString("Farbe:", 325,250);
+        g2d.drawString("Farbe:", 300,250);
         g2d.drawString("Paddle L",100, 290);
-        g2d.drawString("Ball",325, 290);
+        g2d.drawString("Ball",310, 290);
         g2d.drawString("Paddle R",500,290);
-        g2d.drawString("Lautstärke",250, 150 );
+        g2d.drawString("Lautstärke",280, 150 );
     }
     public void paintButtonLLeise(){
         ButtonLLeise.setVisible(true);
@@ -283,16 +283,16 @@ public class MenuBoardNeu extends JPanel {
     }
     public void paintTextFeldBall() {
         textfarbeBall.setVisible(true);
-        textfarbeBall.setSize(100,40);
+        textfarbeBall.setSize(110,40);
         textfarbeBall.setFont(retroFont);
-        textfarbeBall.setLocation(300, 300);
+        textfarbeBall.setLocation(290, 300);
         textfarbeBall.setBackground(Color.black);
         textfarbeBall.setForeground(Color.white);
         add(textfarbeBall);
     }
     public void paintTextFeldPaddleLinks() {
         textfarbePaddleLinks.setVisible(true);
-        textfarbePaddleLinks.setSize(100,40);
+        textfarbePaddleLinks.setSize(110,40);
         textfarbePaddleLinks.setFont(retroFont);
         textfarbePaddleLinks.setLocation(100, 300);
         textfarbePaddleLinks.setBackground(Color.black);
@@ -301,7 +301,7 @@ public class MenuBoardNeu extends JPanel {
     }
     public void paintTextFeldPaddleRechts() {
         textfarbePaddleRechts.setVisible(true);
-        textfarbePaddleRechts.setSize(100,40);
+        textfarbePaddleRechts.setSize(110,40);
         textfarbePaddleRechts.setFont(retroFont);
         textfarbePaddleRechts.setLocation(500, 300);
         textfarbePaddleRechts.setBackground(Color.black);
