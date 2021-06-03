@@ -76,33 +76,22 @@ public class Paddle_links extends Paddles {
             y5=y4+sh/8/4;
         }
     }
-    public int getY2(){
-        return y2;
-    }
-    public int getY3(){
-        return y3;
-    }
-    public int getY4(){
-        return y4;
-    }
-    public int getY5(){
-        return y5;
+    public Rectangle getBounds1(){           // Neues Rectangel erzeugen für CollisionDetection
+        return new Rectangle(x,y1,getWidth(),getHeight1());
     }
     public Rectangle getBounds2(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y2,getWidth(),getHeight1());
+        return new Rectangle (x,y2,getWidth(),getHeight2());
     }
     public Rectangle getBounds3(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y3,getWidth(),getHeight2());
+        return new Rectangle (x,y3,getWidth(),getHeight3());
     }
     public Rectangle getBounds4(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y4,getWidth(),getHeight3());
+        return new Rectangle (x,y4,getWidth(),getHeight2());
     }
     public Rectangle getBounds5(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y5,getWidth(),getHeight2());
+        return new Rectangle (x,y5,getWidth(),getHeight1());
     }
-    public Rectangle getBounds1(){           // Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle(x,y1,getWidth(),getHeight());
-    }
+
     public int getX(){
         return x;
     }

@@ -26,7 +26,6 @@ public class Paddle_rechts_Bot extends Paddle_rechts {      //Bot
         y3=y2+sh/8/4;
         y4=y3+sh/8*3/8;
         y5=y4+sh/8/4;
-
     }
 
     public void move(){
@@ -63,21 +62,8 @@ public class Paddle_rechts_Bot extends Paddle_rechts {      //Bot
     public int getY(){
         return y;
     }
-    public int getY2(){
-        return y2;
-    }
-    public int getY3(){
-        return y3;
-    }
-    public int getY4(){
-        return y4;
-    }
-    public int getY5(){
-        return y5;
-    }
-    public Rectangle getBounds1(){       //Neues Rectangel erzeugen für CollisionDetection
+    public Rectangle getBounds1(){
         return new Rectangle(x,y1,getWidth(),getHeight1());
-
     }
     public Rectangle getBounds2(){       //Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle (x,y2,getWidth(),getHeight2());

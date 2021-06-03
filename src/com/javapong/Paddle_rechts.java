@@ -83,19 +83,19 @@ public class Paddle_rechts extends Paddles {
         return y;
     }
     public Rectangle getBounds1(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle(x,y1,getWidth(),getHeight());
+        return new Rectangle(x,y1,getWidth(),getHeight1());
     }
     public Rectangle getBounds2(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y2,getWidth(),getHeight1());
+        return new Rectangle (x,y2,getWidth(),getHeight2());
     }
     public Rectangle getBounds3(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y3,getWidth(),getHeight2());
+        return new Rectangle (x,y3,getWidth(),getHeight3());
     }
     public Rectangle getBounds4(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y4,getWidth(),getHeight3());
+        return new Rectangle (x,y4,getWidth(),getHeight2());
     }
     public Rectangle getBounds5(){       //Neues Rectangel erzeugen für CollisionDetection
-        return new Rectangle (x,y5,getWidth(),getHeight2());
+        return new Rectangle (x,y5,getWidth(),getHeight1());
     }
     public void setXbYb(int xb, int yb){        //muss existieren, weil hässlich
     }
