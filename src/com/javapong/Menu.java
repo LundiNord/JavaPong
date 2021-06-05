@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /*
     Es wäre besser wenn Menu und Spiel zusammengeführt werden. Wir haben das versucht, hat aber nicht funktioniert.
@@ -16,6 +17,7 @@ public class Menu extends JFrame {
     private float LautMinus;
     private Timer timerSpielStart;
     private Spiel spiel1;
+    private OSpiel oSpiel1;
     private Color farbe_links;        //Farbe der Paddles
     private Color farbe_rechts;
     private Color farbe_Ball;
@@ -57,18 +59,26 @@ public class Menu extends JFrame {
                     exception.printStackTrace();
                 }
             }
+            if(modus==5) {              //Online Modus
+                try {
+                    oSpiel1=new OSpiel();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
             if(modus==6){                               //6=Exit
                 dispose();
                 System.exit(0);                 //Programm beenden
             }
-            if(spiel1!=null) {              //Wenn das Spiel geschlossen wird, kommt das Menu wieder
-                if (spiel1.getSpielstopp() == true) {
+            if(spiel1!=null&&oSpiel1!=null) {              //Wenn das Spiel geschlossen wird, kommt das Menu wieder
+                if (spiel1.getSpielstopp() == true||oSpiel1.getSpielstopp()==true) {
                     try {
                         menuBoard1.Menusoundstarten();      //Sound wird wieder gestartete
                     } catch (Exception exception) {
                         exception.printStackTrace();
                     }
                 spiel1=null;                //altes Spiel =null
+                oSpiel1=null;
                 }
             }
             if(modus==7) {          //Inputs aus den Farbeinstellungen abrufen

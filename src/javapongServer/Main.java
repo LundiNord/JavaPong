@@ -1,4 +1,4 @@
-/* This file is part of JavaPong.
+/* This file is part of JavaPongServer.
         JavaPong is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
         the Free Software Foundation, either version 3 of the License, or
@@ -10,10 +10,10 @@
         You should have received a copy of the GNU General Public License
         along with JavaPong.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.javapong;
-import java.awt.*;
+package javapongServer;
 
-//JavaPong by Jan,Ricardo,Leon
+
+//JavaPongServer by Jan,Ricardo,Leon
 /*
 
  */
@@ -22,26 +22,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception
     {
-       EventQueue.invokeLater(() ->     //keine Ahnung wofür das ist
-         {
-             OSpiel menu1 = null;
-             try {
-                 menu1 = new OSpiel();
-             } catch (Exception e) {
-                 e.printStackTrace();
-             }
-             menu1.setVisible(true);
-        });
-
-
-        /*
-        Storage s1 = new Storage();
-        s1.write("Testgfdfgydfgd", 1);
-        s1.write("Test2ygfdgfydfgy",2);
-        Scanner scanner = new Scanner(System.in);
-        char x = scanner.next().charAt(0);
-        String y = String.valueOf(x);
-        s1.write(y,2);
-        System.out.println(s1.read(2)); */
+        Server server1 = new Server();
     }
 }
