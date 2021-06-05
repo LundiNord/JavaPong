@@ -12,6 +12,7 @@ public class Paddle_rechts_Bot extends Paddle_rechts {      //Bot
     private int yb;
     private int s=15; //s steht für speed
     private int sh; //screensize.height
+    Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
     public Paddle_rechts_Bot(){
         sh= screensize.height;          //Paddle dimensionen festlegen

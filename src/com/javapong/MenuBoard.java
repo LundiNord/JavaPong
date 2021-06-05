@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /*
         --Funktioniert nicht -> MenuBoardNeu
- */
+*/
 
 public class MenuBoard extends JPanel implements ActionListener {
 
