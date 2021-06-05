@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 //Rechtes Paddle
 public class Paddle_rechts extends Paddles {
+    Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
     private int x;
     private int y;
