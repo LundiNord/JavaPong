@@ -62,7 +62,7 @@ public class Menu extends JFrame {
             if(modus==5) {              //Online Modus
                 try {
                     oSpiel1=new OSpiel();
-                } catch (IOException ioException) {
+                } catch (IOException | ClassNotFoundException ioException) {
                     ioException.printStackTrace();
                 }
             }

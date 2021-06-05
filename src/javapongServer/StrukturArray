@@ -1,0 +1,18 @@
+Die Kommunikation funktioniert über Arrays die immer alle Daten enthalten
+
+In
+
+Index | Data
+0:
+1:
+2:
+
+
+
+
+Out
+
+Index | Data
+0:      Seite: 0=links  1=rechts        nur am Anfang benötigt
+1:
+2:
