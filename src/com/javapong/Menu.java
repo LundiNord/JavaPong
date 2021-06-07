@@ -67,18 +67,22 @@ public class Menu extends JFrame {
                 }
             }
             if(modus==6){                               //6=Exit
+                try {
+                    saveConfig();                           //save veränderter stuff
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
                 dispose();
                 System.exit(0);                 //Programm beenden
             }
-            if(spiel1!=null&&oSpiel1!=null) {              //Wenn das Spiel geschlossen wird, kommt das Menu wieder
-                if (spiel1.getSpielstopp() == true||oSpiel1.getSpielstopp()==true) {
+            if(spiel1!=null) {              //Wenn das Spiel geschlossen wird, kommt das Menu wieder
+                if (spiel1.getSpielstopp() == true) {       //ToDO: Onlinemodus implementieren
                     try {
                         menuBoard1.Menusoundstarten();      //Sound wird wieder gestartete
                     } catch (Exception exception) {
                         exception.printStackTrace();
                     }
-                spiel1=null;                //altes Spiel =null
-                oSpiel1=null;
+                    spiel1=null;                //altes Spiel =null
                 }
             }
             if(modus==7) {          //Inputs aus den Farbeinstellungen abrufen
@@ -102,5 +106,11 @@ public class Menu extends JFrame {
         farbe_links = storage1.readFarbe(10);
         farbe_rechts = storage1.readFarbe(12);
     }
-
+    public void saveConfig() throws IOException {
+        storage1.writeFloat(LautMinus,3);
+        //delayBspeed ist nicht veränderbar
+        storage1.writeColour(farbe_Ball,8);
+        storage1.writeColour(farbe_links,10);
+        storage1.writeColour(farbe_rechts,12);
+    }
 }

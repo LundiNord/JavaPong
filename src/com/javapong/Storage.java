@@ -28,9 +28,6 @@ public class Storage {                  //Wir brauchen persistent storage die le
         }
     }
     public void write(String save, int zeile) throws IOException {          //Schreiben
-        /*
-            Im Endeffekt braucht unser Programm keine write Methode. Sie bleibt für ein eventuelles JavaPong2 hier.
-         */
         Scanner sc = new Scanner(new File(Pfad));        //Scanner um die File einzulesen
         //Idee geklaut aus einem Tutorial
         StringBuffer buffer = new StringBuffer();
@@ -56,6 +53,7 @@ public class Storage {                  //Wir brauchen persistent storage die le
         myReader.close();
         return data;
     }
+    //Getter/Setter Methoden
     public int readInt(int zeile) throws FileNotFoundException {
         return Integer.parseInt(read(zeile));
     }
@@ -71,5 +69,22 @@ public class Storage {                  //Wir brauchen persistent storage die le
             farbe1 = Color.white; // Not defined
         }
         return farbe1;
+    }
+    public void writeFloat(float save, int zeile) throws IOException {
+        String s = String.valueOf(save);        //Umwandeln
+        write(s,zeile);
+    }
+    public void writeColour(Color c, int zeile) throws IOException {    //FixMe: bei gleichen Farben geht Regex schief
+        //Es wäre schlauer gewesen die Farben als RGB Werte zu speichern und nur beim Input umzuwandeln...
+        for (Field f : Color.class.getFields()) {                 //alle Farbenamen werden durchgegangen
+            try {
+                if (f.getType() == Color.class && f.get(null).equals(c)) {      //die Richtige wird ausgegeben
+                    write(f.getName(), zeile);
+                    System.out.println(f.getName());
+                }
+            } catch (java.lang.IllegalAccessException e) {
+                // it should never get to here
+            }
+        }
     }
 }

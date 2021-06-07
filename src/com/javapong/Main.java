@@ -24,9 +24,9 @@ public class Main {
     {
        EventQueue.invokeLater(() ->     //keine Ahnung wofür das ist
          {
-             OSpiel menu1 = null;
+             Menu menu1 = null;
              try {
-                 menu1 = new OSpiel();
+                 menu1 = new Menu();
              } catch (Exception e) {
                  e.printStackTrace();
              }
