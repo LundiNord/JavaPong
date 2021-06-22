@@ -81,7 +81,7 @@ public class Storage {                  //Wir brauchen persistent storage die le
             try {
                 if (f.getType() == Color.class && f.get(null).equals(c)) {      //die Richtige wird ausgegeben
                     write(f.getName(), zeile);
-                    System.out.println(f.getName());
+                    //System.out.println(f.getName());
                 }
             } catch (java.lang.IllegalAccessException e) {
                 //hier sollte das Programm nie landen...
