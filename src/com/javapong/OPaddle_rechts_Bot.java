@@ -2,7 +2,9 @@ package com.javapong;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-
+    /*
+        Paddle für das Online Spiel
+    */
 public class OPaddle_rechts_Bot extends OPaddles{
     private int x;
     private int y;

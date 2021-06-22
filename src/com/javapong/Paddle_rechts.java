@@ -65,6 +65,5 @@ public class Paddle_rechts extends Paddles {
     public void setXbYb(int xb, int yb){        //muss existieren, weil hässlich
     }
     public void setS(int s){
-
     }
 }

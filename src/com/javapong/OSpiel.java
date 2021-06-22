@@ -16,6 +16,12 @@ public class OSpiel  extends JFrame {           //Extrabehandlung des Online-Spi
     private PrintWriter senden;
     private BufferedReader empfangen;
 
+    /*
+        Wird vom Menu gestartet
+        Baut verbindung auf und startet das OPongBoard
+        ToDo: OnlineModus
+    */
+
     public OSpiel() throws IOException, ClassNotFoundException {
         initConnection();
         System.out.println("ServerTest");
@@ -34,6 +40,7 @@ public class OSpiel  extends JFrame {           //Extrabehandlung des Online-Spi
         //senden.println(500);
 
         ObjectOutputStream out = new ObjectOutputStream(socket1.getOutputStream());
+        long t = System.currentTimeMillis();
 
         ArrayList x = new ArrayList();
         x.add(3);
@@ -44,6 +51,8 @@ public class OSpiel  extends JFrame {           //Extrabehandlung des Online-Spi
         ArrayList test = (ArrayList) in.readObject();
         System.out.println(test.get(0));
 
+        t =  System.currentTimeMillis()-t;
+        System.out.println(" Zeit:"+t);
     }
 
 

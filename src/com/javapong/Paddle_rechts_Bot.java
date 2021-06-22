@@ -14,6 +14,8 @@ public class Paddle_rechts_Bot extends Paddle_rechts {      //Bot
     private int sh; //screensize.height
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
+    //das vom Bot im Einzelspieler kontrollierte Paddle
+
     public Paddle_rechts_Bot(){
         sh= screensize.height;          //Paddle dimensionen festlegen
         x= (screensize.width/16)*15-getWidth();

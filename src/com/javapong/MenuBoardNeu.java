@@ -546,7 +546,7 @@ public class MenuBoardNeu extends JPanel {
         Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
         PressStart = PressStart.deriveFont(Font.PLAIN,20);                  //Größe, ... festlegen
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(PressStart);                                            //keine Ahnung
+        ge.registerFont(PressStart);
         retroFont = PressStart;                                                 //Abspeichern
     }
 }

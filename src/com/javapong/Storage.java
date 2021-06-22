@@ -39,6 +39,7 @@ public class Storage {                  //Wir brauchen persistent storage die le
         String oldLine = read(zeile);       //Zeile zum ersetzen zwischenspeichern
         String newLine = save;
         fileContents = fileContents.replaceAll(oldLine, newLine);   //alte mit Regex mit der neuen ersetzen
+        //FixMe: Regex funkt bei gleichen Farbe nicht, wir müssten Identifier davor packen
         FileWriter writer = new FileWriter(Pfad);                   //File writer erzeugen
         writer.write(fileContents);                                 //Modifizierter String in Dokument speichern
         writer.flush();
@@ -75,15 +76,15 @@ public class Storage {                  //Wir brauchen persistent storage die le
         write(s,zeile);
     }
     public void writeColour(Color c, int zeile) throws IOException {    //FixMe: bei gleichen Farben geht Regex schief
-        //Es wäre schlauer gewesen die Farben als RGB Werte zu speichern und nur beim Input umzuwandeln...
-        for (Field f : Color.class.getFields()) {                 //alle Farbenamen werden durchgegangen
+        //Es wäre schlauer gewesen die Farben als RGB Werte zu speichern und nur beim Input umzuwandeln... egal
+        for (Field f : Color.class.getFields()) {                 //alle Farbnamen werden durchgegangen
             try {
                 if (f.getType() == Color.class && f.get(null).equals(c)) {      //die Richtige wird ausgegeben
                     write(f.getName(), zeile);
                     System.out.println(f.getName());
                 }
             } catch (java.lang.IllegalAccessException e) {
-                // it should never get to here
+                //hier sollte das Programm nie landen...
             }
         }
     }

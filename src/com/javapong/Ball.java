@@ -3,15 +3,12 @@ package com.javapong;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import javax.swing.Timer;
 
 public class Ball  {
 
     private int x;
     private int y;
-    //private int xo;         //x old
-    //private int yo;         //y old
     private int dx;
     private int dy;
     private int width;
@@ -55,10 +52,6 @@ public class Ball  {
         y= screensize.height/2;
         x= screensize.width/2- screensize.width/96;
     }
-    public void changeballsize(int dc){
-        width= screensize.width/32+dc;
-        height= screensize.height/32+dc;
-    }
     public Rectangle getBounds(){           // Neues Rectangel erzeugen für CollisionDetection
         return new Rectangle(x,y,getWidth(),getHeight());
     }
@@ -85,12 +78,6 @@ public class Ball  {
     }
     public int getHeight(){
         return height;
-    }
-    public int getDx(){
-        return dx;
-    }
-    public int getDy(){
-        return dy;
     }
     public void startBall() {       //Ball fliegt zufällig los
         int d = new java.util.Random().nextInt(5);
@@ -148,5 +135,4 @@ public class Ball  {
             Thread.currentThread().interrupt();
         }
     }
-
 }

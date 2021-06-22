@@ -13,9 +13,10 @@ public class Spielfeld {            //Mittellinie und Umrandungen
     private int sw; //screensize.width
     private int xAl, xAr, yA;     //Anzeigen für die Koordinaten
     private int xT, yT;           //You Win Text
-
     //Kann Bildschirmgröße lesen
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+
+    //Zeichenklasse für die Umrandungen, etc
 
     public Spielfeld(){
         sw= screensize.width;

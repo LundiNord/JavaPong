@@ -15,7 +15,10 @@ package javapongServer;
 
 //JavaPongServer by Jan,Ricardo,Leon
 /*
-
+        Main Klasse für das Server Programm
+        Am schönsten wäre sowas: https://www.jetbrains.com/help/idea/running-a-java-app-in-a-container.html#8d23fd02
+        es könnte aber viel Arbeit sein
+        ToDo: Online
  */
 
 public class Main {

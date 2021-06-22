@@ -18,6 +18,8 @@ public class Spiel extends JFrame {         //Spiel Klasse es Pong-Spiels
     private boolean spielstopp=false;
     private int delayBspeed;
 
+    //Wird vom Menu ausgeführt und ruft das PongBoard auf
+
     public Spiel(Color farbe_rechts,Color farbe_links,Color farbe_Ball,float LautMinus, int modus,int delayBspeed) throws Exception {
         this.farbe_links = farbe_links;
         this.farbe_rechts = farbe_rechts;

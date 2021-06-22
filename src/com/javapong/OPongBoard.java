@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 /*
+    Online Spiel
     Die Methode in der das Spiel gezeichnet wird. Grafikelemente werden von hier aus gestartet.
+    ToDo: noch überhaupt nicht fertig
  */
 
 public class OPongBoard extends JPanel implements Runnable, ActionListener{           //Bord des Pong-Spiel
@@ -95,7 +97,7 @@ public class OPongBoard extends JPanel implements Runnable, ActionListener{     
         if(spielEnde==true) {
             paintYouWin(g2d);
         }
-        Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
+        Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung
     }
     //paint Methoden
     public void paintPaddle_rechts(Graphics2D g2d){

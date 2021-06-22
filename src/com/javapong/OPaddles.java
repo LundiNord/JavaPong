@@ -1,5 +1,10 @@
 package com.javapong;
 import java.awt.*;
+
+/*
+    Paddle für das Online Spiel, wir wissen noch nicht ob wir diese Klasse und die Unterklassen brauchen
+*/
+
 public abstract class OPaddles {
     private int height;
     private int width;

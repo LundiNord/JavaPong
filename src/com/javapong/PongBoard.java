@@ -95,7 +95,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         if(spielEnde==true) {
             paintYouWin(g2d);
         }
-        Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung, keine Ahnung wie
+        Toolkit.getDefaultToolkit().sync(); //Ruckelverbesserung
     }
     //paint Methoden
     public void paintPaddle_rechts(Graphics2D g2d){
@@ -246,7 +246,7 @@ public class PongBoard extends JPanel implements Runnable, ActionListener{      
         Font PressStart = Font.createFont(Font.TRUETYPE_FONT,f);                //Neue Font machen
         PressStart = PressStart.deriveFont(Font.PLAIN,70);                  //Größe, ... festlegen
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(PressStart);                                            //keine Ahnung
+        ge.registerFont(PressStart);
         retroFont = PressStart;                                                 //Abspeichern
     }
     public boolean getClose() {

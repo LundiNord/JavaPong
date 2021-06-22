@@ -2,7 +2,9 @@ package com.javapong;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-
+    /*
+        Paddle für das Online Spiel
+    */
 public class OPaddle_links extends OPaddles{
     private int x;
     private int y;

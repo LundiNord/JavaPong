@@ -15,14 +15,14 @@ import java.awt.*;
 
 //JavaPong by Jan,Ricardo,Leon
 /*
-
+        //
  */
 
 public class Main {
 
     public static void main(String[] args) throws Exception
     {
-       EventQueue.invokeLater(() ->     //keine Ahnung wofür das ist
+       EventQueue.invokeLater(() ->
          {
              Menu menu1 = null;
              try {
@@ -32,16 +32,5 @@ public class Main {
              }
              menu1.setVisible(true);
         });
-
-
-        /*
-        Storage s1 = new Storage();
-        s1.write("Testgfdfgydfgd", 1);
-        s1.write("Test2ygfdgfydfgy",2);
-        Scanner scanner = new Scanner(System.in);
-        char x = scanner.next().charAt(0);
-        String y = String.valueOf(x);
-        s1.write(y,2);
-        System.out.println(s1.read(2)); */
     }
 }
